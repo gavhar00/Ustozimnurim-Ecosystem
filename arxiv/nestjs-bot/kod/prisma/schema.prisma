@@ -1,0 +1,199 @@
+// Ustozim Nurim — Phase 1 schema
+// Only the models required by the locked architecture's Phase 1 scope are
+// implemented with logic. Quiz / QuizAttempt / Mistake / MemoryNote /
+// DailyMetric / WeeklyMetric / AdminReport exist as schema foundations only
+// (per instructions: do not implement Quiz / AI Mentor / Daily Report logic
+// yet — but the tables must exist so later phases don't require migrations
+// that reshape already-live data).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// USER
+// ─────────────────────────────────────────────
+model User {
+  id             String   @id @default(cuid())
+  telegramId     BigInt   @unique
+  username       String?
+  firstName      String?
+  languageCode   String?
+  onboardingStep OnboardingStep @default(NOT_STARTED)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  lastActiveAt   DateTime @default(now())
+
+  events         Event[]
+  memoryNotes    MemoryNote[]
+  quizAttempts   QuizAttempt[]
+  mistakes       Mistake[]
+
+  @@index([telegramId])
+  @@map("users")
+}
+
+enum OnboardingStep {
+  NOT_STARTED
+  WELCOMED
+  GOAL_ASKED
+  COMPLETED
+}
+
+// ─────────────────────────────────────────────
+// CHANNEL + CHANNEL POST (4-channel architecture)
+// ─────────────────────────────────────────────
+enum ChannelSlug {
+  USTOZIM_NURIM
+  SAHIFALAR
+  COMMUNITY
+  QURANOY
+}
+
+model Channel {
+  id             String      @id @default(cuid())
+  slug           ChannelSlug @unique
+  displayName    String
+  telegramChatId BigInt?     @unique
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  posts  ChannelPost[]
+  events Event[]
+
+  @@map("channels")
+}
+
+model ChannelPost {
+  id                 String   @id @default(cuid())
+  channelId          String
+  channel            Channel  @relation(fields: [channelId], references: [id])
+  telegramMessageId  BigInt?
+  // Slug used inside the deep-link start payload, e.g. "post42".
+  // Independent of the Telegram message id so links stay stable even if a
+  // post is edited/reposted.
+  deepLinkPostId     String
+  createdAt          DateTime @default(now())
+
+  events Event[]
+
+  @@unique([channelId, deepLinkPostId])
+  @@map("channel_posts")
+}
+
+// ─────────────────────────────────────────────
+// EVENT (append-only analytics source of truth)
+// ─────────────────────────────────────────────
+model Event {
+  id            String       @id @default(cuid())
+  eventType     String
+  userId        String?
+  user          User?        @relation(fields: [userId], references: [id])
+  channelId     String?
+  channel       Channel?     @relation(fields: [channelId], references: [id])
+  channelPostId String?
+  channelPost   ChannelPost? @relation(fields: [channelPostId], references: [id])
+  metadata      Json?
+  createdAt     DateTime     @default(now())
+
+  @@index([eventType, createdAt])
+  @@index([userId])
+  @@index([channelId])
+  @@map("events")
+}
+
+// ─────────────────────────────────────────────
+// METRICS (written only by later aggregation jobs — schema only for now)
+// ─────────────────────────────────────────────
+model DailyMetric {
+  id        String   @id @default(cuid())
+  date      DateTime @db.Date
+  metricKey String
+  value     Float
+  createdAt DateTime @default(now())
+
+  @@unique([date, metricKey])
+  @@map("daily_metrics")
+}
+
+model WeeklyMetric {
+  id          String   @id @default(cuid())
+  weekStart   DateTime @db.Date
+  metricKey   String
+  value       Float
+  createdAt   DateTime @default(now())
+
+  @@unique([weekStart, metricKey])
+  @@map("weekly_metrics")
+}
+
+model AdminReport {
+  id        String   @id @default(cuid())
+  type      AdminReportType
+  content   Json
+  sentAt    DateTime @default(now())
+
+  @@map("admin_reports")
+}
+
+enum AdminReportType {
+  DAILY
+  WEEKLY
+}
+
+// ─────────────────────────────────────────────
+// MEMORY (AI Mentor phase — schema only for now)
+// ─────────────────────────────────────────────
+model MemoryNote {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  content   Json
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("memory_notes")
+}
+
+// ─────────────────────────────────────────────
+// QUIZ / MISTAKE (Quiz phase — schema only for now)
+// ─────────────────────────────────────────────
+model Quiz {
+  id        String   @id @default(cuid())
+  topic     String
+  createdAt DateTime @default(now())
+
+  attempts QuizAttempt[]
+
+  @@map("quizzes")
+}
+
+model QuizAttempt {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  quizId     String
+  quiz       Quiz     @relation(fields: [quizId], references: [id])
+  score      Float
+  answeredAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("quiz_attempts")
+}
+
+model Mistake {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  topic      String
+  count      Int      @default(1)
+  lastSeenAt DateTime @default(now())
+
+  @@unique([userId, topic])
+  @@map("mistakes")
+}

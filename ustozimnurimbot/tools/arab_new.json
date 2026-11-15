@@ -1,0 +1,1952 @@
+[
+ {
+  "q": "«Alif» harfi qaysi?",
+  "o": [
+   "ا",
+   "د",
+   "ر",
+   "ك"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Alif — tik chiziq, nuqtasi yo'q. «Ā» ni cho'zish uchun ishlatiladi (masalan, بَا — «bā»).",
+  "g": 1
+ },
+ {
+  "q": "Bu harfning nomi nima?  ب",
+  "o": [
+   "Bā",
+   "Tā",
+   "Nūn",
+   "Yā"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Bā — tagida bitta nuqta. Tā (ت) tepasida 2 ta, Sā (ث) tepasida 3 ta nuqta bilan farqlanadi.",
+  "g": 1
+ },
+ {
+  "q": "«Bā» harfi qaysi?",
+  "o": [
+   "ت",
+   "ن",
+   "ب",
+   "ث"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Bā — tagida bitta nuqta. Tā (ت) tepasida 2 ta, Sā (ث) tepasida 3 ta nuqta bilan farqlanadi.",
+  "g": 1
+ },
+ {
+  "q": "«Tā» harfi qaysi?",
+  "o": [
+   "ن",
+   "ب",
+   "ث",
+   "ت"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Tā — tepasida ikkita nuqta. Bā (ب) tagida bitta, Sā (ث) tepasida uchta nuqta bilan farqlanadi.",
+  "g": 2
+ },
+ {
+  "q": "Bu harfning nomi nima?  ث",
+  "o": [
+   "Shīn",
+   "Sā",
+   "Nūn",
+   "Bā"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Sā — tepasida uchta nuqta; inglizcha «think» dagi «th» kabi, til uchi tishlar orasida.",
+  "g": 2
+ },
+ {
+  "q": "Bu harfning nomi nima?  ا",
+  "o": [
+   "Dāl",
+   "Lām",
+   "Alif",
+   "Kāf"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Alif — tik chiziq, nuqtasi yo'q. «Ā» ni cho'zish uchun ishlatiladi (masalan, بَا — «bā»).",
+  "g": 2
+ },
+ {
+  "q": "«Jīm» harfi qaysi?",
+  "o": [
+   "غ",
+   "ع",
+   "خ",
+   "ج"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Jīm — tagida bitta nuqta. Ḥā (ح) da nuqta yo'q, Xō (خ) da tepasida bitta nuqta bor.",
+  "g": 3
+ },
+ {
+  "q": "Bu harfning nomi nima?  ح",
+  "o": [
+   "'Ayyn",
+   "Hā",
+   "Ḥā",
+   "Jīm"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Ḥā — nuqtasi yo'q; bo'g'izdan, nafasni ishqalab chiqariladi. Jīm (ج) ning tagida, Xō (خ) ning tepasida nuqta bor.",
+  "g": 3
+ },
+ {
+  "q": "Bu harfning nomi nima?  ت",
+  "o": [
+   "Nūn",
+   "Tā",
+   "Yā",
+   "Bā"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Tā — tepasida ikkita nuqta. Bā (ب) tagida bitta, Sā (ث) tepasida uchta nuqta bilan farqlanadi.",
+  "g": 3
+ },
+ {
+  "q": "«Xō» harfi qaysi?",
+  "o": [
+   "خ",
+   "غ",
+   "ح",
+   "ج"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Xō — tepasida bitta nuqta; o'zbekcha «x» (xona) ga yaqin. Ḥā (ح) da nuqta yo'q, Jīm (ج) da tagida bor.",
+  "g": 4
+ },
+ {
+  "q": "Bu harfning nomi nima?  د",
+  "o": [
+   "Rō",
+   "Dāl",
+   "Zā",
+   "Vāv"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Dāl — nuqtasi yo'q. Zāl (ذ) xuddi shunday, lekin tepasida bitta nuqta bor.",
+  "g": 4
+ },
+ {
+  "q": "«Sā» harfi qaysi?",
+  "o": [
+   "ب",
+   "ن",
+   "ث",
+   "ت"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Sā — tepasida uchta nuqta; inglizcha «think» dagi «th» kabi, til uchi tishlar orasida.",
+  "g": 4
+ },
+ {
+  "q": "«Zāl» harfi qaysi?",
+  "o": [
+   "د",
+   "ظ",
+   "ر",
+   "ذ"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Zāl — tepasida bitta nuqta; inglizcha «this» dagi «th» kabi. Dāl (د) da nuqta yo'q.",
+  "g": 5
+ },
+ {
+  "q": "Bu harfning nomi nima?  ر",
+  "o": [
+   "Rō",
+   "Dāl",
+   "Nūn",
+   "Zā"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Rō — nuqtasi yo'q, tilning uchi titrab aytiladi. Zā (ز) da tepasida bitta nuqta bor.",
+  "g": 5
+ },
+ {
+  "q": "Bu harfning nomi nima?  ج",
+  "o": [
+   "Xō",
+   "G'oyyn",
+   "Jīm",
+   "'Ayyn"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Jīm — tagida bitta nuqta. Ḥā (ح) da nuqta yo'q, Xō (خ) da tepasida bitta nuqta bor.",
+  "g": 5
+ },
+ {
+  "q": "«Zā» harfi qaysi?",
+  "o": [
+   "ذ",
+   "ن",
+   "ز",
+   "ر"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Zā — tepasida bitta nuqta. Rō (ر) da nuqta yo'q.",
+  "g": 6
+ },
+ {
+  "q": "Bu harfning nomi nima?  س",
+  "o": [
+   "Sīn",
+   "Sōd",
+   "Shīn",
+   "Zōd"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Sīn — nuqtasi yo'q, uchta tishchasi bor. Shīn (ش) da tepasida uchta nuqta qo'shiladi.",
+  "g": 6
+ },
+ {
+  "q": "«Ḥā» harfi qaysi?",
+  "o": [
+   "ج",
+   "ع",
+   "ح",
+   "خ"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Ḥā — nuqtasi yo'q; bo'g'izdan, nafasni ishqalab chiqariladi. Jīm (ج) ning tagida, Xō (خ) ning tepasida nuqta bor.",
+  "g": 6
+ },
+ {
+  "q": "«Shīn» harfi qaysi?",
+  "o": [
+   "ص",
+   "ض",
+   "ش",
+   "س"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Shīn — tepasida uchta nuqta. Sīn (س) da nuqta yo'q.",
+  "g": 7
+ },
+ {
+  "q": "Bu harfning nomi nima?  ص",
+  "o": [
+   "Sōd",
+   "Shīn",
+   "Sīn",
+   "Zōd"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Sōd — nuqtasi yo'q, qalin «s». Zōd (ض) da tepasida bitta nuqta bor.",
+  "g": 7
+ },
+ {
+  "q": "Bu harfning nomi nima?  خ",
+  "o": [
+   "G'oyyn",
+   "Xō",
+   "Ḥā",
+   "Zā"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Xō — tepasida bitta nuqta; o'zbekcha «x» (xona) ga yaqin. Ḥā (ح) da nuqta yo'q, Jīm (ج) da tagida bor.",
+  "g": 7
+ },
+ {
+  "q": "«Zōd» harfi qaysi?",
+  "o": [
+   "ش",
+   "ص",
+   "ض",
+   "ظ"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Zōd — tepasida bitta nuqta, qalin «d». Sōd (ص) da nuqta yo'q.",
+  "g": 8
+ },
+ {
+  "q": "Bu harfning nomi nima?  ط",
+  "o": [
+   "Zōd",
+   "Kāf",
+   "Tō",
+   "Zō"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Tō — nuqtasi yo'q, qalin «t». Zō (ظ) da tepasida bitta nuqta bor.",
+  "g": 8
+ },
+ {
+  "q": "«Dāl» harfi qaysi?",
+  "o": [
+   "ر",
+   "ذ",
+   "ز",
+   "د"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Dāl — nuqtasi yo'q. Zāl (ذ) xuddi shunday, lekin tepasida bitta nuqta bor.",
+  "g": 8
+ },
+ {
+  "q": "«Zō» harfi qaysi?",
+  "o": [
+   "ص",
+   "ط",
+   "ظ",
+   "ذ"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Zō — tepasida bitta nuqta, qalin «z». Tō (ط) da nuqta yo'q.",
+  "g": 9
+ },
+ {
+  "q": "Bu harfning nomi nima?  ع",
+  "o": [
+   "G'oyyn",
+   "Jīm",
+   "Ḥā",
+   "'Ayyn"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "'Ayyn — nuqtasi yo'q; bo'g'izning chuqurligidan chiqadigan tovush. G'oyyn (غ) da tepasida nuqta bor.",
+  "g": 9
+ },
+ {
+  "q": "Bu harfning nomi nima?  ذ",
+  "o": [
+   "Zāl",
+   "Rō",
+   "Zō",
+   "Dāl"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Zāl — tepasida bitta nuqta; inglizcha «this» dagi «th» kabi. Dāl (د) da nuqta yo'q.",
+  "g": 9
+ },
+ {
+  "q": "«G'oyyn» harfi qaysi?",
+  "o": [
+   "خ",
+   "غ",
+   "ق",
+   "ع"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "G'oyyn — tepasida bitta nuqta; o'zbekcha «g'» ga yaqin. 'Ayyn (ع) da nuqta yo'q.",
+  "g": 10
+ },
+ {
+  "q": "Bu harfning nomi nima?  ف",
+  "o": [
+   "G'oyyn",
+   "Fā",
+   "Nūn",
+   "Vāv"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Fā — tepasida bitta nuqta. Qōf (ق) da tepasida ikkita nuqta bor.",
+  "g": 10
+ },
+ {
+  "q": "«Rō» harfi qaysi?",
+  "o": [
+   "د",
+   "ر",
+   "ن",
+   "ز"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Rō — nuqtasi yo'q, tilning uchi titrab aytiladi. Zā (ز) da tepasida bitta nuqta bor.",
+  "g": 10
+ },
+ {
+  "q": "«Qōf» harfi qaysi?",
+  "o": [
+   "و",
+   "غ",
+   "ن",
+   "ق"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Qōf — tepasida ikkita nuqta; «q» ga yaqin, lekin chuqurroq. Fā (ف) da bitta nuqta bor.",
+  "g": 11
+ },
+ {
+  "q": "Bu harfning nomi nima?  ك",
+  "o": [
+   "Tō",
+   "Kāf",
+   "Alif",
+   "Qōf"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Kāf — nuqtasi yo'q, ichida kichik belgi bor. Lām (ل) dan shu bilan farqlanadi.",
+  "g": 11
+ },
+ {
+  "q": "Bu harfning nomi nima?  ز",
+  "o": [
+   "Zāl",
+   "Nūn",
+   "Zā",
+   "Rō"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Zā — tepasida bitta nuqta. Rō (ر) da nuqta yo'q.",
+  "g": 11
+ },
+ {
+  "q": "«Lām» harfi qaysi?",
+  "o": [
+   "ن",
+   "ل",
+   "ط",
+   "ك"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Lām — nuqtasi yo'q, Alif (ا) ga o'xshash, lekin pastki qismi egilgan.",
+  "g": 12
+ },
+ {
+  "q": "Bu harfning nomi nima?  م",
+  "o": [
+   "Qōf",
+   "Hā",
+   "Mīm",
+   "Fā"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Mīm — nuqtasi yo'q, kichik yumaloq «boshi» bor.",
+  "g": 12
+ },
+ {
+  "q": "«Sīn» harfi qaysi?",
+  "o": [
+   "س",
+   "ص",
+   "ش",
+   "ض"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Sīn — nuqtasi yo'q, uchta tishchasi bor. Shīn (ش) da tepasida uchta nuqta qo'shiladi.",
+  "g": 12
+ },
+ {
+  "q": "«Nūn» harfi qaysi?",
+  "o": [
+   "ز",
+   "ت",
+   "ن",
+   "ي"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Nūn — tepasida bitta nuqta. Bā (ب) da tagida bitta, Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 13
+ },
+ {
+  "q": "Bu harfning nomi nima?  ه",
+  "o": [
+   "Vāv",
+   "Hā",
+   "Mīm",
+   "Ḥā"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Hā — nuqtasi yo'q, yengil «h» (nafas bilan). Ḥā (ح) dan farqli: u bo'g'izdan qattiq aytiladi.",
+  "g": 13
+ },
+ {
+  "q": "Bu harfning nomi nima?  ش",
+  "o": [
+   "Shīn",
+   "Sā",
+   "Sōd",
+   "Sīn"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Shīn — tepasida uchta nuqta. Sīn (س) da nuqta yo'q.",
+  "g": 13
+ },
+ {
+  "q": "«Vāv» harfi qaysi?",
+  "o": [
+   "ز",
+   "ر",
+   "و",
+   "م"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Vāv — nuqtasi yo'q, yumaloq «boshi» va dumi bor. «v» yoki cho'ziq «ū» tovushini beradi.",
+  "g": 14
+ },
+ {
+  "q": "«Lām-alif» harfi qaysi?",
+  "o": [
+   "ط",
+   "لا",
+   "ل",
+   "ا"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Lām-alif (لا) — Lām (ل) va Alif (ا) ning birikkan shakli; kitobda harflar qatoriga kiritilgan.",
+  "g": 14
+ },
+ {
+  "q": "Bu harfning nomi nima?  ي",
+  "o": [
+   "Nūn",
+   "Sā",
+   "Yā",
+   "Bā"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Yā — tagida ikkita nuqta. Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 14
+ },
+ {
+  "q": "«Sōd» harfi qaysi?",
+  "o": [
+   "ص",
+   "ش",
+   "س",
+   "ض"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Sōd — nuqtasi yo'q, qalin «s». Zōd (ض) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  ض",
+  "o": [
+   "Zōd",
+   "Sōd",
+   "Shīn",
+   "Tō"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Zōd — tepasida bitta nuqta, qalin «d». Sōd (ص) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Tō» harfi qaysi?",
+  "o": [
+   "ط",
+   "ك",
+   "ظ",
+   "ص"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Tō — nuqtasi yo'q, qalin «t». Zō (ظ) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  ظ",
+  "o": [
+   "Tō",
+   "Zōd",
+   "Sōd",
+   "Zō"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Zō — tepasida bitta nuqta, qalin «z». Tō (ط) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«'Ayyn» harfi qaysi?",
+  "o": [
+   "غ",
+   "ف",
+   "ع",
+   "ج"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "'Ayyn — nuqtasi yo'q; bo'g'izning chuqurligidan chiqadigan tovush. G'oyyn (غ) da tepasida nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  غ",
+  "o": [
+   "Fā",
+   "'Ayyn",
+   "Xō",
+   "G'oyyn"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "G'oyyn — tepasida bitta nuqta; o'zbekcha «g'» ga yaqin. 'Ayyn (ع) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Fā» harfi qaysi?",
+  "o": [
+   "غ",
+   "و",
+   "ف",
+   "ن"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Fā — tepasida bitta nuqta. Qōf (ق) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  ق",
+  "o": [
+   "G'oyyn",
+   "Qōf",
+   "Vāv",
+   "Nūn"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Qōf — tepasida ikkita nuqta; «q» ga yaqin, lekin chuqurroq. Fā (ف) da bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Kāf» harfi qaysi?",
+  "o": [
+   "ا",
+   "ط",
+   "ق",
+   "ك"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Kāf — nuqtasi yo'q, ichida kichik belgi bor. Lām (ل) dan shu bilan farqlanadi.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  ل",
+  "o": [
+   "Nūn",
+   "Tō",
+   "Lām",
+   "Kāf"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Lām — nuqtasi yo'q, Alif (ا) ga o'xshash, lekin pastki qismi egilgan.",
+  "g": 0
+ },
+ {
+  "q": "«Mīm» harfi qaysi?",
+  "o": [
+   "ه",
+   "م",
+   "ق",
+   "ف"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Mīm — nuqtasi yo'q, kichik yumaloq «boshi» bor.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  ن",
+  "o": [
+   "Yā",
+   "Nūn",
+   "Tā",
+   "Bā"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Nūn — tepasida bitta nuqta. Bā (ب) da tagida bitta, Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Hā» harfi qaysi?",
+  "o": [
+   "خ",
+   "و",
+   "ه",
+   "م"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Hā — nuqtasi yo'q, yengil «h» (nafas bilan). Ḥā (ح) dan farqli: u bo'g'izdan qattiq aytiladi.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  و",
+  "o": [
+   "Vāv",
+   "Zā",
+   "Fā",
+   "Mīm"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Vāv — nuqtasi yo'q, yumaloq «boshi» va dumi bor. «v» yoki cho'ziq «ū» tovushini beradi.",
+  "g": 0
+ },
+ {
+  "q": "Bu harfning nomi nima?  لا",
+  "o": [
+   "Lām-alif",
+   "Kāf",
+   "Lām",
+   "Alif"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Lām-alif (لا) — Lām (ل) va Alif (ا) ning birikkan shakli; kitobda harflar qatoriga kiritilgan.",
+  "g": 0
+ },
+ {
+  "q": "«Yā» harfi qaysi?",
+  "o": [
+   "ت",
+   "ن",
+   "ي",
+   "ب"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Yā — tagida ikkita nuqta. Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Alif» harfi (ا) nuqtalari qayerda va nechta?",
+  "o": [
+   "Nuqtasi yo'q",
+   "Tagida bitta nuqta",
+   "Tepasida ikkita nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Alif — tik chiziq, nuqtasi yo'q. «Ā» ni cho'zish uchun ishlatiladi (masalan, بَا — «bā»).",
+  "g": 0
+ },
+ {
+  "q": "«Bā» harfi (ب) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Bā — tagida bitta nuqta. Tā (ت) tepasida 2 ta, Sā (ث) tepasida 3 ta nuqta bilan farqlanadi.",
+  "g": 0
+ },
+ {
+  "q": "«Tā» harfi (ت) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Tepasida uchta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Tā — tepasida ikkita nuqta. Bā (ب) tagida bitta, Sā (ث) tepasida uchta nuqta bilan farqlanadi.",
+  "g": 0
+ },
+ {
+  "q": "«Sā» harfi (ث) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida ikkita nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Sā — tepasida uchta nuqta; inglizcha «think» dagi «th» kabi, til uchi tishlar orasida.",
+  "g": 0
+ },
+ {
+  "q": "«Jīm» harfi (ج) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Jīm — tagida bitta nuqta. Ḥā (ح) da nuqta yo'q, Xō (خ) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Ḥā» harfi (ح) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida uchta nuqta",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Ḥā — nuqtasi yo'q; bo'g'izdan, nafasni ishqalab chiqariladi. Jīm (ج) ning tagida, Xō (خ) ning tepasida nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Xō» harfi (خ) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida bitta nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Xō — tepasida bitta nuqta; o'zbekcha «x» (xona) ga yaqin. Ḥā (ح) da nuqta yo'q, Jīm (ج) da tagida bor.",
+  "g": 0
+ },
+ {
+  "q": "«Dāl» harfi (د) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Dāl — nuqtasi yo'q. Zāl (ذ) xuddi shunday, lekin tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Zāl» harfi (ذ) nuqtalari qayerda va nechta?",
+  "o": [
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta",
+   "Tepasida bitta nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Zāl — tepasida bitta nuqta; inglizcha «this» dagi «th» kabi. Dāl (د) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Rō» harfi (ر) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Nuqtasi yo'q",
+   "Tagida bitta nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Rō — nuqtasi yo'q, tilning uchi titrab aytiladi. Zā (ز) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Zā» harfi (ز) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Zā — tepasida bitta nuqta. Rō (ر) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Sīn» harfi (س) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida uchta nuqta",
+   "Tepasida ikkita nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida bitta nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Sīn — nuqtasi yo'q, uchta tishchasi bor. Shīn (ش) da tepasida uchta nuqta qo'shiladi.",
+  "g": 0
+ },
+ {
+  "q": "«Shīn» harfi (ش) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida uchta nuqta",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Shīn — tepasida uchta nuqta. Sīn (س) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Sōd» harfi (ص) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Tepasida uchta nuqta",
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Sōd — nuqtasi yo'q, qalin «s». Zōd (ض) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Zōd» harfi (ض) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida ikkita nuqta",
+   "Tagida bitta nuqta",
+   "Tepasida ikkita nuqta",
+   "Tepasida bitta nuqta"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Zōd — tepasida bitta nuqta, qalin «d». Sōd (ص) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Tō» harfi (ط) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta",
+   "Tepasida uchta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Tō — nuqtasi yo'q, qalin «t». Zō (ظ) da tepasida bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Zō» harfi (ظ) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Zō — tepasida bitta nuqta, qalin «z». Tō (ط) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«'Ayyn» harfi (ع) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "'Ayyn — nuqtasi yo'q; bo'g'izning chuqurligidan chiqadigan tovush. G'oyyn (غ) da tepasida nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«G'oyyn» harfi (غ) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida ikkita nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta",
+   "Tepasida bitta nuqta"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "G'oyyn — tepasida bitta nuqta; o'zbekcha «g'» ga yaqin. 'Ayyn (ع) da nuqta yo'q.",
+  "g": 0
+ },
+ {
+  "q": "«Fā» harfi (ف) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Tepasida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Fā — tepasida bitta nuqta. Qōf (ق) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Qōf» harfi (ق) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Tepasida bitta nuqta",
+   "Tagida ikkita nuqta"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Qōf — tepasida ikkita nuqta; «q» ga yaqin, lekin chuqurroq. Fā (ف) da bitta nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Kāf» harfi (ك) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida uchta nuqta",
+   "Tagida bitta nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Kāf — nuqtasi yo'q, ichida kichik belgi bor. Lām (ل) dan shu bilan farqlanadi.",
+  "g": 0
+ },
+ {
+  "q": "«Lām» harfi (ل) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida ikkita nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Lām — nuqtasi yo'q, Alif (ا) ga o'xshash, lekin pastki qismi egilgan.",
+  "g": 0
+ },
+ {
+  "q": "«Mīm» harfi (م) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Mīm — nuqtasi yo'q, kichik yumaloq «boshi» bor.",
+  "g": 0
+ },
+ {
+  "q": "«Nūn» harfi (ن) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Nūn — tepasida bitta nuqta. Bā (ب) da tagida bitta, Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«Hā» harfi (ه) nuqtalari qayerda va nechta?",
+  "o": [
+   "Nuqtasi yo'q",
+   "Tagida ikkita nuqta",
+   "Tagida bitta nuqta",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Hā — nuqtasi yo'q, yengil «h» (nafas bilan). Ḥā (ح) dan farqli: u bo'g'izdan qattiq aytiladi.",
+  "g": 0
+ },
+ {
+  "q": "«Vāv» harfi (و) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida uchta nuqta",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Vāv — nuqtasi yo'q, yumaloq «boshi» va dumi bor. «v» yoki cho'ziq «ū» tovushini beradi.",
+  "g": 0
+ },
+ {
+  "q": "«Lām-alif» harfi (لا) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tepasida ikkita nuqta",
+   "Tagida bitta nuqta",
+   "Nuqtasi yo'q",
+   "Tepasida uchta nuqta"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "Lām-alif (لا) — Lām (ل) va Alif (ا) ning birikkan shakli; kitobda harflar qatoriga kiritilgan.",
+  "g": 0
+ },
+ {
+  "q": "«Yā» harfi (ي) nuqtalari qayerda va nechta?",
+  "o": [
+   "Tagida bitta nuqta",
+   "Tagida ikkita nuqta",
+   "Tepasida uchta nuqta",
+   "Tepasida ikkita nuqta"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Yā — tagida ikkita nuqta. Tā (ت) da tepasida ikkita nuqta bor.",
+  "g": 0
+ },
+ {
+  "q": "«اَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Alif + zamma",
+   "Alif + fatha",
+   "Alif + kasra",
+   "Lām + fatha"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "اَ — «a». Kitobda har harf uch harakat bilan o'qitiladi: اَ اِ اُ — «a, i, u».",
+  "g": 15
+ },
+ {
+  "q": "«رِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Rō + fatha",
+   "Rō + zamma",
+   "Zā + kasra",
+   "Rō + kasra"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "رِ — «ri». Kitobda har harf uch harakat bilan o'qitiladi: رَ رِ رُ — «ra, ri, ru».",
+  "g": 15
+ },
+ {
+  "q": "«اَرْ» qanday o'qiladi?",
+  "o": [
+   "ir",
+   "ur",
+   "ara",
+   "ar"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "اَرْ — «ar». Kitob, 1-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 15
+ },
+ {
+  "q": "«زِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Rō + kasra",
+   "Zā + kasra",
+   "Zā + fatha",
+   "Zā + zamma"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "زِ — «zi». Kitobda har harf uch harakat bilan o'qitiladi: زَ زِ زُ — «za, zi, zu».",
+  "g": 16
+ },
+ {
+  "q": "«مُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Mīm + fatha",
+   "Mīm + zamma",
+   "Mīm + kasra",
+   "Vāv + zamma"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "مُ — «mu». Kitobda har harf uch harakat bilan o'qitiladi: مَ مِ مُ — «ma, mi, mu».",
+  "g": 16
+ },
+ {
+  "q": "«مُرْ» qanday o'qiladi?",
+  "o": [
+   "mir",
+   "mura",
+   "mar",
+   "mur"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "مُرْ — «mur» (buyur). Kitob, 2-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 16
+ },
+ {
+  "q": "«تُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Tā + zamma",
+   "Bā + zamma",
+   "Tā + kasra",
+   "Tā + fatha"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "تُ — «tu». Kitobda har harf uch harakat bilan o'qitiladi: تَ تِ تُ — «ta, ti, tu».",
+  "g": 17
+ },
+ {
+  "q": "«نَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Nūn + kasra",
+   "Bā + fatha",
+   "Nūn + zamma",
+   "Nūn + fatha"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "نَ — «na». Kitobda har harf uch harakat bilan o'qitiladi: نَ نِ نُ — «na, ni, nu».",
+  "g": 17
+ },
+ {
+  "q": "«مِنْ» qanday o'qiladi?",
+  "o": [
+   "mun",
+   "man",
+   "mina",
+   "min"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "مِنْ — «min» («-dan»). Kitob, 3-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 17
+ },
+ {
+  "q": "«يَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Bā + fatha",
+   "Yā + zamma",
+   "Yā + kasra",
+   "Yā + fatha"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "يَ — «ya». Kitobda har harf uch harakat bilan o'qitiladi: يَ يِ يُ — «ya, yi, yu».",
+  "g": 18
+ },
+ {
+  "q": "«بِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Tā + kasra",
+   "Bā + zamma",
+   "Bā + fatha",
+   "Bā + kasra"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "بِ — «bi». Kitobda har harf uch harakat bilan o'qitiladi: بَ بِ بُ — «ba, bi, bu».",
+  "g": 18
+ },
+ {
+  "q": "«بَيْتُ» qanday o'qiladi?",
+  "o": [
+   "buytu",
+   "bayti",
+   "baytu",
+   "biytu"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "بَيْتُ — «baytu» (uy). Kitob, 3-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 18
+ },
+ {
+  "q": "«كِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Kāf + zamma",
+   "Kāf + kasra",
+   "Kāf + fatha",
+   "Lām + kasra"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "كِ — «ki». Kitobda har harf uch harakat bilan o'qitiladi: كَ كِ كُ — «ka, ki, ku».",
+  "g": 19
+ },
+ {
+  "q": "«لُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Lām + zamma",
+   "Lām + fatha",
+   "Alif + zamma",
+   "Lām + kasra"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "لُ — «lu». Kitobda har harf uch harakat bilan o'qitiladi: لَ لِ لُ — «la, li, lu».",
+  "g": 19
+ },
+ {
+  "q": "«كُنْ» qanday o'qiladi?",
+  "o": [
+   "kun",
+   "kuna",
+   "kin",
+   "kan"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "كُنْ — «kun» (bo'l). Kitob, 4-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 19
+ },
+ {
+  "q": "«وُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Vāv + zamma",
+   "Mīm + zamma",
+   "Vāv + fatha",
+   "Vāv + kasra"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "وُ — «vu». Kitobda har harf uch harakat bilan o'qitiladi: وَ وِ وُ — «va, vi, vu».",
+  "g": 20
+ },
+ {
+  "q": "«هَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Hā + fatha",
+   "Hā + zamma",
+   "Hā + kasra",
+   "Ḥā + fatha"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "هَ — «ha». Kitobda har harf uch harakat bilan o'qitiladi: هَ هِ هُ — «ha, hi, hu».",
+  "g": 20
+ },
+ {
+  "q": "«هُوَ» qanday o'qiladi?",
+  "o": [
+   "huva",
+   "huvu",
+   "hiva",
+   "hava"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "هُوَ — «huva» (u (erkak)). Kitob, 5-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 20
+ },
+ {
+  "q": "«فَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Fā + zamma",
+   "Fā + kasra",
+   "Fā + fatha",
+   "Qōf + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "فَ — «fa». Kitobda har harf uch harakat bilan o'qitiladi: فَ فِ فُ — «fa, fi, fu».",
+  "g": 21
+ },
+ {
+  "q": "«قِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Fā + kasra",
+   "Qōf + zamma",
+   "Qōf + kasra",
+   "Qōf + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "قِ — «qi». Kitobda har harf uch harakat bilan o'qitiladi: قَ قِ قُ — «qa, qi, qu».",
+  "g": 21
+ },
+ {
+  "q": "«فَمْ» qanday o'qiladi?",
+  "o": [
+   "fim",
+   "fama",
+   "fum",
+   "fam"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "فَمْ — «fam» (og'iz). Kitob, 5-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 21
+ },
+ {
+  "q": "«شِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Sīn + kasra",
+   "Shīn + fatha",
+   "Shīn + kasra",
+   "Shīn + zamma"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "شِ — «shi». Kitobda har harf uch harakat bilan o'qitiladi: شَ شِ شُ — «sha, shi, shu».",
+  "g": 22
+ },
+ {
+  "q": "«سُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Sīn + kasra",
+   "Shīn + zamma",
+   "Sīn + zamma",
+   "Sīn + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "سُ — «su». Kitobda har harf uch harakat bilan o'qitiladi: سَ سِ سُ — «sa, si, su».",
+  "g": 22
+ },
+ {
+  "q": "«سِنْ» qanday o'qiladi?",
+  "o": [
+   "sin",
+   "san",
+   "sina",
+   "sun"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "سِنْ — «sin» (tish). Kitob, 7-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 22
+ },
+ {
+  "q": "«ثُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Sā + kasra",
+   "Sā + zamma",
+   "Bā + zamma",
+   "Sā + fatha"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "ثُ — «su». Kitobda har harf uch harakat bilan o'qitiladi: ثَ ثِ ثُ — «sa, si, su» (taxminiy yozuv).",
+  "g": 23
+ },
+ {
+  "q": "«صَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Sōd + fatha",
+   "Zōd + fatha",
+   "Sōd + zamma",
+   "Sōd + kasra"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "صَ — «sa». Kitobda har harf uch harakat bilan o'qitiladi: صَ صِ صُ — «sa, si, su» (taxminiy yozuv).",
+  "g": 23
+ },
+ {
+  "q": "«ثَمَرْ» qanday o'qiladi?",
+  "o": [
+   "sumar",
+   "samir",
+   "samar",
+   "samur"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "ثَمَرْ — «samar» (meva). Kitob, 7-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 23
+ },
+ {
+  "q": "«طَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Tō + fatha",
+   "Tō + zamma",
+   "Tō + kasra",
+   "Zō + fatha"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "طَ — «ta». Kitobda har harf uch harakat bilan o'qitiladi: طَ طِ طُ — «ta, ti, tu» (taxminiy yozuv).",
+  "g": 24
+ },
+ {
+  "q": "«جِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Jīm + zamma",
+   "Ḥā + kasra",
+   "Jīm + kasra",
+   "Jīm + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "جِ — «ji». Kitobda har harf uch harakat bilan o'qitiladi: جَ جِ جُ — «ja, ji, ju».",
+  "g": 24
+ },
+ {
+  "q": "«جَمَلْ» qanday o'qiladi?",
+  "o": [
+   "jamal",
+   "jumal",
+   "jamala",
+   "jamul"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "جَمَلْ — «jamal» (tuya). Kitob, 9-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 24
+ },
+ {
+  "q": "«خِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Xō + zamma",
+   "Jīm + kasra",
+   "Xō + kasra",
+   "Xō + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "خِ — «xi». Kitobda har harf uch harakat bilan o'qitiladi: خَ خِ خُ — «xa, xi, xu».",
+  "g": 25
+ },
+ {
+  "q": "«حُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Ḥā + zamma",
+   "Ḥā + kasra",
+   "Ḥā + fatha",
+   "Jīm + zamma"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "حُ — «hu». Kitobda har harf uch harakat bilan o'qitiladi: حَ حِ حُ — «ha, hi, hu» (taxminiy yozuv).",
+  "g": 25
+ },
+ {
+  "q": "«خَبَرْ» qanday o'qiladi?",
+  "o": [
+   "xabar",
+   "xubar",
+   "xabur",
+   "xabir"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "خَبَرْ — «xabar» (xabar). Kitob, 9-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 25
+ },
+ {
+  "q": "«غُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "G'oyyn + zamma",
+   "G'oyyn + fatha",
+   "G'oyyn + kasra",
+   "'Ayyn + zamma"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "غُ — «g'u». Kitobda har harf uch harakat bilan o'qitiladi: غَ غِ غُ — «g'a, g'i, g'u».",
+  "g": 26
+ },
+ {
+  "q": "«عَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "'Ayyn + zamma",
+   "'Ayyn + kasra",
+   "G'oyyn + fatha",
+   "'Ayyn + fatha"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "عَ — «'a». Kitobda har harf uch harakat bilan o'qitiladi: عَ عِ عُ — «'a, 'i, 'u» (taxminiy yozuv).",
+  "g": 26
+ },
+ {
+  "q": "«غَمْ» qanday o'qiladi?",
+  "o": [
+   "g'ama",
+   "g'im",
+   "g'um",
+   "g'am"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "غَمْ — «g'am» (g'am, qayg'u). Kitob, 10-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 26
+ },
+ {
+  "q": "«دَ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Dāl + kasra",
+   "Dāl + fatha",
+   "Zāl + fatha",
+   "Dāl + zamma"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "دَ — «da». Kitobda har harf uch harakat bilan o'qitiladi: دَ دِ دُ — «da, di, du».",
+  "g": 27
+ },
+ {
+  "q": "«ضِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Zōd + fatha",
+   "Sōd + kasra",
+   "Zōd + zamma",
+   "Zōd + kasra"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "ضِ — «di». Kitobda har harf uch harakat bilan o'qitiladi: ضَ ضِ ضُ — «da, di, du» (taxminiy yozuv).",
+  "g": 27
+ },
+ {
+  "q": "«دَرْسُ» qanday o'qiladi?",
+  "o": [
+   "darsu",
+   "darasu",
+   "dursu",
+   "dirsu"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "دَرْسُ — «darsu» (dars). Kitob, 11-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 27
+ },
+ {
+  "q": "«ذِ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Zāl + zamma",
+   "Dāl + kasra",
+   "Zāl + kasra",
+   "Zāl + fatha"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "ذِ — «zi». Kitobda har harf uch harakat bilan o'qitiladi: ذَ ذِ ذُ — «za, zi, zu» (taxminiy yozuv).",
+  "g": 28
+ },
+ {
+  "q": "«ظُ» — qaysi harf va qanday harakat?",
+  "o": [
+   "Zō + fatha",
+   "Zō + zamma",
+   "Zō + kasra",
+   "Tō + zamma"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "ظُ — «zu». Kitobda har harf uch harakat bilan o'qitiladi: ظَ ظِ ظُ — «za, zi, zu» (taxminiy yozuv).",
+  "g": 28
+ },
+ {
+  "q": "«ذَهَبْ» qanday o'qiladi?",
+  "o": [
+   "zihab",
+   "zuhab",
+   "zahib",
+   "zahab"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "ذَهَبْ — «zahab» (oltin). Kitob, 12-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 28
+ },
+ {
+  "q": "«بَا» qanday o'qiladi?",
+  "o": [
+   "ba — qisqa «a»",
+   "bā — cho'ziq «ā»",
+   "bū — cho'ziq «ū»",
+   "bī — cho'ziq «ī»"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Fatha + Alif — «a» cho'ziladi: بَا — «bā». Kitob, 13-bet (madli so'zlar).",
+  "g": 29
+ },
+ {
+  "q": "«بِي» qanday o'qiladi?",
+  "o": [
+   "bī — cho'ziq «ī»",
+   "bā — cho'ziq «ā»",
+   "bū — cho'ziq «ū»",
+   "bi — qisqa «i»"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Kasra + Yā — «i» cho'ziladi: بِي — «bī». Kitob, 13-bet.",
+  "g": 29
+ },
+ {
+  "q": "«بُو» qanday o'qiladi?",
+  "o": [
+   "bū — cho'ziq «ū»",
+   "bī — cho'ziq «ī»",
+   "bu — qisqa «u»",
+   "bā — cho'ziq «ā»"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Zamma + Vāv — «u» cho'ziladi: بُو — «bū». Kitob, 13-bet.",
+  "g": 29
+ },
+ {
+  "q": "Fatha + Alif, Kasra + Yā, Zamma + Vāv — qanday o'qiladi?",
+  "o": [
+   "Harf o'qilmaydi",
+   "Harf ikki marta o'qiladi",
+   "Qisqa o'qiladi",
+   "Unli cho'zib o'qiladi"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Bu — mad (cho'zish): unli ovoz cho'zib, davomli aytiladi. Cho'ziq «ā», «ī», «ū».",
+  "g": 30
+ },
+ {
+  "q": "Qaysi birida «a» tovushi cho'ziladi?",
+  "o": [
+   "تَا",
+   "تَ",
+   "تِ",
+   "تُ"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Fatha + Alif (تَا) — «tā», «a» cho'ziladi. Boshqalarida unli qisqa.",
+  "g": 30
+ },
+ {
+  "q": "«مُو» qanday o'qiladi?",
+  "o": [
+   "mu — qisqa «u»",
+   "mū — cho'ziq «ū»",
+   "mī — cho'ziq «ī»",
+   "mā — cho'ziq «ā»"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Zamma + Vāv — «u» cho'ziladi: مُو — «mū».",
+  "g": 30
+ },
+ {
+  "q": "Harf ustidagi «w» shaklidagi belgi (ـّ) nimani bildiradi?",
+  "o": [
+   "Harf ikki marta o'qiladi",
+   "Harf o'qilmaydi",
+   "Harf cho'ziladi",
+   "Harf unlisiz o'qiladi"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Tashdid — ustidagi belgi qo'yilgan harf ikki martadan aytib o'qiladi (kitob, 16-bet): رَبِّ — «rabbi» (b ikki marta).",
+  "g": 31
+ },
+ {
+  "q": "«رَبِّ» qanday o'qiladi?",
+  "o": [
+   "rabbi",
+   "rabi",
+   "rubbi",
+   "rabbu"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Tashdidli ب ikki marta o'qiladi: رَبِّ — «rabbi» (Robbim, Parvardigorim).",
+  "g": 31
+ },
+ {
+  "q": "«مَدَّ» qanday o'qiladi?",
+  "o": [
+   "madda",
+   "mada",
+   "madu",
+   "maddi"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Tashdidli د ikki marta o'qiladi: مَدَّ — «madda» (cho'zdi).",
+  "g": 31
+ },
+ {
+  "q": "Harf ustida yoki tagida ikkita harakat (tanvin) kelsa, qanday tovush qo'shiladi?",
+  "o": [
+   "Boshida «n» qo'shiladi",
+   "Oxirida sukunli «n» (-an, -in, -un)",
+   "Oxirida «a» cho'ziladi",
+   "Harf ikki marta o'qiladi"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Tanvin — so'z oxirida sukunli «n» qo'shib o'qiladi (kitob, 19-bet): ــً — «-an», ــٍ — «-in», ــٌ — «-un».",
+  "g": 32
+ },
+ {
+  "q": "«تٌ» qanday o'qiladi?",
+  "o": [
+   "tin",
+   "tu",
+   "tan",
+   "tun"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Zamma tanvini (ــٌ): «-un» tovushi. Demak, تٌ — «tun».",
+  "g": 32
+ },
+ {
+  "q": "«لٍ» qanday o'qiladi?",
+  "o": [
+   "li",
+   "lan",
+   "lun",
+   "lin"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Kasra tanvini (ــٍ): «-in» tovushi. Demak, لٍ — «lin».",
+  "g": 32
+ },
+ {
+  "q": "«Bā» (ب) harfining so'z BOSHIDAGI (keyingisiga ulangan) shakli qaysi?",
+  "o": [
+   "ـب",
+   "بـ",
+   "ب",
+   "ـبـ"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Bā: yakka ب, boshida بـ, o'rtasida ـبـ, oxirida ـب. Chiziqcha (ـ) — ulanish joyi.",
+  "g": 33
+ },
+ {
+  "q": "«Tā» (ت) harfining so'z O'RTASIDAGI (ikki tomonga ulangan) shakli qaysi?",
+  "o": [
+   "ـتـ",
+   "تـ",
+   "ـت",
+   "ت"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Tā: yakka ت, boshida تـ, o'rtasida ـتـ, oxirida ـت. Chiziqcha (ـ) — ulanish joyi.",
+  "g": 33
+ },
+ {
+  "q": "«Nūn» (ن) harfining so'z OXIRIDAGI (oldingisiga ulangan) shakli qaysi?",
+  "o": [
+   "نـ",
+   "ـنـ",
+   "ن",
+   "ـن"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Nūn: yakka ن, boshida نـ, o'rtasida ـنـ, oxirida ـن. Chiziqcha (ـ) — ulanish joyi.",
+  "g": 33
+ },
+ {
+  "q": "«Kāf» (ك) harfining so'z BOSHIDAGI (keyingisiga ulangan) shakli qaysi?",
+  "o": [
+   "ـك",
+   "ـكـ",
+   "ك",
+   "كـ"
+  ],
+  "c": 3,
+  "t": "Arab",
+  "e": "Kāf: yakka ك, boshida كـ, o'rtasida ـكـ, oxirida ـك. Chiziqcha (ـ) — ulanish joyi.",
+  "g": 34
+ },
+ {
+  "q": "«Mīm» (م) harfining so'z O'RTASIDAGI (ikki tomonga ulangan) shakli qaysi?",
+  "o": [
+   "ـم",
+   "ـمـ",
+   "م",
+   "مـ"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Mīm: yakka م, boshida مـ, o'rtasida ـمـ, oxirida ـم. Chiziqcha (ـ) — ulanish joyi.",
+  "g": 34
+ },
+ {
+  "q": "Qaysi harf o'zidan KEYINGI harfga ulanmaydi?",
+  "o": [
+   "ن (Nūn)",
+   "ب (Bā)",
+   "ا (Alif)",
+   "ت (Tā)"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "O'zidan keyingi harfga ulanmaydigan olti harf: ا د ذ ر ز و. Keyingi harf ulanmay, yangi so'zdek boshlanadi.",
+  "g": 34
+ },
+ {
+  "q": "Qaysi harakat «i» tovushini beradi?",
+  "o": [
+   "Kasra",
+   "Zamma",
+   "Fatha",
+   "Sukun"
+  ],
+  "c": 0,
+  "t": "Arab",
+  "e": "Kasra — harf tagidagi qiya chiziq, «i» tovushi. Fatha — «a», Zamma — «u».",
+  "g": 35
+ },
+ {
+  "q": "«كَتَبَ» qanday o'qiladi?",
+  "o": [
+   "katabu",
+   "kutaba",
+   "kataba",
+   "katuba"
+  ],
+  "c": 2,
+  "t": "Arab",
+  "e": "كَتَبَ — «kataba» (yozdi). Kitob, 4-bet. Har harf o'z harakati bilan o'qiladi.",
+  "g": 35
+ },
+ {
+  "q": "Harf ustidagi kichik doira belgisi qanday ataladi?",
+  "o": [
+   "Tanvin",
+   "Sukun",
+   "Tashdid",
+   "Fatha"
+  ],
+  "c": 1,
+  "t": "Arab",
+  "e": "Sukun — kichik doira: harf unlisiz, qisqa o'qiladi. Masalan, مِنْ — «min».",
+  "g": 35
+ }
+]

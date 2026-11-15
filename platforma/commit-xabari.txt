@@ -1,0 +1,8 @@
+UstozimNurim platformasi: dastlabki qurilma
+
+Next.js 16 + TypeScript + Tailwind v4 + Supabase.
+Public sayt, o quvchi paneli, admin paneli, interaktiv dars ekrani,
+hamjamiyat va AI mentor widgeti.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_014dzcM1bhtsmjG3vR2Z5i2M

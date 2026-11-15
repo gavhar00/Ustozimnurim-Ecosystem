@@ -1,0 +1,20 @@
+# Bot testlari: har push va PR'da `node test/run.mjs`.
+# Eslatma: testlar node:sqlite ishlatadi (Node 22.13+), npm paketlari kerak emas —
+# shuning uchun npm ci / kesh yo'q (repoda package-lock.json yo'q, wrangler faqat deploy uchun).
+name: Testlar
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+      - run: node test/run.mjs

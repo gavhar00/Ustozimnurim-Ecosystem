@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* ============================================================
+   UstozimNurim — dizayn tizimi
+   Premium qora–oltin ta'lim platformasi
+   ============================================================ */
+
+@theme {
+  /* --- Fon va sirtlar (qoraga yaqin, iliq jigarrang nuans) --- */
+  --color-ink-950: #080605;
+  --color-ink-900: #0c0908;
+  --color-ink-850: #120d0a;
+  --color-ink-800: #17110d;
+  --color-ink-700: #1f1711;
+  --color-ink-600: #2a1f17;
+
+  /* --- Oltin va shampan --- */
+  --color-gold-50: #fdf7e9;
+  --color-gold-100: #f9ecc9;
+  --color-gold-200: #f3dca1;
+  --color-gold-300: #ecc877;
+  --color-gold-400: #e5b454;
+  --color-gold-500: #d99b3c;
+  --color-gold-600: #b87d2c;
+  --color-gold-700: #8f5e21;
+
+  /* --- Matn --- */
+  --color-ivory: #fbf7ef;
+  --color-champagne: #f1e2c3;
+  --color-muted: #a2917c;
+  --color-muted-soft: #7d6e5d;
+
+  /* --- Shriftlar --- */
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-code), ui-monospace, monospace;
+
+  /* --- Radiuslar --- */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  /* --- Animatsiyalar --- */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ============================================================
+   Mavzu o'zgaruvchilari (qorong'i — asosiy, yorug' — qo'shimcha)
+   ============================================================ */
+
+:root,
+.dark {
+  --bg: var(--color-ink-950);
+  --bg-elevated: var(--color-ink-850);
+  --bg-card: color-mix(in srgb, var(--color-ink-800) 92%, var(--color-gold-700) 8%);
+  --fg: var(--color-ivory);
+  --fg-muted: var(--color-muted);
+  --border-subtle: color-mix(in srgb, var(--color-gold-400) 14%, transparent);
+  --border-strong: color-mix(in srgb, var(--color-gold-400) 28%, transparent);
+  --glow: color-mix(in srgb, var(--color-gold-400) 22%, transparent);
+}
+
+.light {
+  --bg: #faf7f1;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --fg: #1b1410;
+  --fg-muted: #5d5141;
+  --border-subtle: color-mix(in srgb, var(--color-gold-600) 24%, transparent);
+  --border-strong: color-mix(in srgb, var(--color-gold-600) 45%, transparent);
+  --glow: color-mix(in srgb, var(--color-gold-500) 18%, transparent);
+}
+
+/* Yorug' rejimda och oltin matn oq fonda o'qilmaydi — matn uchun quyuqroq
+   ohang, to'ldirish (tugma, gradient, fon) esa o'z rangida qoladi. */
+.light .text-gold-200,
+.light .text-gold-300,
+.light .text-gold-400 {
+  color: #8a5a14;
+}
+
+.light .text-champagne {
+  color: #4a3a22;
+}
+
+.light .text-gold-gradient {
+  background: linear-gradient(
+    98deg,
+    var(--color-gold-600) 0%,
+    #9a6a1c 45%,
+    var(--color-gold-700) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Oltin fonli yumaloq nishonlar yorug' rejimda biroz to'yinganroq bo'lsin */
+.light .bg-gold-400\/8,
+.light .bg-gold-400\/10,
+.light .bg-gold-400\/12 {
+  background-color: color-mix(in srgb, var(--color-gold-500) 16%, transparent);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-card: var(--bg-card);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+}
+
+/* ============================================================
+   Asosiy
+   ============================================================ */
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-ink-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Harakatni kamaytirish talabini hurmat qilamiz */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Yordamchi sinflar
+   ============================================================ */
+
+@utility text-gold-gradient {
+  background: linear-gradient(
+    98deg,
+    var(--color-gold-200) 0%,
+    var(--color-gold-400) 42%,
+    var(--color-gold-600) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility surface-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+}
+
+@utility glow-gold {
+  box-shadow:
+    0 0 0 1px var(--border-subtle),
+    0 18px 48px -24px var(--glow);
+}

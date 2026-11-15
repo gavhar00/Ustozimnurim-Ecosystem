@@ -1,0 +1,16 @@
+{
+  "name": "ustozim-quiz-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "node test/run.mjs && npx wrangler deploy",
+    "dev": "wrangler dev",
+    "logs": "wrangler tail",
+    "test": "node test/run.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "description": "Ustozim Nurim — Telegram viktorina boti (Cloudflare Worker)"
+}

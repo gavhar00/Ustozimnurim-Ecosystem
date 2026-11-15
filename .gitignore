@@ -1,0 +1,27 @@
+.DS_Store
+
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+.next/
+.vercel/
+
+# Local configuration and credentials
+.env*
+!.env.example
+!.env.*.example
+.dev.vars
+
+# Local tool state, backups, and generated databases
+.wrangler/
+.zaxira/
+*.bak.*
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.log
+
+# Bundled archives are not source
+*.zip

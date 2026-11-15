@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@700;800;900&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1080px;height:1350px;background:#0a0908;font-family:"Onest",sans-serif;color:#f6efe0;position:relative;overflow:hidden}
+.abs{position:absolute}
+.glow{width:1000px;height:1000px;border-radius:50%;left:40px;top:300px;background:radial-gradient(circle,rgba(226,185,59,.34),rgba(226,185,59,0) 62%)}
+.big{left:-20px;top:340px;width:1120px;text-align:center;font-family:"Commissioner",sans-serif;font-weight:900;font-size:330px;line-height:1;letter-spacing:-12px;text-transform:uppercase;background:linear-gradient(180deg,rgba(226,185,59,.20),rgba(226,185,59,.04));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:0}
+.ring{border-radius:50%;border:1.5px dashed rgba(226,185,59,.28);left:50%;top:735px;transform:translate(-50%,-50%)}
+.rocket{left:90px;top:330px;width:900px;mix-blend-mode:screen;filter:saturate(1.1) contrast(1.05)}
+.grain{inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:5px 5px;opacity:.5}
+.tag{left:56px;top:50px;padding:10px 22px;border:1.5px solid rgba(226,185,59,.55);border-radius:40px;color:#F3D77A;font-size:22px;letter-spacing:3px;font-weight:600}
+.v{right:56px;top:54px;font-size:22px;color:#b8ad96;letter-spacing:2px}
+h1{position:absolute;left:56px;top:112px;font-family:"Commissioner",sans-serif;font-weight:900;font-size:104px;line-height:.95;letter-spacing:-4.5px;text-transform:lowercase}
+h1 span{background:linear-gradient(135deg,#F3D77A,#E2B93B 60%,#b9902a);-webkit-background-clip:text;color:transparent}
+.chip{position:absolute;width:318px;display:flex;align-items:center;gap:16px;padding:14px 22px 14px 14px;border-radius:30px;background:linear-gradient(160deg,rgba(255,255,255,.11),rgba(255,255,255,.04));border:1.5px solid rgba(255,255,255,.16);backdrop-filter:blur(16px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.chip .t{font-family:"Commissioner",sans-serif;font-weight:800;font-size:29px;white-space:nowrap;letter-spacing:-.4px;line-height:1.05}
+.chip .d{font-size:19px;line-height:1.2;color:#b8ad96;margin-top:3px}
+.chip.gold{background:linear-gradient(150deg,#F3D77A,#E2B93B 55%,#b9902a);border:none;color:#1a1405}
+.chip.gold .d{color:#4b3a0b}
+.ic{flex:none;width:62px;height:62px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(226,185,59,.12);border:1.5px solid rgba(226,185,59,.34)}
+.gold .ic{background:rgba(26,20,5,.10);border-color:rgba(26,20,5,.24)}
+.ic svg{width:38px;height:38px;--l:#f6efe0;--a:#E2B93B;stroke-linecap:round;stroke-linejoin:round}
+.gold .ic svg{--l:#1a1405;--a:#6b4f08}
+.l{stroke:var(--l);stroke-width:1.75;fill:none}.a{stroke:var(--a);stroke-width:1.75;fill:none}.af{fill:var(--a);stroke:none}
+.cta{left:56px;bottom:58px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#F3D77A,#E2B93B);color:#1a1405;font-family:"Commissioner",sans-serif;font-weight:900;font-size:36px;padding:24px 42px;border-radius:70px;box-shadow:0 20px 50px rgba(226,185,59,.35)}
+.cta svg{width:34px;height:34px;--l:#1a1405;--a:#1a1405;stroke-linecap:round;stroke-linejoin:round}
+.cta .l,.cta .a{stroke-width:2.4}
+.sub{left:58px;top:350px;width:980px;font-size:26px;line-height:1.3;color:#cfc4ab}
+.at{right:56px;bottom:84px;font-size:30px;color:#F3D77A;font-weight:600}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" class="l"/><path d="M3 12h18" class="l"/><path d="M12 3c-3.2 3-3.2 15 0 18 3.2-3 3.2-15 0-18z" class="a"/></symbol>
+<symbol id="courses" viewBox="0 0 24 24"><path d="M3 5.5c3-1 6-1 9 1v13c-3-2-6-2-9-1z" class="l"/><path d="M21 5.5c-3-1-6-1-9 1v13c3-2 6-2 9-1z" class="l"/><path d="M12 6.5v13" class="a"/></symbol>
+<symbol id="sparkles" viewBox="0 0 24 24"><path d="M10 6l1.7 4.3L16 12l-4.3 1.7L10 18l-1.7-4.3L4 12l4.3-1.7z" class="l"/><path d="M18 3v4M16 5h4" class="a"/><path d="M18.5 15v4M16.5 17h4" class="l"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9z" class="l"/><circle cx="12" cy="12" r="1.6" class="af"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" class="l"/><circle cx="12" cy="12" r="3" class="a"/></symbol>
+<symbol id="timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" class="l"/><path d="M9.5 2.5h5" class="l"/><path d="M12 13.5V9.5" class="a"/></symbol>
+<symbol id="refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 00-14.2-4.2L4 9" class="l"/><path d="M4 4v5h5" class="l"/><path d="M4 13a8 8 0 0014.2 4.2L20 15" class="a"/><path d="M20 20v-5h-5" class="a"/></symbol>
+<symbol id="trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 01-10 0z" class="l"/><path d="M7 6H4v1.5A3.5 3.5 0 007.5 11M17 6h3v1.5A3.5 3.5 0 0116.5 11M12 14v4M8.5 20h7" class="l"/><path d="M12 6.4c-1.5 1-1.5 2.8 0 3.8 1.5-1 1.5-2.8 0-3.8z" class="af"/></symbol>
+<symbol id="crown" viewBox="0 0 24 24"><path d="M3.5 8l4.5 4 4-6.5 4 6.5 4.5-4-1.5 10.5h-14z" class="l"/><circle cx="12" cy="14" r="1.5" class="af"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14" class="l"/><path d="M13 6l6 6-6 6" class="a"/></symbol>
+</defs></svg>
+
+<div class="abs glow"></div>
+<svg class="abs" style="left:0;top:340px" width="1080" height="400" viewBox="0 0 1080 400"><defs><filter id="o" x="-5%" y="-5%" width="110%" height="110%"><feMorphology in="SourceAlpha" operator="erode" radius="2.2" result="e"/><feComposite in="SourceAlpha" in2="e" operator="out" result="ring"/><feFlood flood-color="#E2B93B" flood-opacity="0.9"/><feComposite in2="ring" operator="in"/></filter></defs><text x="540" y="320" text-anchor="middle" font-family="Commissioner" font-weight="900" font-size="330" letter-spacing="-12" fill="#E2B93B" filter="url(#o)">YANGI</text></svg>
+<div class="abs ring" style="width:520px;height:520px"></div>
+<div class="abs ring" style="width:760px;height:760px;opacity:.7"></div>
+<div class="abs ring" style="width:1000px;height:1000px;opacity:.45"></div>
+<img class="abs rocket" src="file:///Users/macbookpro/Library/Application Support/Claude/local-agent-mode-sessions/1d75b1db-1378-4112-8519-115a7355b65a/3adc44ee-528d-4034-a988-efc756f2bb27/local_ff3380db-1136-48bc-8187-871aa008f32a/outputs/hero3d.png">
+<div class="abs grain"></div>
+
+<div class="abs tag">YANGILANISH</div>
+<div class="abs v">2026</div>
+<h1>ustozimnurimbot<br><span>imkoniyatlari.</span></h1><div class="abs sub">Har kuni 20:00 da viktorina. Kuchlilar reytingidan o'z o'rningizni oling!</div>
+
+<div class="chip gold" style="left:56px;top:452px"><div class="ic"><svg><use href="#sparkles"/></svg></div><div><div class="t">400+ izoh</div><div class="d">xatoni tushunib oling</div></div></div>
+<div class="chip" style="left:56px;top:618px"><div class="ic"><svg><use href="#globe"/></svg></div><div><div class="t">Uchta til</div><div class="d">UZ · RU · EN</div></div></div>
+<div class="chip" style="left:56px;top:784px"><div class="ic"><svg><use href="#courses"/></svg></div><div><div class="t">Ingliz tili</div><div class="d">alohida bo'lim</div></div></div>
+<div class="chip" style="left:56px;top:950px"><div class="ic"><svg><use href="#timer"/></svg></div><div><div class="t">Aqlli taymer</div><div class="d">o'zi keyingisiga o'tadi</div></div></div>
+
+<div class="chip gold" style="left:706px;top:536px"><div class="ic"><svg><use href="#star"/></svg></div><div><div class="t">2× ball</div><div class="d">qiyin savollarga</div></div></div>
+<div class="chip" style="left:706px;top:702px"><div class="ic"><svg><use href="#eye"/></svg></div><div><div class="t">Vizual jumboq</div><div class="d">kod, mantiq, rasm</div></div></div>
+<div class="chip" style="left:706px;top:868px"><div class="ic"><svg><use href="#trophy"/></svg></div><div><div class="t">Unvonlar</div><div class="d">Hero · Super miya</div></div></div>
+<div class="chip" style="left:706px;top:1034px"><div class="ic"><svg><use href="#crown"/></svg></div><div><div class="t">Kunlik premium</div><div class="d">peshqadamga 1 kun</div></div></div>
+
+<div class="abs cta">Hoziroq sinab ko'ring <svg><use href="#arrow"/></svg></div>
+<div class="abs at">@ustozimnurimbot</div>
+</body></html>

@@ -1,0 +1,9 @@
+# Mahalliy ishga tushirish uchun namuna. Bu faylni .dev.vars deb nusxalang.
+# .dev.vars hech qachon git'ga tushmaydi (.gitignore da).
+#
+# Jonli muhitda bu qiymatlar Cloudflare secret sifatida saqlanadi:
+#   npx wrangler secret put BOT_TOKEN
+#   npx wrangler secret put WEBHOOK_SECRET
+
+BOT_TOKEN="BotFather bergan token"
+WEBHOOK_SECRET="o'zingiz o'ylab topgan uzun tasodifiy satr"

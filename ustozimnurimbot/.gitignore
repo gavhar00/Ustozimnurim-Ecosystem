@@ -1,0 +1,8 @@
+node_modules/
+.wrangler/
+.zaxira/
+*.bak.*
+.DS_Store
+.dev.vars
+.sinov-tmp/
+test/eski/
