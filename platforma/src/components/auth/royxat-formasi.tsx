@@ -1,28 +1,33 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FormXabar, Input, Label } from "@/components/ui/form";
+import { ParolMaydoni } from "@/components/ui/parol-maydoni";
 import { supabaseBrauzer } from "@/lib/supabase/client";
 
 export function RoyxatFormasi() {
-  const router = useRouter();
   const [ism, setIsm] = useState("");
   const [email, setEmail] = useState("");
   const [parol, setParol] = useState("");
   const [yuborilmoqda, setYuborilmoqda] = useState(false);
   const [xato, setXato] = useState<string | null>(null);
-  const [yuborildi, setYuborildi] = useState(false);
 
   const supabase = supabaseBrauzer();
+
+  /** To‘liq sahifa yuklanishi bilan o‘tamiz — sessiya cookie’si server
+   *  tomonga kafolatli yetib boradi (client navigatsiyada ulgurmasligi mumkin). */
+  function panelgaOt() {
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- to‘liq yuklanish sessiya cookie’sini serverga yetkazadi
+    window.location.assign("/panel");
+  }
 
   async function yubor(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!supabase) return;
 
-    if (parol.length < 8) {
-      setXato("Parol kamida 8 ta belgidan iborat bo‘lishi kerak.");
+    if (parol.length < 6) {
+      setXato("Parol kamida 6 ta belgidan iborat bo‘lishi kerak.");
       return;
     }
 
@@ -48,16 +53,29 @@ export function RoyxatFormasi() {
       return;
     }
 
-    // Email tasdiqlash o‘chirilgan bo‘lsa, Supabase darhol sessiya qaytaradi —
-    // foydalanuvchini to‘g‘ridan-to‘g‘ri panelga olib o‘tamiz.
+    // Email tasdiqlash talab qilinmaydi: hisob darhol faol bo‘ladi.
+    // Sessiya qaytsa — to‘g‘ridan-to‘g‘ri panelga.
     if (data.session) {
-      router.push("/panel");
-      router.refresh();
+      panelgaOt();
       return;
     }
 
-    // Tasdiqlash yoqilgan holat uchun zaxira xabar.
-    setYuborildi(true);
+    // Sessiya qaytmasa, o‘sha ma’lumot bilan darhol kirishga urinamiz.
+    const { error: kirishXatosi } = await supabase.auth.signInWithPassword({
+      email,
+      password: parol,
+    });
+
+    if (!kirishXatosi) {
+      panelgaOt();
+      return;
+    }
+
+    // Supabase mavjud email uchun ham "muvaffaqiyat" qaytaradi (kim ro‘yxatdan
+    // o‘tgani oshkor bo‘lmasligi uchun). Kirish ham o‘tmasa — sabab shu.
+    setXato(
+      "Bu email bilan hisob allaqachon mavjud. Kirish sahifasidan o‘z parolingiz bilan kiring.",
+    );
     setYuborilmoqda(false);
   }
 
@@ -66,15 +84,6 @@ export function RoyxatFormasi() {
       <FormXabar turi="ogohlantirish">
         Hisob tizimi hali ulanmagan. Ro‘yxatdan o‘tish imkoniyati platformaning
         keyingi bosqichida ochiladi.
-      </FormXabar>
-    );
-  }
-
-  if (yuborildi) {
-    return (
-      <FormXabar turi="muvaffaqiyat">
-        Tasdiqlash havolasi <strong>{email}</strong> manziliga yuborildi.
-        Pochtangizni tekshiring va havola orqali hisobingizni faollashtiring.
       </FormXabar>
     );
   }
@@ -111,19 +120,18 @@ export function RoyxatFormasi() {
 
       <div>
         <Label htmlFor="parol">Parol</Label>
-        <Input
+        <ParolMaydoni
           id="parol"
-          type="password"
           autoComplete="new-password"
           required
-          minLength={8}
+          minLength={6}
           value={parol}
           onChange={(e) => setParol(e.target.value)}
-          placeholder="Kamida 8 ta belgi"
+          placeholder="Kamida 6 ta belgi"
           aria-describedby="parol-izoh"
         />
         <p id="parol-izoh" className="mt-2 text-xs text-fg-muted">
-          Kamida 8 ta belgi bo‘lsin.
+          Kamida 6 ta belgi bo‘lsin. Email tasdiqlash talab qilinmaydi.
         </p>
       </div>
 
