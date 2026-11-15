@@ -1,13 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FormXabar, Input, Label } from "@/components/ui/form";
+import { ParolMaydoni } from "@/components/ui/parol-maydoni";
 import { supabaseBrauzer } from "@/lib/supabase/client";
 
 export function KirishFormasi() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [parol, setParol] = useState("");
   const [yuborilmoqda, setYuborilmoqda] = useState(false);
@@ -28,19 +27,25 @@ export function KirishFormasi() {
     });
 
     if (error) {
-      setXato(
-        error.message === "Invalid login credentials"
-          ? "Email yoki parol noto‘g‘ri."
-          : "Kirishda xatolik yuz berdi. Birozdan so‘ng qayta urinib ko‘ring.",
-      );
+      const xabar = error.message.toLowerCase();
+      if (xabar.includes("invalid login credentials")) {
+        setXato(
+          "Email yoki parol noto‘g‘ri. Hisobingiz bo‘lmasa, avval ro‘yxatdan o‘ting.",
+        );
+      } else if (xabar.includes("rate limit") || xabar.includes("too many")) {
+        setXato("Juda ko‘p urinish bo‘ldi. Bir necha daqiqadan so‘ng qayta urining.");
+      } else {
+        setXato("Kirishda xatolik yuz berdi. Birozdan so‘ng qayta urinib ko‘ring.");
+      }
       setYuborilmoqda(false);
       return;
     }
 
-    // Himoyalangan sahifadan kelgan bo‘lsa — o‘sha yerga qaytaramiz.
+    // Himoyalangan sahifadan kelgan bo‘sa — o‘sha yerga qaytaramiz.
+    // To‘liq sahifa yuklanishi bilan o‘tamiz: shunda sessiya cookie’si server
+    // tomonga kafolatli yetib boradi va qo‘riqchi bizni qaytarib yubormaydi.
     const keyin = new URLSearchParams(window.location.search).get("keyin");
-    router.push(keyin && keyin.startsWith("/") ? keyin : "/panel");
-    router.refresh();
+    window.location.assign(keyin && keyin.startsWith("/") ? keyin : "/panel");
   }
 
   if (!supabase) {
@@ -71,9 +76,8 @@ export function KirishFormasi() {
 
       <div>
         <Label htmlFor="parol">Parol</Label>
-        <Input
+        <ParolMaydoni
           id="parol"
-          type="password"
           autoComplete="current-password"
           required
           value={parol}
