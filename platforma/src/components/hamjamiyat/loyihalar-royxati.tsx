@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
@@ -148,8 +149,23 @@ export function LoyihalarRoyxati({
             <li key={loyiha.id}>
               <Link
                 href={`/hamjamiyat/loyihalar/${loyiha.id}`}
-                className="group flex h-full flex-col rounded-card border border-border-subtle bg-bg-card p-5 transition-all duration-250 hover:-translate-y-1 hover:border-border-strong"
+                className="group flex h-full flex-col overflow-hidden rounded-card border border-border-subtle bg-bg-card transition-all duration-250 hover:-translate-y-1 hover:border-border-strong"
               >
+                {loyiha.muqova_url ? (
+                  <div className="relative h-36 overflow-hidden bg-ink-850">
+                    <Image src={loyiha.muqova_url} alt="" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" unoptimized />
+                    {loyiha.logo_url ? <Image src={loyiha.logo_url} alt="" width={54} height={54} className="absolute bottom-3 left-4 size-12 rounded-xl border-2 border-bg-card bg-bg-card object-contain p-1" unoptimized /> : null}
+                  </div>
+                ) : null}
+                {!loyiha.muqova_url && loyiha.logo_url ? (
+                  <div className="px-5 pt-5">
+                    <Image src={loyiha.logo_url} alt={`${loyiha.nom} logosi`} width={56} height={56} className="size-14 rounded-xl border border-border-subtle bg-bg-card object-contain p-1.5" unoptimized />
+                  </div>
+                ) : null}
+                <div className="flex flex-1 flex-col p-5">
+                <p className="mb-2 inline-flex w-fit rounded-md bg-ink-700/70 px-2.5 py-1 text-xs font-bold text-champagne">
+                  {loyiha.turkum?.trim() || "Umumiy"}
+                </p>
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="font-extrabold leading-snug text-fg">
                     {loyiha.nom}
@@ -188,6 +204,7 @@ export function LoyihalarRoyxati({
                     {loyiha.muallif.toliq_ism}
                   </p>
                 ) : null}
+                </div>
               </Link>
             </li>
           ))}

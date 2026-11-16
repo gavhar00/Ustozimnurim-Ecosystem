@@ -24,15 +24,37 @@ npm run dev                  # http://localhost:3000
 
 ### Bazani tayyorlash
 
-`supabase/migrations/0001_boshlangich_sxema.sql` faylini Supabase loyihangizning
-SQL muharririda ishga tushiring (yoki `supabase db push`). U jadvallar, RLS
-siyosatlari va yo‘nalishlar ro‘yxatini yaratadi.
+`supabase/migrations/` ichidagi migratsiyalarni nomi bo‘yicha ketma-ket
+Supabase SQL muharririda ishga tushiring (yoki `supabase db push`). Barcha
+migratsiyalar jadvallar, RLS siyosatlari, Storage bucketlari va loyiha
+portfolio imkoniyatlarini sozlaydi.
 
 Birinchi administratorni qo‘lda belgilang — ro‘yxatdan o‘tgandan keyin:
 
 ```sql
 update public.profillar set rol = 'admin' where id = '<foydalanuvchi uuid>';
 ```
+
+### Google orqali kirish
+
+Email/parol orqali kirish saqlanadi. Google kirishini yoqish uchun:
+
+1. Supabase Dashboard → **Authentication → Providers → Google** bo‘limida Google OAuth
+   Client ID va Client Secret qiymatlarini sozlang.
+2. Google Cloud Console’dagi OAuth Client **Authorized redirect URI** maydoniga
+   `https://<SUPABASE_PROJECT_REF>.supabase.co/auth/v1/callback` manzilini qo‘shing.
+3. Supabase Dashboard → **Authentication → URL Configuration** bo‘limida **Site URL**
+   sifatida production domenini (`NEXT_PUBLIC_SITE_URL`) belgilang. **Redirect URLs**
+   ro‘yxatiga `http://localhost:3000/auth/callback`, production
+   `https://<SITE_DOMAIN>/auth/callback` va kerakli Vercel Preview domenlarini kiriting.
+4. Vercel va lokal muhitda `NEXT_PUBLIC_SUPABASE_URL`,
+   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SITE_URL` sozlanganini
+   tekshiring. Google Client Secret faqat Supabase Dashboard’da saqlanadi; uni
+   klient kodiga yoki `.env.local` fayliga kiritmang.
+
+OAuth callback `<SITE_DOMAIN>/auth/callback` manzilidan ishlaydi. Profil 60% dan
+kam bo‘lsa, foydalanuvchi `/profil/toldirish` sahifasiga yo‘naltiriladi; chegaradan
+yuqori bo‘lsa, dastlab so‘ralgan ichki sahifaga qaytadi.
 
 Tekshiruv buyruqlari:
 

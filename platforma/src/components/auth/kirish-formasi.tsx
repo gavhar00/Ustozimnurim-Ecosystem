@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { FormXabar, Input, Label } from "@/components/ui/form";
 import { ParolMaydoni } from "@/components/ui/parol-maydoni";
 import { supabaseBrauzer } from "@/lib/supabase/client";
+import { xavfsizIchkiManzil } from "@/lib/profil-toldirish";
 
 export function KirishFormasi() {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export function KirishFormasi() {
     // To‘liq sahifa yuklanishi bilan o‘tamiz: shunda sessiya cookie’si server
     // tomonga kafolatli yetib boradi va qo‘riqchi bizni qaytarib yubormaydi.
     const keyin = new URLSearchParams(window.location.search).get("keyin");
-    window.location.assign(keyin && keyin.startsWith("/") ? keyin : "/panel");
+    window.location.assign(xavfsizIchkiManzil(keyin));
   }
 
   if (!supabase) {

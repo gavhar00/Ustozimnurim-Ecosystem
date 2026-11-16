@@ -17,7 +17,7 @@ export function BolimMenyusi() {
 
   return (
     <nav aria-label="Hamjamiyat bo‘limlari">
-      <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1">
+      <ul className="flex flex-wrap gap-2 pb-1">
         {BOLIMLAR.map(({ nom, href, Ikona }) => {
           const faol =
             href === "/hamjamiyat"
@@ -25,7 +25,7 @@ export function BolimMenyusi() {
               : pathname.startsWith(href);
 
           return (
-            <li key={href} className="shrink-0">
+            <li key={href}>
               <Link
                 href={href}
                 aria-current={faol ? "page" : undefined}

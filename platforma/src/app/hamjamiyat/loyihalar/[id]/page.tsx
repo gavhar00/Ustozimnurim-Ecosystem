@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Code2, ExternalLink, Users } from "lucide-react";
 import { ProfilKartasi } from "@/components/ijtimoiy/profil-kartasi";
 import { QoshilishTugmasi } from "@/components/hamjamiyat/qoshilish-tugmasi";
+import { LoyihaOchirishTugmasi } from "@/components/hamjamiyat/loyiha-ochirish-tugmasi";
+import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/primitives";
 import { joriyProfil } from "@/lib/auth";
 import {
@@ -57,6 +60,15 @@ export default async function LoyihaSahifasi({ params }: Props) {
       </nav>
 
       <article className="max-w-3xl">
+        {loyiha.muqova_url ? (
+          <div className="relative mb-7 h-52 overflow-hidden rounded-2xl border border-border-subtle sm:h-72">
+            <Image src={loyiha.muqova_url} alt={`${loyiha.nom} muqovasi`} fill priority sizes="(max-width: 768px) 100vw, 768px" className="object-cover" unoptimized />
+            {loyiha.logo_url ? <Image src={loyiha.logo_url} alt="" width={72} height={72} className="absolute bottom-4 left-4 size-16 rounded-2xl border-2 border-bg-card bg-bg-card object-contain p-2" unoptimized /> : null}
+          </div>
+        ) : null}
+        {!loyiha.muqova_url && loyiha.logo_url ? (
+          <Image src={loyiha.logo_url} alt={`${loyiha.nom} logosi`} width={72} height={72} className="mb-5 size-16 rounded-2xl border border-border-subtle bg-bg-card object-contain p-2" unoptimized />
+        ) : null}
         <div className="flex flex-wrap items-center gap-3">
           <span className="rounded-pill border border-border-strong px-3 py-1 text-xs font-bold text-gold-300">
             {LOYIHA_HOLATI_NOMI[loyiha.holat as LoyihaHolati] ?? loyiha.holat}
@@ -69,6 +81,14 @@ export default async function LoyihaSahifasi({ params }: Props) {
         <h1 className="mt-4 text-balance text-3xl font-black leading-tight sm:text-4xl">
           {loyiha.nom}
         </h1>
+        {koruvchi?.id === loyiha.muallif?.id ? (
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <ButtonLink href={`/panel/loyihalarim/${loyiha.id}`} variant="secondary">
+              Loyihani tahrirlash
+            </ButtonLink>
+            <LoyihaOchirishTugmasi loyihaId={loyiha.id} />
+          </div>
+        ) : null}
 
         {loyiha.muallif ? (
           <p className="mt-3 flex items-center gap-2 text-sm text-fg-muted">
@@ -99,6 +119,11 @@ export default async function LoyihaSahifasi({ params }: Props) {
         <div className="surface-card mt-7 whitespace-pre-line p-6 leading-relaxed text-fg">
           {loyiha.tavsif}
         </div>
+        {loyiha.egalik_rol ? (
+          <p className="mt-4 text-sm text-fg-muted">
+            Loyihadagi roli: <span className="font-bold text-fg">{loyiha.egalik_rol}</span>
+          </p>
+        ) : null}
 
         {loyiha.texnologiyalar.length > 0 ? (
           <section className="mt-7">

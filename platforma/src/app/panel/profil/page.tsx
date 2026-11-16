@@ -6,6 +6,7 @@ import { RasmYuklash } from "@/components/panel/rasm-yuklash";
 import { ToldirishKorsatkichi } from "@/components/panel/toldirish-korsatkichi";
 import { EmptyState } from "@/components/ui/empty-state";
 import { profilTalabQil, ROL_NOMI } from "@/lib/auth";
+import { supabaseServer } from "@/lib/supabase/server";
 import {
   profilKonikmalari,
   toldirilganlik,
@@ -31,7 +32,15 @@ export default async function ProfilSahifasi() {
   }
 
   const konikmalar = await profilKonikmalari(profil.id);
-  const { foiz, bandlar } = toldirilganlik(profil, konikmalar.length);
+  const supabase = await supabaseServer();
+  const { data: shaxsiy } = supabase
+    ? await supabase.from("profil_shaxsiy").select("tugilgan_sana").eq("profil_id", hisob.id).maybeSingle()
+    : { data: null };
+  const { foiz, bandlar } = toldirilganlik(
+    profil,
+    konikmalar.length,
+    shaxsiy?.tugilgan_sana ?? null,
+  );
 
   return (
     <>

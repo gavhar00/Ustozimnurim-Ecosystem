@@ -7,7 +7,7 @@ import type {
 } from "@/lib/turlar";
 
 const PROFIL_MAYDONLARI =
-  "id, toliq_ism, username, bio, kasb, talim, joylashuv, maqsad, tillar, qiziqishlar, hamkorlikka_ochiq, avatar_url, muqova_url, havolalar, yaratilgan";
+  "id, toliq_ism, username, bio, kasb, talim, sinf_kurs, joylashuv, maqsad, tillar, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, hamkorlikka_ochiq, avatar_url, muqova_url, havolalar, yaratilgan";
 
 function profilgaAylantir(qator: Record<string, unknown>): ToliqProfil {
   return {
@@ -17,10 +17,14 @@ function profilgaAylantir(qator: Record<string, unknown>): ToliqProfil {
     bio: (qator.bio as string | null) ?? null,
     kasb: (qator.kasb as string | null) ?? null,
     talim: (qator.talim as string | null) ?? null,
+    sinf_kurs: (qator.sinf_kurs as string | null) ?? null,
     joylashuv: (qator.joylashuv as string | null) ?? null,
     maqsad: (qator.maqsad as string | null) ?? null,
     tillar: (qator.tillar as string[]) ?? [],
     qiziqishlar: (qator.qiziqishlar as string[]) ?? [],
+    organish_yonalishlari: (qator.organish_yonalishlari as string[]) ?? [],
+    organmoqchi_konikmalar: (qator.organmoqchi_konikmalar as string[]) ?? [],
+    mavjud_konikmalar: (qator.mavjud_konikmalar as string[]) ?? [],
     hamkorlikka_ochiq: Boolean(qator.hamkorlikka_ochiq),
     avatar_url: (qator.avatar_url as string | null) ?? null,
     muqova_url: (qator.muqova_url as string | null) ?? null,
@@ -95,7 +99,7 @@ export async function profilLoyihalari(profilId: string): Promise<Loyiha[]> {
   const { data, error } = await supabase
     .from("loyihalar")
     .select(
-      "id, muallif_id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, muqova_url, yaratilgan",
+      "id, muallif_id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, muqova_url, logo_url, egalik_rol, yaratilgan",
     )
     .eq("muallif_id", profilId)
     .order("yaratilgan", { ascending: false });
@@ -120,26 +124,29 @@ export type ToldirishBandi = {
 export function toldirilganlik(
   profil: ToliqProfil,
   konikmalarSoni: number,
+  tugilganSana: string | null = null,
 ): { foiz: number; bandlar: ToldirishBandi[] } {
-  const havolaBor = Object.values(profil.havolalar ?? {}).some(
-    (q) => typeof q === "string" && q.trim().length > 0,
-  );
-
+  const ismQismlari = profil.toliq_ism.trim().split(/\s+/).filter(Boolean);
+  const umumiyHavola = "/profil/toldirish";
   const bandlar: ToldirishBandi[] = [
-    { nom: "Ism va familiya", bajarilgan: profil.toliq_ism.trim().length > 1, havola: "#asosiy" },
-    { nom: "Foydalanuvchi nomi", bajarilgan: Boolean(profil.username), havola: "#asosiy" },
-    { nom: "Qisqa tanishtiruv", bajarilgan: Boolean(profil.bio?.trim()), havola: "#asosiy" },
-    { nom: "Ta’lim", bajarilgan: Boolean(profil.talim?.trim()), havola: "#asosiy" },
-    { nom: "Joylashuv", bajarilgan: Boolean(profil.joylashuv?.trim()), havola: "#asosiy" },
-    { nom: "Maqsad", bajarilgan: Boolean(profil.maqsad?.trim()), havola: "#asosiy" },
-    { nom: "Kamida bitta ko‘nikma", bajarilgan: konikmalarSoni > 0, havola: "#konikmalar" },
-    { nom: "Kamida bitta qiziqish", bajarilgan: profil.qiziqishlar.length > 0, havola: "#asosiy" },
-    { nom: "Kamida bitta havola", bajarilgan: havolaBor, havola: "#havolalar" },
+    { nom: "Ism", bajarilgan: Boolean(ismQismlari[0]), havola: umumiyHavola },
+    { nom: "Familiya", bajarilgan: ismQismlari.length > 1, havola: umumiyHavola },
+    { nom: "Avatar", bajarilgan: Boolean(profil.avatar_url), havola: umumiyHavola },
+    { nom: "Tug‘ilgan sana", bajarilgan: Boolean(tugilganSana), havola: umumiyHavola },
+    { nom: "Ta’lim muassasasi", bajarilgan: Boolean(profil.talim?.trim()), havola: umumiyHavola },
+    { nom: "Sinf yoki kurs", bajarilgan: Boolean(profil.sinf_kurs?.trim()), havola: umumiyHavola },
+    { nom: "Hudud", bajarilgan: Boolean(profil.joylashuv?.trim()), havola: umumiyHavola },
+    { nom: "Qiziqishlar", bajarilgan: profil.qiziqishlar.length > 0, havola: umumiyHavola },
+    { nom: "O‘rganish yo‘nalishlari", bajarilgan: profil.organish_yonalishlari.length > 0, havola: umumiyHavola },
+    { nom: "O‘rganmoqchi bo‘lgan ko‘nikmalar", bajarilgan: profil.organmoqchi_konikmalar.length > 0, havola: umumiyHavola },
+    { nom: "Mavjud ko‘nikmalar", bajarilgan: profil.mavjud_konikmalar.length > 0 || konikmalarSoni > 0, havola: umumiyHavola },
+    { nom: "Ta’lim maqsadi", bajarilgan: Boolean(profil.maqsad?.trim()), havola: umumiyHavola },
+    { nom: "Qisqacha tanishtiruv", bajarilgan: Boolean(profil.bio?.trim()), havola: umumiyHavola },
   ];
 
   const bajarilgan = bandlar.filter((b) => b.bajarilgan).length;
   return {
-    foiz: Math.round((bajarilgan / bandlar.length) * 100),
+    foiz: Math.floor((bajarilgan / 13) * 100),
     bandlar,
   };
 }

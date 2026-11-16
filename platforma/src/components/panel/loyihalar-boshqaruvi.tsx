@@ -1,49 +1,31 @@
 "use client";
 
-import { useActionState, useState, useTransition } from "react";
-import { useFormStatus } from "react-dom";
-import { Code2 as Github, ExternalLink, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { FormXabar, Input, Label } from "@/components/ui/form";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useTransition } from "react";
+import { Code2 as Github, ExternalLink, Pencil, Trash2 } from "lucide-react";
 import {
   loyihaOchir,
-  loyihaQosh,
-  type LoyihaHolatiNatija,
 } from "@/app/panel/loyihalar-amallari";
+import { LoyihaFormasi } from "@/components/panel/loyiha-formasi";
 import { LoyihaSorovlari } from "@/components/panel/loyiha-sorovlari";
 import type { LoyihaAzosi, LoyihaSorovi } from "@/lib/data/ijtimoiy";
-import { LOYIHA_HOLATI_NOMI, type Loyiha, type LoyihaHolati } from "@/lib/turlar";
-
-const selectUslubi =
-  "h-12 w-full rounded-xl border border-border-subtle bg-ink-850/70 px-4 text-[0.95rem] text-fg";
-const textareaUslubi =
-  "w-full rounded-xl border border-border-subtle bg-ink-850/70 px-4 py-3 text-[0.95rem] leading-relaxed text-fg placeholder:text-muted-soft";
-
-function Tugma() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending}>
-      <Plus className="size-4" aria-hidden="true" />
-      {pending ? "Qo‘shilmoqda…" : "Loyihani qo‘shish"}
-    </Button>
-  );
-}
+import { LOYIHA_HOLATI_NOMI, type Loyiha } from "@/lib/turlar";
 
 export function LoyihalarBoshqaruvi({
   loyihalar,
   azolar = {},
   sorovlar = [],
+  foydalanuvchiId,
 }: {
   loyihalar: Loyiha[];
   azolar?: Record<string, LoyihaAzosi[]>;
   sorovlar?: LoyihaSorovi[];
+  foydalanuvchiId: string;
 }) {
-  const [holat, amal] = useActionState<LoyihaHolatiNatija, FormData>(
-    loyihaQosh,
-    {},
-  );
   const [ochirilayotgan, setOchirilayotgan] = useState<string | null>(null);
   const [kutilmoqda, startTransition] = useTransition();
+  const [xato, setXato] = useState<string | null>(null);
 
   return (
     <div className="space-y-8">
@@ -51,6 +33,20 @@ export function LoyihalarBoshqaruvi({
         <ul className="grid gap-4 sm:grid-cols-2">
           {loyihalar.map((loyiha) => (
             <li key={loyiha.id} className="surface-card flex flex-col p-5">
+              {loyiha.muqova_url ? (
+                <div className="relative -mx-5 -mt-5 mb-4 h-32 overflow-hidden rounded-t-card">
+                  <Image src={loyiha.muqova_url} alt="" fill sizes="(max-width: 640px) 100vw, 40vw" className="object-cover" unoptimized />
+                  {loyiha.logo_url ? <Image src={loyiha.logo_url} alt="" width={52} height={52} className="absolute bottom-3 left-3 size-12 rounded-xl border-2 border-bg-card bg-bg-card object-contain p-1" unoptimized /> : null}
+                </div>
+              ) : null}
+              {!loyiha.muqova_url && loyiha.logo_url ? (
+                <div className="mb-4">
+                  <Image src={loyiha.logo_url} alt={`${loyiha.nom} logosi`} width={52} height={52} className="size-12 rounded-xl border border-border-subtle bg-bg-card object-contain p-1" unoptimized />
+                </div>
+              ) : null}
+              <p className="mb-2 inline-flex w-fit rounded-md bg-ink-700/70 px-2.5 py-1 text-xs font-bold text-champagne">
+                {loyiha.turkum?.trim() || "Umumiy"}
+              </p>
               <div className="flex items-start justify-between gap-3">
                 <h3 className="font-extrabold text-fg">{loyiha.nom}</h3>
                 <span className="shrink-0 rounded-pill border border-border-strong px-3 py-1 text-xs font-bold text-gold-300">
@@ -96,6 +92,19 @@ export function LoyihalarBoshqaruvi({
               ) : null}
 
               <div className="mt-4 flex items-center gap-3 border-t border-border-subtle pt-3">
+                <Link
+                  href={`/panel/loyihalarim/${loyiha.id}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-fg-muted hover:text-gold-300"
+                >
+                  <Pencil className="size-3.5" aria-hidden="true" />
+                  Tahrirlash
+                </Link>
+                <Link
+                  href={`/hamjamiyat/loyihalar/${loyiha.id}`}
+                  className="text-xs font-bold text-fg-muted hover:text-gold-300"
+                >
+                  Ko‘rish
+                </Link>
                 {loyiha.github_url ? (
                   <a
                     href={loyiha.github_url}
@@ -125,7 +134,8 @@ export function LoyihalarBoshqaruvi({
                   onClick={() => {
                     if (ochirilayotgan === loyiha.id) {
                       startTransition(async () => {
-                        await loyihaOchir(loyiha.id);
+                        const natija = await loyihaOchir(loyiha.id);
+                        setXato(natija.xato ?? null);
                         setOchirilayotgan(null);
                       });
                     } else {
@@ -148,106 +158,8 @@ export function LoyihalarBoshqaruvi({
         </ul>
       ) : null}
 
-      <form action={amal} className="surface-card space-y-5 p-6">
-        <h2 className="text-lg font-extrabold">Yangi loyiha</h2>
-
-        {holat.xato ? <FormXabar>{holat.xato}</FormXabar> : null}
-        {holat.muvaffaqiyat ? (
-          <FormXabar turi="muvaffaqiyat">{holat.muvaffaqiyat}</FormXabar>
-        ) : null}
-
-        <div>
-          <Label htmlFor="loyiha-nom">Loyiha nomi</Label>
-          <Input
-            id="loyiha-nom"
-            name="nom"
-            required
-            minLength={3}
-            maxLength={80}
-            placeholder="Masalan: Kitob javoni"
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="loyiha-tavsif">Tavsif</Label>
-          <textarea
-            id="loyiha-tavsif"
-            name="tavsif"
-            required
-            minLength={10}
-            rows={4}
-            maxLength={1000}
-            placeholder="Loyiha nima qiladi, qanday muammoni hal qiladi?"
-            className={textareaUslubi}
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="loyiha-tex">Texnologiyalar</Label>
-          <Input
-            id="loyiha-tex"
-            name="texnologiyalar"
-            maxLength={200}
-            placeholder="React, TypeScript, Supabase"
-            aria-describedby="tex-izoh"
-          />
-          <p id="tex-izoh" className="mt-2 text-xs text-fg-muted">
-            Vergul bilan ajrating.
-          </p>
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <Label htmlFor="loyiha-turkum">Turkum</Label>
-            <Input
-              id="loyiha-turkum"
-              name="turkum"
-              maxLength={40}
-              placeholder="Veb ilova"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="loyiha-holat">Holat</Label>
-            <select
-              id="loyiha-holat"
-              name="holat"
-              defaultValue="jarayonda"
-              className={selectUslubi}
-            >
-              {(Object.keys(LOYIHA_HOLATI_NOMI) as LoyihaHolati[]).map((h) => (
-                <option key={h} value={h}>
-                  {LOYIHA_HOLATI_NOMI[h]}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <Label htmlFor="loyiha-github">GitHub havolasi</Label>
-            <Input
-              id="loyiha-github"
-              name="github_url"
-              maxLength={200}
-              placeholder="github.com/ism/loyiha"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="loyiha-demo">Demo havolasi</Label>
-            <Input
-              id="loyiha-demo"
-              name="demo_url"
-              maxLength={200}
-              placeholder="loyiha.vercel.app"
-            />
-          </div>
-        </div>
-
-        <Tugma />
-      </form>
+      {xato ? <p className="text-sm text-[#ffb3ad]" role="alert">{xato}</p> : null}
+      <LoyihaFormasi foydalanuvchiId={foydalanuvchiId} />
     </div>
   );
 }

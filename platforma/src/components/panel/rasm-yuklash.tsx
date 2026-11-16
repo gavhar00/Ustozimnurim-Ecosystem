@@ -122,24 +122,24 @@ export function RasmYuklash({
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <input
-          ref={input}
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          className="sr-only"
-          id={`rasm-${turi}`}
-          onChange={(e) => {
-            const fayl = e.target.files?.[0];
-            if (fayl) void fayliniYukla(fayl);
-            e.target.value = "";
-          }}
-        />
         <label
-          htmlFor={`rasm-${turi}`}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-pill border border-border-strong px-4 py-2 text-sm font-bold text-fg transition-colors hover:border-gold-400/60"
+          className="inline-flex cursor-pointer items-center gap-2 rounded-pill border border-border-strong px-4 py-2 text-sm font-bold text-fg transition-colors hover:border-gold-400/60 focus-within:ring-2 focus-within:ring-gold-400 focus-within:ring-offset-2 focus-within:ring-offset-ink-950"
         >
-          <ImagePlus className="size-4" aria-hidden="true" />
-          {url ? `${nom}ni almashtirish` : `${nom} yuklash`}
+          <input
+            ref={input}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            className="sr-only"
+            onChange={(e) => {
+              const fayl = e.target.files?.[0];
+              if (fayl) void fayliniYukla(fayl);
+              e.target.value = "";
+            }}
+          />
+          <span className="inline-flex items-center gap-2">
+            <ImagePlus className="size-4" aria-hidden="true" />
+            {url ? `${nom}ni almashtirish` : `${nom} yuklash`}
+          </span>
         </label>
 
         {url ? (

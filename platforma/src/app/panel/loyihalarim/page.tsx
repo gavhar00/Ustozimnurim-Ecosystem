@@ -36,6 +36,7 @@ export default async function LoyihalarimSahifasi() {
       <div className="mt-7">
         <LoyihalarBoshqaruvi
           loyihalar={loyihalar}
+          foydalanuvchiId={hisob.id}
           azolar={azolar}
           sorovlar={sorovlar}
         />

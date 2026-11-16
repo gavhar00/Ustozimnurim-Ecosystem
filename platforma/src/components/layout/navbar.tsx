@@ -44,7 +44,8 @@ export function Navbar({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors duration-300",
+        "relative md:sticky md:top-0",
+        "z-50 border-b transition-colors duration-300",
         suzuvchi
           ? "border-border-subtle bg-bg/85 backdrop-blur-xl"
           : "border-transparent bg-transparent",

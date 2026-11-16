@@ -101,6 +101,8 @@ export type Loyiha = {
   github_url: string | null;
   demo_url: string | null;
   muqova_url: string | null;
+  logo_url: string | null;
+  egalik_rol: string | null;
   yaratilgan: string;
 };
 
@@ -118,10 +120,14 @@ export type ToliqProfil = {
   bio: string | null;
   kasb: string | null;
   talim: string | null;
+  sinf_kurs: string | null;
   joylashuv: string | null;
   maqsad: string | null;
   tillar: string[];
   qiziqishlar: string[];
+  organish_yonalishlari: string[];
+  organmoqchi_konikmalar: string[];
+  mavjud_konikmalar: string[];
   hamkorlikka_ochiq: boolean;
   avatar_url: string | null;
   muqova_url: string | null;

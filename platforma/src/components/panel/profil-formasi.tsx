@@ -167,7 +167,7 @@ export function ProfilFormasi({
           {QIZIQISHLAR.map((q) => (
             <label
               key={q}
-              className="cursor-pointer rounded-pill border border-border-subtle px-4 py-2 text-sm font-semibold text-fg-muted transition-colors has-checked:border-gold-400/60 has-checked:bg-gold-400/15 has-checked:text-gold-200"
+              className="cursor-pointer rounded-pill border border-border-subtle px-4 py-2 text-sm font-semibold text-fg-muted transition-colors has-checked:border-gold-400/60 has-checked:bg-gold-400/15 has-checked:text-gold-200 focus-within:ring-2 focus-within:ring-gold-400 focus-within:ring-offset-2 focus-within:ring-offset-ink-950"
             >
               <input
                 type="checkbox"

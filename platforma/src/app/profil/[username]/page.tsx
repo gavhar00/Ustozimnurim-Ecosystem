@@ -157,11 +157,16 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
               </span>
             )}
 
-            <div className="mb-1">
+            <div className="mb-1 flex flex-wrap gap-2">
               {ozimi ? (
-                <ButtonLink href="/panel/profil" variant="secondary" size="sm">
-                  Profilni tahrirlash
-                </ButtonLink>
+                <>
+                  <ButtonLink href="/panel/profil" variant="secondary" size="sm">
+                    Profilni tahrirlash
+                  </ButtonLink>
+                  <ButtonLink href="/profil/toldirish?keyin=/panel/profil" variant="outline" size="sm">
+                    Profilni to‘ldirish
+                  </ButtonLink>
+                </>
               ) : koruvchi ? (
                 <AloqaTugmalari
                   profilId={profil.id}
@@ -208,6 +213,24 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
             <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
               {profil.bio}
             </p>
+          ) : null}
+          {ozimi && koruvchi ? (
+            <div className="mt-5 max-w-md rounded-xl border border-border-subtle bg-ink-850/50 p-4">
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <span className="font-bold text-fg">Profil to‘ldirilgan</span>
+                <span className="font-black text-gold-300">{koruvchi.toldirishFoizi}%</span>
+              </div>
+              <div
+                className="mt-2 h-2 overflow-hidden rounded-full bg-ink-700"
+                role="progressbar"
+                aria-label="Profil to‘ldirilganligi"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={koruvchi.toldirishFoizi}
+              >
+                <div className="h-full rounded-full bg-gold-400" style={{ width: `${koruvchi.toldirishFoizi}%` }} />
+              </div>
+            </div>
           ) : null}
 
           {/* Sonlar va havolalar bir qatorda */}
@@ -331,6 +354,20 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
             <ul className="grid gap-4 sm:grid-cols-2">
               {loyihalar.map((loyiha) => (
                 <li key={loyiha.id} className="surface-card flex flex-col p-5">
+                  {loyiha.muqova_url ? (
+                    <div className="relative -mx-5 -mt-5 mb-4 h-32 overflow-hidden rounded-t-card">
+                      <Image src={loyiha.muqova_url} alt="" fill sizes="(max-width: 640px) 100vw, 40vw" className="object-cover" unoptimized />
+                      {loyiha.logo_url ? <Image src={loyiha.logo_url} alt="" width={50} height={50} className="absolute bottom-3 left-3 size-11 rounded-xl border-2 border-bg-card bg-bg-card object-contain p-1" unoptimized /> : null}
+                    </div>
+                  ) : null}
+                  {!loyiha.muqova_url && loyiha.logo_url ? (
+                    <div className="mb-4">
+                      <Image src={loyiha.logo_url} alt={`${loyiha.nom} logosi`} width={48} height={48} className="size-11 rounded-xl border border-border-subtle bg-bg-card object-contain p-1" unoptimized />
+                    </div>
+                  ) : null}
+                  <p className="mb-2 inline-flex w-fit rounded-md bg-ink-700/70 px-2.5 py-1 text-xs font-bold text-champagne">
+                    {loyiha.turkum?.trim() || "Umumiy"}
+                  </p>
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="font-extrabold text-fg">{loyiha.nom}</h2>
                     <span className="shrink-0 rounded-pill border border-border-strong px-3 py-1 text-xs font-bold text-gold-300">
@@ -389,7 +426,11 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
         {faol === "talim" ? (
           <div className="surface-card space-y-5 p-6">
             <Qator nom="Ta’lim" qiymat={profil.talim} />
+            <Qator nom="Sinf yoki kurs" qiymat={profil.sinf_kurs} />
             <Qator nom="Maqsad" qiymat={profil.maqsad} />
+            <Qator nom="O‘rganish yo‘nalishlari" qiymat={profil.organish_yonalishlari.length ? profil.organish_yonalishlari.join(", ") : null} />
+            <Qator nom="O‘rganmoqchi bo‘lgan ko‘nikmalar" qiymat={profil.organmoqchi_konikmalar.length ? profil.organmoqchi_konikmalar.join(", ") : null} />
+            <Qator nom="Mavjud ko‘nikmalar" qiymat={profil.mavjud_konikmalar.length ? profil.mavjud_konikmalar.join(", ") : null} />
             <Qator
               nom="Tillar"
               qiymat={profil.tillar.length ? profil.tillar.join(", ") : null}
@@ -473,7 +514,14 @@ function UmumiyBolim({
   profil,
   konikmalar,
 }: {
-  profil: { bio: string | null; maqsad: string | null; qiziqishlar: string[] };
+  profil: {
+    bio: string | null;
+    maqsad: string | null;
+    qiziqishlar: string[];
+    organish_yonalishlari: string[];
+    organmoqchi_konikmalar: string[];
+    mavjud_konikmalar: string[];
+  };
   konikmalar: Konikma[];
 }) {
   return (
@@ -481,6 +529,9 @@ function UmumiyBolim({
       <div className="surface-card space-y-5 p-6">
         <Qator nom="Men haqimda" qiymat={profil.bio} />
         <Qator nom="Maqsad" qiymat={profil.maqsad} />
+        <Qator nom="O‘rganish yo‘nalishlari" qiymat={profil.organish_yonalishlari.length ? profil.organish_yonalishlari.join(", ") : null} />
+        <Qator nom="O‘rganmoqchi bo‘lgan ko‘nikmalar" qiymat={profil.organmoqchi_konikmalar.length ? profil.organmoqchi_konikmalar.join(", ") : null} />
+        <Qator nom="Mavjud ko‘nikmalar" qiymat={profil.mavjud_konikmalar.length ? profil.mavjud_konikmalar.join(", ") : null} />
       </div>
 
       <div className="space-y-5">

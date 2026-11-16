@@ -282,6 +282,9 @@ export type OmmaviyLoyiha = {
   holat: string;
   github_url: string | null;
   demo_url: string | null;
+  muqova_url: string | null;
+  logo_url: string | null;
+  egalik_rol: string | null;
   yaratilgan: string;
   muallif: QisqaProfil | null;
 };
@@ -294,7 +297,7 @@ export async function ommaviyLoyihalar(): Promise<OmmaviyLoyiha[]> {
   const { data, error } = await supabase
     .from("loyihalar")
     .select(
-      `id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, yaratilgan,
+      `id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, muqova_url, logo_url, egalik_rol, yaratilgan,
        muallif:profillar!loyihalar_muallif_id_fkey(${QISQA_MAYDONLAR})`,
     )
     .order("yaratilgan", { ascending: false })
@@ -318,7 +321,7 @@ export async function ommaviyLoyiha(
   const { data, error } = await supabase
     .from("loyihalar")
     .select(
-      `id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, yaratilgan,
+      `id, nom, tavsif, texnologiyalar, turkum, holat, github_url, demo_url, muqova_url, logo_url, egalik_rol, yaratilgan,
        muallif:profillar!loyihalar_muallif_id_fkey(${QISQA_MAYDONLAR})`,
     )
     .eq("id", id)
