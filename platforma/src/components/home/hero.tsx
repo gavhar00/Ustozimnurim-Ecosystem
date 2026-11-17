@@ -2,17 +2,26 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, BookOpen, Code2, Lightbulb, Play } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Award,
+  Code2,
+  FolderGit2,
+  Play,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/primitives";
 import { MASKOT } from "@/lib/maskot";
 
-/** Maskot atrofida suzuvchi kichik ikonalar. */
-const SUZUVCHI = [
-  { Ikona: Lightbulb, joy: "right-[4%] top-[8%]", kechikish: 0 },
-  { Ikona: Code2, joy: "right-[2%] top-[42%]", kechikish: 0.6 },
-  { Ikona: BookOpen, joy: "left-[2%] top-[26%]", kechikish: 1.2 },
-  { Ikona: Play, joy: "right-[12%] bottom-[10%]", kechikish: 1.8 },
+/** Maskot atrofidagi shisha kartalar — har biri haqiqiy bo‘limga olib boradi. */
+const XUSUSIYATLAR = [
+  { Ikona: Code2, nom: "Interaktiv darslar", href: "/kurslar", joy: "right-0 top-[8%] sm:right-[-2%] sm:top-[10%]", kechikish: 0 },
+  { Ikona: FolderGit2, nom: "Amaliy loyihalar", href: "/hamjamiyat", joy: "left-0 top-[34%] sm:left-[-4%]", kechikish: 0.7 },
+  { Ikona: Award, nom: "Sertifikatlar", href: "/kurslar", joy: "right-0 top-[56%] sm:right-[-4%] sm:top-[52%]", kechikish: 1.4 },
+  { Ikona: Users, nom: "Hamjamiyat", href: "/hamjamiyat", joy: "left-[4%] bottom-[4%]", kechikish: 2.1 },
 ];
 
 export function Hero() {
@@ -23,7 +32,7 @@ export function Hero() {
       {/* Fon nuri */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[-18%] -z-10 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-gold-500/12 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-[-18%] -z-10 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-gold-500/14 blur-[130px]"
       />
 
       <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
@@ -32,7 +41,12 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="text-balance text-[2.6rem] font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[4.1rem]">
+          <span className="glass inline-flex items-center gap-2 rounded-pill px-4 py-2 text-sm font-bold text-champagne">
+            <Sparkles className="size-4 text-gold-400" aria-hidden="true" />
+            O‘zbek tilidagi ta’lim ekotizimi
+          </span>
+
+          <h1 className="mt-6 text-balance text-[2.7rem] font-black leading-[1.04] tracking-[-0.02em] sm:text-6xl lg:text-[4.4rem]">
             <span className="text-gold-gradient">Ustozim</span>{" "}
             <span className="text-fg">Nurim</span>
             <span className="mt-1 block text-[1.9rem] font-extrabold text-fg sm:text-4xl lg:text-[2.7rem]">
@@ -59,7 +73,7 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <p className="mt-7 flex items-center gap-2.5 text-sm text-fg-muted">
+          <p className="glass mt-8 inline-flex items-center gap-2.5 rounded-pill px-4 py-2 text-sm text-fg-muted">
             <span className="inline-block size-2 animate-pulse rounded-full bg-gold-400" />
             Hozircha barcha kurslar va manbalar bepul ochiq.
           </p>
@@ -74,26 +88,41 @@ export function Hero() {
         >
           <div
             aria-hidden="true"
-            className="absolute inset-[12%] rounded-full bg-gold-400/10 blur-3xl"
+            className="absolute inset-[10%] rounded-full bg-gold-400/12 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="animate-orbit absolute inset-[2%] rounded-full border border-dashed border-gold-400/25"
+          />
+          <div
+            aria-hidden="true"
+            className="animate-orbit-slow absolute inset-[14%] rounded-full border border-gold-400/15"
           />
 
           <MaskotOrni />
 
-          {SUZUVCHI.map(({ Ikona, joy, kechikish }, i) => (
-            <motion.span
-              key={i}
-              aria-hidden="true"
-              className={`absolute ${joy} inline-flex size-12 items-center justify-center rounded-2xl border border-border-strong bg-ink-800/80 text-gold-300 backdrop-blur-sm sm:size-14`}
-              animate={kamHarakat ? undefined : { y: [0, -12, 0] }}
+          {XUSUSIYATLAR.map(({ Ikona, nom, href, joy, kechikish }) => (
+            <motion.div
+              key={nom}
+              className={`absolute ${joy} z-10`}
+              animate={kamHarakat ? undefined : { y: [0, -10, 0] }}
               transition={{
-                duration: 5,
+                duration: 5.5,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: kechikish,
               }}
             >
-              <Ikona className="size-5 sm:size-6" />
-            </motion.span>
+              <Link
+                href={href}
+                className="glass lift flex items-center gap-2 rounded-2xl px-3 py-2 text-[0.8rem] sm:gap-2.5 sm:px-3.5 sm:py-2.5 sm:text-sm font-bold text-fg"
+              >
+                <span className="inline-flex size-8 items-center justify-center rounded-xl bg-gold-400/15 text-gold-300">
+                  <Ikona className="size-4" aria-hidden="true" />
+                </span>
+                {nom}
+              </Link>
+            </motion.div>
           ))}
         </motion.div>
       </Container>
