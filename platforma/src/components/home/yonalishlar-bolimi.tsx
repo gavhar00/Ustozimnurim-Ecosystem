@@ -36,7 +36,7 @@ export function YonalishlarBolimi() {
               <li key={slug}>
                 <Link
                   href={`/yonalishlar/${slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-border-subtle bg-ink-850/70 p-5 transition-all duration-250 hover:-translate-y-1 hover:border-border-strong hover:bg-ink-800"
+                  className="group lift flex h-full flex-col rounded-2xl border border-border-subtle bg-ink-850/70 p-5 hover:bg-ink-800"
                 >
                   <span className="inline-flex size-12 items-center justify-center rounded-xl bg-gold-400/12 text-gold-300 transition-colors group-hover:bg-gold-400/20">
                     <Ikona className="size-6" aria-hidden="true" />
