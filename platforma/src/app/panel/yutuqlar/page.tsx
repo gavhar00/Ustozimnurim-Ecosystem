@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Award, GraduationCap } from "lucide-react";
+import { Award, ExternalLink, GraduationCap } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { profilTalabQil } from "@/lib/auth";
@@ -61,6 +61,13 @@ export default async function YutuqlarSahifasi() {
                     year: "numeric",
                   }).format(new Date(s.berilgan))}
                 </p>
+                <Link
+                  href={`/sertifikat/${s.kod}`}
+                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-gold-300 hover:text-gold-200"
+                >
+                  Sertifikatni ochish
+                  <ExternalLink className="size-3.5" aria-hidden="true" />
+                </Link>
               </div>
             </li>
           ))}
