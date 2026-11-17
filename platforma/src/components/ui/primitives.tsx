@@ -27,7 +27,7 @@ export function SectionLabel({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-pill border border-border-strong bg-gold-400/8 px-4 py-2 text-sm font-bold text-champagne",
+        "glass inline-flex items-center gap-2 rounded-pill px-4 py-2 text-sm font-bold text-champagne",
         className,
       )}
     >
@@ -45,7 +45,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "surface-card p-6 transition-colors duration-300 hover:border-border-strong",
+        "surface-card lift p-6",
         className,
       )}
       {...props}
