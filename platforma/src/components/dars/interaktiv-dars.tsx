@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
+  Award,
   CheckCircle2,
   Play,
   RotateCcw,
@@ -42,6 +43,7 @@ export function InteraktivDars({
   const [kod, setKod] = useState(saqlanganKod ?? asl);
   const [natija, setNatija] = useState<Natija>(null);
   const [xabar, setXabar] = useState<string | null>(null);
+  const [sertKod, setSertKod] = useState<string | null>(null);
   const [bajarildi, setBajarildi] = useState(tugatilgan);
   const [kutilmoqda, startTransition] = useTransition();
   const [ishlamoqda, setIshlamoqda] = useState(false);
@@ -65,6 +67,7 @@ export function InteraktivDars({
         return;
       }
       if (tugat) setBajarildi(true);
+      if (natija.sertifikatKodi) setSertKod(natija.sertifikatKodi);
       setXabar(natija.muvaffaqiyat ?? null);
     });
   }
@@ -203,6 +206,22 @@ export function InteraktivDars({
         {xabar ? (
           <div className="mt-4">
             <FormXabar turi="muvaffaqiyat">{xabar}</FormXabar>
+          </div>
+        ) : null}
+
+        {sertKod ? (
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gold-400/50 bg-gold-400/10 p-4">
+            <p className="inline-flex items-center gap-2 font-extrabold text-gold-200">
+              <Award className="size-5" aria-hidden="true" />
+              Tabriklaymiz! Kursni tugatdingiz.
+            </p>
+            <Link
+              href={`/sertifikat/${sertKod}`}
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-gold-300 hover:text-gold-200"
+            >
+              Sertifikatni ochish
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
         ) : null}
 
