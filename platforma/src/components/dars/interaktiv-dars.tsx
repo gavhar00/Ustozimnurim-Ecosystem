@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FormXabar } from "@/components/ui/form";
 import { darsniSaqla } from "@/app/dars/amallar";
+import { kodniYurgiz } from "@/components/dars/kod-sandbox";
 
 type Natija = { turi: "chiqish" | "xato"; qatorlar: string[] } | null;
 
@@ -39,29 +40,15 @@ export function InteraktivDars({
   const [xabar, setXabar] = useState<string | null>(null);
   const [bajarildi, setBajarildi] = useState(tugatilgan);
   const [kutilmoqda, startTransition] = useTransition();
+  const [ishlamoqda, setIshlamoqda] = useState(false);
 
-  function ishgaTushir() {
-    const qatorlar: string[] = [];
-    const soxtaConsole = {
-      log: (...a: unknown[]) =>
-        qatorlar.push(
-          a.map((x) => (typeof x === "string" ? x : JSON.stringify(x))).join(" "),
-        ),
-      error: (...a: unknown[]) => qatorlar.push(a.map(String).join(" ")),
-    };
-
+  async function ishgaTushir() {
+    setIshlamoqda(true);
+    setNatija(null);
     try {
-      const bajar = new Function("console", kod);
-      bajar(soxtaConsole);
-      setNatija({
-        turi: "chiqish",
-        qatorlar: qatorlar.length ? qatorlar : ["(natija bo‘sh)"],
-      });
-    } catch (xato) {
-      setNatija({
-        turi: "xato",
-        qatorlar: [xato instanceof Error ? xato.message : "Noma’lum xato"],
-      });
+      setNatija(await kodniYurgiz(kod));
+    } finally {
+      setIshlamoqda(false);
     }
   }
 
@@ -172,8 +159,13 @@ export function InteraktivDars({
                 <Save className="size-4" aria-hidden="true" />
                 Saqlash
               </Button>
-              <Button type="button" size="sm" onClick={ishgaTushir}>
-                Ishga tushirish
+              <Button
+                type="button"
+                size="sm"
+                onClick={ishgaTushir}
+                disabled={ishlamoqda}
+              >
+                {ishlamoqda ? "Ishlamoqda…" : "Ishga tushirish"}
                 <Play className="size-3.5 fill-current" aria-hidden="true" />
               </Button>
             </div>
