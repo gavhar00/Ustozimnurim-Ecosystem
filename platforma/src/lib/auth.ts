@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase/server";
 import type { Rol } from "@/lib/rollar";
@@ -22,7 +23,7 @@ export type Profil = {
  * Joriy foydalanuvchi profili. Kirilmagan bo‘lsa yoki baza ulanmagan bo‘lsa — null.
  * Server komponentlarida ishlatiladi.
  */
-export async function joriyProfil(): Promise<Profil | null> {
+export const joriyProfil = cache(async function joriyProfil(): Promise<Profil | null> {
   const supabase = await supabaseServer();
   if (!supabase) return null;
 
@@ -64,7 +65,7 @@ export async function joriyProfil(): Promise<Profil | null> {
     avatar_url: (data?.avatar_url as string | null) ?? null,
     toldirishFoizi,
   };
-}
+});
 
 /** Kirishni talab qiladi — aks holda kirish sahifasiga yuboradi. */
 export async function profilTalabQil(keyin = "/panel"): Promise<Profil> {
