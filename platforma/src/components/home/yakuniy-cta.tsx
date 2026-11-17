@@ -9,7 +9,7 @@ export function YakuniyCta() {
         <div className="relative overflow-hidden rounded-card border border-border-strong bg-linear-[100deg,var(--color-ink-800),var(--color-ink-700)_55%,var(--color-ink-850)] p-8 sm:p-12">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full bg-gold-400/15 blur-[90px]"
+            className="pointer-events-none absolute -right-20 -top-24 size-96 rounded-full bg-gold-400/20 blur-[100px]"
           />
 
           <div className="relative flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
