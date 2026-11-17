@@ -47,7 +47,7 @@ export function Navbar({
         "relative md:sticky md:top-0",
         "z-50 border-b transition-colors duration-300",
         suzuvchi
-          ? "border-border-subtle bg-bg/85 backdrop-blur-xl"
+          ? "border-border-subtle bg-bg/70 shadow-[0_18px_40px_-30px_rgb(0_0_0/0.9)] backdrop-blur-2xl backdrop-saturate-150"
           : "border-transparent bg-transparent",
       )}
     >
