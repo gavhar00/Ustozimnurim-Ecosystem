@@ -109,6 +109,7 @@ export async function panelHisobi(
 
 export type Sertifikat = {
   id: string;
+  kod: string;
   berilgan: string;
   kurs_nomi: string;
   kurs_slug: string;
@@ -123,7 +124,7 @@ export async function sertifikatlar(
 
   const { data, error } = await supabase
     .from("sertifikatlar")
-    .select("id, berilgan, kurslar(nom, slug)")
+    .select("id, kod, berilgan, kurslar(nom, slug)")
     .eq("foydalanuvchi_id", foydalanuvchiId)
     .order("berilgan", { ascending: false });
 
@@ -134,12 +135,14 @@ export async function sertifikatlar(
 
   return ((data ?? []) as unknown as Array<{
     id: string;
+    kod: string;
     berilgan: string;
     kurslar: { nom: string; slug: string } | null;
   }>)
     .filter((q) => q.kurslar !== null)
     .map((q) => ({
       id: q.id,
+      kod: q.kod,
       berilgan: q.berilgan,
       kurs_nomi: q.kurslar!.nom,
       kurs_slug: q.kurslar!.slug,
