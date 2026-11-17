@@ -127,3 +127,42 @@ export async function adminFoydalanuvchilari(): Promise<AdminFoydalanuvchi[]> {
   }
   return (data ?? []) as AdminFoydalanuvchi[];
 }
+
+export type AdminSertifikat = {
+  id: string;
+  kod: string;
+  berilgan: string;
+  oquvchi: string;
+  kurs_nomi: string;
+};
+
+/** Berilgan sertifikatlar — admin/ustoz uchun (RLS ruxsat beradi). */
+export async function adminSertifikatlar(): Promise<AdminSertifikat[]> {
+  const supabase = await supabaseServer();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("sertifikatlar")
+    .select("id, kod, berilgan, profillar(toliq_ism), kurslar(nom)")
+    .order("berilgan", { ascending: false })
+    .limit(200);
+
+  if (error) {
+    console.error("Sertifikatlarni olishda xato:", error.message);
+    return [];
+  }
+
+  return ((data ?? []) as unknown as Array<{
+    id: string;
+    kod: string;
+    berilgan: string;
+    profillar: { toliq_ism: string } | null;
+    kurslar: { nom: string } | null;
+  }>).map((q) => ({
+    id: q.id,
+    kod: q.kod,
+    berilgan: q.berilgan,
+    oquvchi: q.profillar?.toliq_ism || "Noma’lum",
+    kurs_nomi: q.kurslar?.nom ?? "—",
+  }));
+}
