@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { FormXabar } from "@/components/ui/form";
 import { darsniSaqla } from "@/app/dars/amallar";
 import { kodniYurgiz } from "@/components/dars/kod-sandbox";
+import { HtmlKorinish } from "@/components/dars/html-korinish";
 
 type Natija = { turi: "chiqish" | "xato"; qatorlar: string[] } | null;
 
@@ -35,6 +36,9 @@ export function InteraktivDars({
   keyingiHref: string | null;
 }) {
   const asl = boshlangichKod ?? "// Kodni shu yerga yozing\n";
+  // HTML/CSS darsi: boshlang‘ich kod teg bilan boshlansa, konsol o‘rniga
+  // jonli ko‘rinish oynasi chiqadi.
+  const htmlDarsi = /^\s*</.test(boshlangichKod ?? "");
   const [kod, setKod] = useState(saqlanganKod ?? asl);
   const [natija, setNatija] = useState<Natija>(null);
   const [xabar, setXabar] = useState<string | null>(null);
@@ -159,19 +163,23 @@ export function InteraktivDars({
                 <Save className="size-4" aria-hidden="true" />
                 Saqlash
               </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={ishgaTushir}
-                disabled={ishlamoqda}
-              >
-                {ishlamoqda ? "Ishlamoqda…" : "Ishga tushirish"}
-                <Play className="size-3.5 fill-current" aria-hidden="true" />
-              </Button>
+              {htmlDarsi ? null : (
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={ishgaTushir}
+                  disabled={ishlamoqda}
+                >
+                  {ishlamoqda ? "Ishlamoqda…" : "Ishga tushirish"}
+                  <Play className="size-3.5 fill-current" aria-hidden="true" />
+                </Button>
+              )}
             </div>
           </div>
 
-          {natija ? (
+          {htmlDarsi ? <HtmlKorinish kod={kod} /> : null}
+
+          {!htmlDarsi && natija ? (
             <div
               role="status"
               aria-live="polite"
