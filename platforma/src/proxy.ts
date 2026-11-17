@@ -53,7 +53,9 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(manzil);
   }
 
-  if (user && himoyalangan) {
+  // /panel va /admin to‘ldirilganlikni o‘z layout'ida tekshiradi (bazaga ikki marta
+  // bormaslik uchun). Dars sahifalarida esa yagona qo‘riqchi shu yer.
+  if (user && DARSLAR_YOLI.test(yol)) {
     const [{ data: profil, error: profilXatosi }, { data: shaxsiy, error: shaxsiyXatosi }] =
       await Promise.all([
         supabase
