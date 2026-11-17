@@ -3,7 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { supabaseServer } from "@/lib/supabase/server";
 
-export type AmalNatijasi = { xato?: string; muvaffaqiyat?: string };
+export type AmalNatijasi = {
+  xato?: string;
+  muvaffaqiyat?: string;
+  /** Kurs tugagan bo‘lsa — sertifikatning ochiq kodi. */
+  sertifikatKodi?: string;
+};
 
 /** Kursga yozilish. */
 export async function kursgaYozil(kursId: string): Promise<AmalNatijasi> {
@@ -60,7 +65,32 @@ export async function darsniSaqla(
     return { xato: "Saqlashda xatolik yuz berdi." };
   }
 
+  let sertifikatKodi: string | undefined;
+  if (tugatilgan) {
+    // Kursning barcha darslari tugagan bo‘lsa, sertifikatni baza o‘zi beradi.
+    const { data: dars } = await supabase
+      .from("darslar")
+      .select("kurs_id")
+      .eq("id", darsId)
+      .maybeSingle();
+    if (dars?.kurs_id) {
+      const { data: kod, error: sertXato } = await supabase.rpc(
+        "sertifikat_ber",
+        { p_kurs_id: dars.kurs_id },
+      );
+      if (sertXato) {
+        console.error("Sertifikat berishda xato:", sertXato.message);
+      } else if (typeof kod === "string") {
+        sertifikatKodi = kod;
+      }
+    }
+  }
+
   revalidatePath("/panel");
   revalidatePath("/panel/kurslarim");
-  return { muvaffaqiyat: tugatilgan ? "Dars tugatildi." : "Kod saqlandi." };
+  revalidatePath("/panel/yutuqlar");
+  return {
+    muvaffaqiyat: tugatilgan ? "Dars tugatildi." : "Kod saqlandi.",
+    sertifikatKodi,
+  };
 }
