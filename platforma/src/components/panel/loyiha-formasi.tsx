@@ -68,8 +68,8 @@ export function LoyihaFormasi({
         <div><Label htmlFor="loyiha-rol">Loyihadagi rolingiz</Label><Input id="loyiha-rol" name="egalik_rol" maxLength={80} defaultValue={loyiha?.egalik_rol ?? ""} placeholder="Masalan, Frontend dasturchi" /></div>
         <div><Label htmlFor="loyiha-tex">Texnologiyalar</Label><Input id="loyiha-tex" name="texnologiyalar" maxLength={200} defaultValue={loyiha?.texnologiyalar.join(", ")} placeholder="React, TypeScript, Supabase" /><p className="mt-1 text-xs text-fg-muted">Vergul bilan ajrating.</p></div>
         <div><Label htmlFor="loyiha-holat">Holat</Label><select id="loyiha-holat" name="holat" defaultValue={loyiha?.holat ?? "jarayonda"} className={selectClass}>{(Object.keys(LOYIHA_HOLATI_NOMI) as LoyihaHolati[]).map((holat) => <option key={holat} value={holat}>{LOYIHA_HOLATI_NOMI[holat]}</option>)}</select></div>
-        <div><Label htmlFor="loyiha-github">GitHub havolasi</Label><Input id="loyiha-github" name="github_url" type="url" maxLength={200} defaultValue={loyiha?.github_url ?? ""} placeholder="https://github.com/ism/loyiha" /></div>
-        <div><Label htmlFor="loyiha-demo">Demo havolasi</Label><Input id="loyiha-demo" name="demo_url" type="url" maxLength={200} defaultValue={loyiha?.demo_url ?? ""} placeholder="https://loyiha.example" /></div>
+        <div><Label htmlFor="loyiha-github">GitHub havolasi</Label><Input id="loyiha-github" name="github_url" type="text" inputMode="url" autoCapitalize="none" spellCheck={false} maxLength={200} defaultValue={loyiha?.github_url ?? ""} placeholder="https://github.com/ism/loyiha" /></div>
+        <div><Label htmlFor="loyiha-demo">Demo havolasi</Label><Input id="loyiha-demo" name="demo_url" type="text" inputMode="url" autoCapitalize="none" spellCheck={false} maxLength={200} defaultValue={loyiha?.demo_url ?? ""} placeholder="https://loyiha.example" /></div>
       </div>
       <p className="text-xs text-fg-muted">Har bir rasm alohida saqlanadi. Ommaviy portfolio rasmlarini hamma ko‘ra oladi; tahrirlash faqat siz uchun ochiq.</p>
       <SaqlashTugmasi tahrirlash={Boolean(loyiha)} />
