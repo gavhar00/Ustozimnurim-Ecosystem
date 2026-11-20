@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const BOLIMLAR = [
+const BOLIMLAR: { nom: string; href: string; faolYol?: string; Ikona: typeof UserRound }[] = [
   { nom: "Umumiy ko‘rinish", href: "/panel", Ikona: LayoutDashboard },
   { nom: "Mening kurslarim", href: "/panel/kurslarim", Ikona: BookOpen },
   { nom: "Yo‘nalishlarim", href: "/panel/yonalishlarim", Ikona: Compass },
@@ -28,7 +28,7 @@ const BOLIMLAR = [
   { nom: "Bog‘lanishlar", href: "/panel/boglanishlar", Ikona: Users },
   { nom: "Bildirishnomalar", href: "/panel/bildirishnomalar", Ikona: Bell },
   { nom: "Yutuqlar", href: "/panel/yutuqlar", Ikona: Award },
-  { nom: "Profil", href: "/panel/profil", Ikona: UserRound },
+  { nom: "Profil", href: "/panel/profil/korinish", faolYol: "/panel/profil", Ikona: UserRound },
 ];
 
 export function YonMenyu() {
@@ -38,9 +38,10 @@ export function YonMenyu() {
     <nav aria-label="Panel bo‘limlari">
       {/* Mobil: gorizontal varaqlanadigan tasma */}
       <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:pb-0">
-        {BOLIMLAR.map(({ nom, href, Ikona }) => {
+        {BOLIMLAR.map(({ nom, href, faolYol, Ikona }) => {
+          const asos = faolYol ?? href;
           const faol =
-            href === "/panel" ? pathname === "/panel" : pathname.startsWith(href);
+            asos === "/panel" ? pathname === "/panel" : pathname.startsWith(asos);
 
           return (
             <li key={href} className="shrink-0 lg:shrink">
