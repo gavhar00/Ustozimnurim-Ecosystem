@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
+import { PaydoElement, KorinibRoyxat } from "@/components/ui/harakat";
 import { Container, SectionLabel, SectionTitle } from "@/components/ui/primitives";
 import { YONALISHLAR } from "@/lib/data/yonalishlar";
 
@@ -31,9 +32,9 @@ export function YonalishlarBolimi() {
             </ButtonLink>
           </div>
 
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <KorinibRoyxat as="ul" className="grid gap-4 sm:grid-cols-2">
             {YONALISHLAR.map(({ slug, nom, tavsif, ikona: Ikona }) => (
-              <li key={slug}>
+              <PaydoElement as="li" key={slug}>
                 <Link
                   href={`/yonalishlar/${slug}`}
                   className="group lift flex h-full flex-col rounded-2xl border border-border-subtle bg-ink-850/70 p-5 hover:bg-ink-800"
@@ -57,9 +58,9 @@ export function YonalishlarBolimi() {
                     />
                   </span>
                 </Link>
-              </li>
+              </PaydoElement>
             ))}
-          </ul>
+          </KorinibRoyxat>
         </div>
       </Container>
     </section>
