@@ -33,22 +33,20 @@ export const joriyProfil = cache(async function joriyProfil(): Promise<Profil | 
 
   if (!user) return null;
 
-  const { data, error } = await supabase
-    .from("profillar")
-    .select("id, toliq_ism, rol, avatar_url, talim, sinf_kurs, joylashuv, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, maqsad, bio")
-    .eq("id", user.id)
-    .maybeSingle();
+  // Ikkala so'rov bir-biriga bog'liq emas — bir vaqtda yuboramiz.
+  const [{ data, error }, { data: shaxsiy, error: shaxsiyXatosi }] = await Promise.all([
+    supabase
+      .from("profillar")
+      .select("id, toliq_ism, rol, avatar_url, talim, sinf_kurs, joylashuv, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, maqsad, bio")
+      .eq("id", user.id)
+      .maybeSingle(),
+    supabase.from("profil_shaxsiy").select("tugilgan_sana").eq("profil_id", user.id).maybeSingle(),
+  ]);
 
   if (error) {
     console.error("Profilni olishda xato:", error.message);
     return null;
   }
-
-  const { data: shaxsiy, error: shaxsiyXatosi } = await supabase
-    .from("profil_shaxsiy")
-    .select("tugilgan_sana")
-    .eq("profil_id", user.id)
-    .maybeSingle();
 
   const toldirishFoizi = shaxsiyXatosi
     ? 0
