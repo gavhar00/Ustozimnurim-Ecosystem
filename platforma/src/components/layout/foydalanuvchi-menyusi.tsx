@@ -80,7 +80,7 @@ export function FoydalanuvchiMenyusi({ profil }: { profil: NavProfil }) {
             </Link>
 
             <Link
-              href="/panel/profil"
+              href="/panel/profil/korinish"
               role="menuitem"
               onClick={() => setOchiq(false)}
               className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold text-fg-muted transition-colors hover:bg-gold-400/10 hover:text-fg"
