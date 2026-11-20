@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Award, ExternalLink, GraduationCap } from "lucide-react";
+import { PaydoElement, PaydoRoyxat } from "@/components/ui/harakat";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { profilTalabQil } from "@/lib/auth";
@@ -41,9 +42,9 @@ export default async function YutuqlarSahifasi() {
           />
         </div>
       ) : (
-        <ul className="mt-7 grid gap-4 sm:grid-cols-2">
+        <PaydoRoyxat as="ul" className="mt-7 grid gap-4 sm:grid-cols-2">
           {royxat.map((s) => (
-            <li key={s.id} className="surface-card flex items-center gap-4 p-5">
+            <PaydoElement as="li" key={s.id} className="surface-card flex items-center gap-4 p-5">
               <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400/12 text-gold-300">
                 <Award className="size-6" aria-hidden="true" />
               </span>
@@ -69,9 +70,9 @@ export default async function YutuqlarSahifasi() {
                   <ExternalLink className="size-3.5" aria-hidden="true" />
                 </Link>
               </div>
-            </li>
+            </PaydoElement>
           ))}
-        </ul>
+        </PaydoRoyxat>
       )}
     </>
   );
