@@ -1,3 +1,4 @@
+import { HarakatSozlamasi } from "@/components/ui/harakat";
 import { YonMenyu } from "@/components/panel/yon-menyu";
 import { Container } from "@/components/ui/primitives";
 import { profilTalabQil, ROL_NOMI } from "@/lib/auth";
@@ -10,9 +11,10 @@ export default async function PanelLayout({
   const profil = await profilTalabQil("/panel");
 
   return (
+    <HarakatSozlamasi>
     <Container className="py-8 sm:py-12">
       <div className="grid gap-8 lg:grid-cols-[250px_1fr] lg:gap-10">
-        <aside className="lg:sticky lg:top-24 lg:self-start">
+        <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
           <div className="mb-5 flex items-center gap-3 rounded-2xl border border-border-subtle bg-bg-card p-4">
             <span
               aria-hidden="true"
@@ -34,5 +36,6 @@ export default async function PanelLayout({
         <div className="min-w-0">{children}</div>
       </div>
     </Container>
+    </HarakatSozlamasi>
   );
 }
