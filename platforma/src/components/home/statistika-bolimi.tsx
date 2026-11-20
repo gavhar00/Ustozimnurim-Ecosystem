@@ -1,4 +1,5 @@
 import { Award, GraduationCap, PlayCircle, Users } from "lucide-react";
+import { KorinibRoyxat, PaydoElement } from "@/components/ui/harakat";
 import { Container } from "@/components/ui/primitives";
 import { platformaStatistikasi } from "@/lib/data/statistika";
 import { formatSon } from "@/lib/utils";
@@ -23,9 +24,9 @@ export async function StatistikaBolimi() {
   return (
     <section className="py-10 sm:py-14">
       <Container>
-        <dl className="surface-card grid grid-cols-2 gap-6 p-7 sm:p-9 lg:grid-cols-4">
+        <KorinibRoyxat as="dl" className="surface-card grid grid-cols-2 gap-6 p-7 sm:p-9 lg:grid-cols-4">
           {kartalar.map(({ Ikona, son, izoh }) => (
-            <div key={izoh} className="flex items-center gap-4">
+            <PaydoElement key={izoh} className="flex items-center gap-4">
               <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400/12 text-gold-300">
                 <Ikona className="size-6" aria-hidden="true" />
               </span>
@@ -38,9 +39,9 @@ export async function StatistikaBolimi() {
                   <span className="text-sm text-fg-muted">{izoh}</span>
                 </dd>
               </div>
-            </div>
+            </PaydoElement>
           ))}
-        </dl>
+        </KorinibRoyxat>
       </Container>
     </section>
   );
