@@ -3,6 +3,7 @@ import { BookOpen, GraduationCap } from "lucide-react";
 import { KursJarayoni } from "@/components/panel/kurs-jarayoni";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
+import { PaydoRoyxat } from "@/components/ui/harakat";
 import { profilTalabQil } from "@/lib/auth";
 import { yozilganKurslar } from "@/lib/data/panel";
 
@@ -43,11 +44,11 @@ export default async function KurslarimSahifasi() {
           />
         </div>
       ) : (
-        <ul className="mt-7 grid gap-4 sm:grid-cols-2">
+        <PaydoRoyxat as="ul" className="mt-7 grid gap-4 sm:grid-cols-2">
           {kurslar.map((kurs) => (
             <KursJarayoni key={kurs.id} kurs={kurs} />
           ))}
-        </ul>
+        </PaydoRoyxat>
       )}
     </>
   );
