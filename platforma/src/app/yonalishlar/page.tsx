@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Compass } from "lucide-react";
+import { PaydoElement, PaydoRoyxat } from "@/components/ui/harakat";
 import { Container } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/ui/page-header";
 import { YONALISHLAR } from "@/lib/data/yonalishlar";
@@ -23,9 +24,9 @@ export default function YonalishlarSahifasi() {
       />
 
       <Container className="pb-16">
-        <ul className="grid gap-5 sm:grid-cols-2">
+        <PaydoRoyxat as="ul" className="grid gap-5 sm:grid-cols-2">
           {YONALISHLAR.map(({ slug, nom, tavsif, ikona: Ikona }) => (
-            <li key={slug}>
+            <PaydoElement as="li" key={slug}>
               <Link
                 href={`/yonalishlar/${slug}`}
                 className="group flex h-full flex-col rounded-card border border-border-subtle bg-bg-card p-7 transition-all duration-250 hover:-translate-y-1 hover:border-border-strong"
@@ -47,9 +48,9 @@ export default function YonalishlarSahifasi() {
                   />
                 </span>
               </Link>
-            </li>
+            </PaydoElement>
           ))}
-        </ul>
+        </PaydoRoyxat>
       </Container>
     </>
   );
