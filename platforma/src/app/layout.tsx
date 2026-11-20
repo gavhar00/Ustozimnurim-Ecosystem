@@ -3,6 +3,7 @@ import { Nunito, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { HarakatSozlamasi } from "@/components/ui/harakat";
 import { AiMentorWidget } from "@/components/ai/ai-mentor-widget";
 import { joriyProfil } from "@/lib/auth";
 import { oqilmaganSoni } from "@/lib/data/bildirishnomalar";
@@ -98,7 +99,9 @@ export default async function RootLayout({
           }
           oqilmagan={oqilmagan}
         />
-        <main id="asosiy-kontent">{children}</main>
+        <main id="asosiy-kontent">
+          <HarakatSozlamasi>{children}</HarakatSozlamasi>
+        </main>
         <Footer />
         <AiMentorWidget />
       </body>
