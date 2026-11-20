@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { KursKartasi } from "@/components/kurslar/kurs-kartasi";
+import { PaydoRoyxat } from "@/components/ui/harakat";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Input } from "@/components/ui/form";
 import { YONALISHLAR } from "@/lib/data/yonalishlar";
@@ -138,11 +139,15 @@ export function Katalog({ kurslar }: { kurslar: Kurs[] }) {
           izoh="Qidiruv so‘zini qisqartiring yoki filtrlarni tozalab ko‘ring."
         />
       ) : (
-        <ul className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <PaydoRoyxat
+          key={`${yonalish ?? "h"}-${daraja ?? "h"}`}
+          as="ul"
+          className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {natija.map((kurs) => (
             <KursKartasi key={kurs.id} kurs={kurs} />
           ))}
-        </ul>
+        </PaydoRoyxat>
       )}
     </div>
   );
