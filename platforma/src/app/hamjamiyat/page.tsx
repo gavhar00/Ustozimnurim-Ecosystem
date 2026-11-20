@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MessageCircle, MessagesSquare } from "lucide-react";
 import { BolimMenyusi } from "@/components/hamjamiyat/bolim-menyusi";
 import { ButtonLink } from "@/components/ui/button";
+import { PaydoElement, PaydoRoyxat } from "@/components/ui/harakat";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Container } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/ui/page-header";
@@ -50,9 +51,10 @@ export default async function HamjamiyatSahifasi() {
             amal={<ButtonLink href="/hamjamiyat/yangi">Munozara ochish</ButtonLink>}
           />
         ) : (
-          <ul className="space-y-4">
+          <PaydoRoyxat as="ul" className="space-y-4">
             {royxat.map((m) => (
-              <li
+              <PaydoElement
+                as="li"
                 key={m.id}
                 className="surface-card flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between"
               >
@@ -77,9 +79,9 @@ export default async function HamjamiyatSahifasi() {
                   <MessageCircle className="size-4" aria-hidden="true" />
                   {m.javoblar_soni} javob
                 </span>
-              </li>
+              </PaydoElement>
             ))}
-          </ul>
+          </PaydoRoyxat>
         )}
       </Container>
     </>
