@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PaydoElement } from "@/components/ui/harakat";
 import { Clock, PlayCircle, User } from "lucide-react";
 import { DARAJA_NOMI, type Kurs } from "@/lib/turlar";
 import { YONALISHLAR } from "@/lib/data/yonalishlar";
@@ -15,7 +16,7 @@ export function KursKartasi({ kurs }: { kurs: Kurs }) {
   const Ikona = yonalish?.ikona;
 
   return (
-    <li className="h-full">
+    <PaydoElement as="li" className="h-full">
       <Link
         href={`/kurslar/${kurs.slug}`}
         className="group flex h-full flex-col rounded-card border border-border-subtle bg-bg-card p-6 transition-all duration-250 hover:-translate-y-1 hover:border-border-strong"
@@ -69,6 +70,6 @@ export function KursKartasi({ kurs }: { kurs: Kurs }) {
           ) : null}
         </dl>
       </Link>
-    </li>
+    </PaydoElement>
   );
 }
