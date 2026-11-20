@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { JarayonChizigi, PaydoElement } from "@/components/ui/harakat";
 import type { YozilganKurs } from "@/lib/data/panel";
 
 /** Yozilgan kurs kartasi — jarayon chizig‘i bilan. */
@@ -9,10 +10,10 @@ export function KursJarayoni({ kurs }: { kurs: YozilganKurs }) {
     jami > 0 ? Math.min(Math.round((kurs.tugatilgan_darslar / jami) * 100), 100) : 0;
 
   return (
-    <li>
+    <PaydoElement as="li" className="h-full">
       <Link
         href={`/kurslar/${kurs.slug}`}
-        className="group block rounded-card border border-border-subtle bg-bg-card p-5 transition-all duration-250 hover:border-border-strong"
+        className="group block h-full rounded-card border border-border-subtle bg-bg-card p-5 transition-all duration-250 hover:-translate-y-0.5 hover:border-border-strong"
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
@@ -37,21 +38,11 @@ export function KursJarayoni({ kurs }: { kurs: YozilganKurs }) {
             <span className="text-gold-300">{foiz}%</span>
           </div>
 
-          <div
-            className="mt-2 h-2 overflow-hidden rounded-pill bg-ink-700/70"
-            role="progressbar"
-            aria-valuenow={foiz}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`${kurs.nom} bo‘yicha jarayon`}
-          >
-            <div
-              className="h-full rounded-pill bg-linear-[90deg,var(--color-gold-300),var(--color-gold-500)] transition-[width] duration-500"
-              style={{ width: `${foiz}%` }}
-            />
+          <div className="mt-2">
+            <JarayonChizigi foiz={foiz} etiket={`${kurs.nom} bo‘yicha jarayon`} />
           </div>
         </div>
       </Link>
-    </li>
+    </PaydoElement>
   );
 }
