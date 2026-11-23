@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { supabaseServer } from "@/lib/supabase/server";
 import { profilToldirishFoizi } from "@/lib/profil-toldirish";
-import { QIZIQISHLAR } from "@/lib/turlar";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
+import { MAQSAD_TURLARI, QIZIQISHLAR } from "@/lib/turlar";
 
 export type ProfilToldirishNatija = { xato?: string; muvaffaqiyat?: boolean; foiz?: number };
 
@@ -39,6 +40,14 @@ export async function profilToldirishniSaqla(
   const organishYonalishlari = royxat(data, "organish_yonalishlari");
   const organmoqchiKonikmalar = royxat(data, "organmoqchi_konikmalar");
   const mavjudKonikmalar = royxat(data, "mavjud_konikmalar");
+  const tajribaXom = qiymat(data, "tajriba_darajasi", 20);
+  const tajriba = ["boshlangich", "orta", "yuqori"].includes(tajribaXom) ? tajribaXom : null;
+  const maqsadXom = qiymat(data, "maqsad_turi", 20);
+  const maqsadTuri = maqsadXom in MAQSAD_TURLARI ? maqsadXom : null;
+  const yonalishXom = qiymat(data, "tanlangan_yonalish", 60);
+  const tanlanganYonalish = yonalishXom
+    ? (await yonalishlarRoyxati()).find((y) => y.slug === yonalishXom)?.slug ?? null
+    : null;
 
   if (ism.length < 2 || familiya.length < 2) {
     return { xato: "Ism va familiyani kamida 2 ta belgidan kiriting." };
@@ -89,6 +98,9 @@ export async function profilToldirishniSaqla(
       mavjud_konikmalar: mavjudKonikmalar,
       maqsad: maqsad || null,
       bio: bio || null,
+      tajriba_darajasi: tajriba,
+      maqsad_turi: maqsadTuri,
+      tanlangan_yonalish: tanlanganYonalish,
     })
     .eq("id", user.id);
 
