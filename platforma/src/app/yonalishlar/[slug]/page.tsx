@@ -6,17 +6,14 @@ import { KursKartasi } from "@/components/kurslar/kurs-kartasi";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Container } from "@/components/ui/primitives";
 import { kurslarRoyxati } from "@/lib/data/kurslar";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { yonalishTopish } from "@/lib/data/yonalishlar";
+import { YonalishIkona } from "@/lib/yonalish-ikonalari";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return YONALISHLAR.map((y) => ({ slug: y.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const yonalish = YONALISHLAR.find((y) => y.slug === slug);
+  const yonalish = await yonalishTopish(slug);
 
   if (!yonalish) return { title: "Yo‘nalish topilmadi" };
 
@@ -25,13 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function YonalishSahifasi({ params }: Props) {
   const { slug } = await params;
-  const yonalish = YONALISHLAR.find((y) => y.slug === slug);
+  const yonalish = await yonalishTopish(slug);
 
   if (!yonalish) notFound();
 
   const barchaKurslar = await kurslarRoyxati();
   const kurslar = barchaKurslar.filter((k) => k.yonalish_slug === slug);
-  const Ikona = yonalish.ikona;
 
   return (
     <Container className="py-10 sm:py-14">
@@ -47,7 +43,7 @@ export default async function YonalishSahifasi({ params }: Props) {
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
         <span className="inline-flex size-16 shrink-0 items-center justify-center rounded-2xl bg-gold-400/12 text-gold-300">
-          <Ikona className="size-8" aria-hidden="true" />
+          <YonalishIkona kalit={yonalish.ikona} className="size-8" />
         </span>
         <div>
           <h1 className="text-balance text-3xl font-black leading-tight sm:text-4xl">
@@ -82,7 +78,7 @@ export default async function YonalishSahifasi({ params }: Props) {
         ) : (
           <ul className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {kurslar.map((kurs) => (
-              <KursKartasi key={kurs.id} kurs={kurs} />
+              <KursKartasi key={kurs.id} kurs={kurs} ikona={yonalish.ikona} />
             ))}
           </ul>
         )}
