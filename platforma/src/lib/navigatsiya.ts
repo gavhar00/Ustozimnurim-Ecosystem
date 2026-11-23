@@ -4,6 +4,8 @@ export const ASOSIY_MENU = [
   { nom: "Kurslar", href: "/kurslar" },
   { nom: "Yo‘nalishlar", href: "/yonalishlar" },
   { nom: "Hamjamiyat", href: "/hamjamiyat" },
+  { nom: "Tadbirlar", href: "/tadbirlar" },
+  { nom: "Lahzalar", href: "/lahzalar" },
   { nom: "Notlar", href: "/notlar" },
 ] as const;
 
@@ -23,6 +25,8 @@ export const FOOTER_HAVOLALAR = [
       { nom: "Munozaralar", href: "/hamjamiyat" },
       { nom: "Savol-javob", href: "/hamjamiyat" },
       { nom: "Loyihalar", href: "/hamjamiyat" },
+      { nom: "Tadbirlar", href: "/tadbirlar" },
+      { nom: "Lahzalar", href: "/lahzalar" },
     ],
   },
   {
