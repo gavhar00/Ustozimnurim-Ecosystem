@@ -4,7 +4,8 @@ import { ArrowRight, Compass } from "lucide-react";
 import { PaydoElement, PaydoRoyxat } from "@/components/ui/harakat";
 import { Container } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/ui/page-header";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
+import { YonalishIkona } from "@/lib/yonalish-ikonalari";
 
 export const metadata: Metadata = {
   title: "Yo‘nalishlar",
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
     "Frontend, backend, data science va UI/UX dizayn — o‘zingizga mos kasbiy yo‘nalishni tanlang.",
 };
 
-export default function YonalishlarSahifasi() {
+export default async function YonalishlarSahifasi() {
+  const yonalishlar = await yonalishlarRoyxati();
+
   return (
     <>
       <PageHeader
@@ -25,14 +28,14 @@ export default function YonalishlarSahifasi() {
 
       <Container className="pb-16">
         <PaydoRoyxat as="ul" className="grid gap-5 sm:grid-cols-2">
-          {YONALISHLAR.map(({ slug, nom, tavsif, ikona: Ikona }) => (
+          {yonalishlar.map(({ slug, nom, tavsif, ikona }) => (
             <PaydoElement as="li" key={slug}>
               <Link
                 href={`/yonalishlar/${slug}`}
                 className="group flex h-full flex-col rounded-card border border-border-subtle bg-bg-card p-7 transition-all duration-250 hover:-translate-y-1 hover:border-border-strong"
               >
                 <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-gold-400/12 text-gold-300 transition-colors group-hover:bg-gold-400/20">
-                  <Ikona className="size-7" aria-hidden="true" />
+                  <YonalishIkona kalit={ikona} className="size-7" />
                 </span>
 
                 <h2 className="mt-5 text-xl font-extrabold text-fg">{nom}</h2>
