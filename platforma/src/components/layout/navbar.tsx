@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bell, Menu, Search, X } from "lucide-react";
+import { ArrowRight, Bell, Menu, Search } from "lucide-react";
 import { LogoFull } from "@/components/brand/logo";
+import { MobilMenyu } from "@/components/layout/mobil-menyu";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import {
   FoydalanuvchiMenyusi,
@@ -44,7 +45,7 @@ export function Navbar({
   return (
     <header
       className={cn(
-        "relative md:sticky md:top-0",
+        "sticky top-0",
         "z-50 border-b transition-colors duration-300",
         suzuvchi
           ? "border-border-subtle bg-bg/70 shadow-[0_18px_40px_-30px_rgb(0_0_0/0.9)] backdrop-blur-2xl backdrop-saturate-150"
@@ -129,52 +130,23 @@ export function Navbar({
 
           <button
             type="button"
-            onClick={() => setOchiq((v) => !v)}
+            onClick={() => setOchiq(true)}
             aria-expanded={ochiq}
             aria-controls="mobil-menyu"
-            aria-label={ochiq ? "Menyuni yopish" : "Menyuni ochish"}
+            aria-label="Menyuni ochish"
+            aria-haspopup="dialog"
             className={cn(ikonaTugma, "lg:hidden")}
           >
-            {ochiq ? (
-              <X className="size-5" aria-hidden="true" />
-            ) : (
-              <Menu className="size-5" aria-hidden="true" />
-            )}
+            <Menu className="size-5" aria-hidden="true" />
           </button>
         </div>
       </Container>
 
-      {ochiq ? (
-        <div
-          id="mobil-menyu"
-          className="border-t border-border-subtle bg-bg/95 backdrop-blur-xl lg:hidden"
-        >
-          <Container className="flex flex-col gap-1 py-4">
-            {ASOSIY_MENU.map((element) => (
-              <Link
-                key={element.href}
-                href={element.href}
-                onClick={() => setOchiq(false)}
-                className="rounded-xl px-4 py-3 text-base font-semibold text-fg-muted transition-colors hover:bg-gold-400/10 hover:text-fg"
-              >
-                {element.nom}
-              </Link>
-            ))}
-            <div className="mt-3 flex items-center gap-3">
-              <ButtonLink
-                href={profil ? "/panel" : "/kirish"}
-                size="md"
-                className="flex-1"
-                onClick={() => setOchiq(false)}
-              >
-                {profil ? "Panelga o‘tish" : "Kirish"}
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </ButtonLink>
-              <ThemeToggle className={ikonaTugma} />
-            </div>
-          </Container>
-        </div>
-      ) : null}
+      <MobilMenyu
+        ochiq={ochiq}
+        yop={() => setOchiq(false)}
+        kirgan={Boolean(profil)}
+      />
     </header>
   );
 }
