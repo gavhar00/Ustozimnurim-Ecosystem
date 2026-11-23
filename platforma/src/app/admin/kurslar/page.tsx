@@ -5,7 +5,7 @@ import { HolatTugmasi } from "@/components/admin/holat-tugmasi";
 import { KursFormasi } from "@/components/admin/kurs-formasi";
 import { EmptyState } from "@/components/ui/empty-state";
 import { adminKurslari } from "@/lib/data/admin";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { adminYonalishlari } from "@/lib/data/yonalishlar";
 import { DARAJA_NOMI } from "@/lib/turlar";
 
 export const metadata: Metadata = {
@@ -20,7 +20,10 @@ const HOLAT_NOMI: Record<string, string> = {
 };
 
 export default async function AdminKurslar() {
-  const kurslar = await adminKurslari();
+  const [kurslar, yonalishlar] = await Promise.all([
+    adminKurslari(),
+    adminYonalishlari(),
+  ]);
 
   return (
     <>
@@ -37,7 +40,7 @@ export default async function AdminKurslar() {
           Yangi kurs
         </h2>
         <KursFormasi
-          yonalishlar={YONALISHLAR.map((y) => ({ slug: y.slug, nom: y.nom }))}
+          yonalishlar={yonalishlar.map((y) => ({ slug: y.slug, nom: y.nom }))}
         />
       </section>
 
