@@ -9,17 +9,19 @@ import { Button } from "@/components/ui/button";
 import { FormXabar, Input, Label } from "@/components/ui/form";
 import type { ToliqProfil } from "@/lib/turlar";
 import { profilToldirishFoizi } from "@/lib/profil-toldirish";
-import { QIZIQISHLAR } from "@/lib/turlar";
+import { DARAJA_NOMI, MAQSAD_TURLARI, QIZIQISHLAR } from "@/lib/turlar";
 
 const textAreaClass =
   "w-full rounded-xl border border-border-subtle bg-ink-850/70 px-4 py-3 text-sm text-fg placeholder:text-muted-soft focus:border-gold-400";
 
 export function ProfilToldirishFormasi({
   profil,
+  yonalishlar,
   tugilganSana,
   nextManzil,
 }: {
   profil: ToliqProfil;
+  yonalishlar: { slug: string; nom: string }[];
   tugilganSana: string;
   nextManzil: string;
 }) {
@@ -110,6 +112,51 @@ export function ProfilToldirishFormasi({
             <h3 className="mb-3 text-sm font-bold text-champagne">Profil rasmi</h3>
             <RasmYuklash turi="avatar" joriyUrl={profil.avatar_url} foydalanuvchiId={profil.id} />
           </div>
+        </section>
+
+        <section className="surface-card space-y-6 p-5 sm:p-7">
+          <div>
+            <h2 className="text-lg font-extrabold">Sizning yo‘lingiz</h2>
+            <p className="mt-1 text-sm text-fg-muted">
+              Javoblaringiz panelda sizga mos kurslarni ko‘rsatish uchun ishlatiladi. Hammasi ixtiyoriy.
+            </p>
+          </div>
+          <div>
+            <Label htmlFor="tanlangan-yonalish">Qaysi yo‘nalish qiziqtiradi?</Label>
+            <select
+              id="tanlangan-yonalish"
+              name="tanlangan_yonalish"
+              defaultValue={profil.tanlangan_yonalish ?? ""}
+              className="h-12 w-full rounded-xl border border-border-subtle bg-ink-850/70 px-4 text-[0.95rem] text-fg"
+            >
+              <option value="">Hali aniq emas</option>
+              {yonalishlar.map((y) => (
+                <option key={y.slug} value={y.slug}>{y.nom}</option>
+              ))}
+            </select>
+          </div>
+          <fieldset>
+            <legend className="mb-3 text-sm font-bold">Tajriba darajangiz</legend>
+            <div className="flex flex-wrap gap-2">
+              {(Object.entries(DARAJA_NOMI) as [string, string][]).map(([kalit, nom]) => (
+                <label key={kalit} className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-border-subtle px-3 text-sm hover:border-gold-400/60 focus-within:ring-2 focus-within:ring-gold-400 focus-within:ring-offset-2 focus-within:ring-offset-ink-950">
+                  <input type="radio" name="tajriba_darajasi" value={kalit} defaultChecked={profil.tajriba_darajasi === kalit} className="accent-gold-400" />
+                  {nom}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend className="mb-3 text-sm font-bold">Asosiy maqsadingiz</legend>
+            <div className="flex flex-wrap gap-2">
+              {(Object.entries(MAQSAD_TURLARI) as [string, string][]).map(([kalit, nom]) => (
+                <label key={kalit} className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-border-subtle px-3 text-sm hover:border-gold-400/60 focus-within:ring-2 focus-within:ring-gold-400 focus-within:ring-offset-2 focus-within:ring-offset-ink-950">
+                  <input type="radio" name="maqsad_turi" value={kalit} defaultChecked={profil.maqsad_turi === kalit} className="accent-gold-400" />
+                  {nom}
+                </label>
+              ))}
+            </div>
+          </fieldset>
         </section>
 
         <section className="surface-card space-y-5 p-5 sm:p-7">
