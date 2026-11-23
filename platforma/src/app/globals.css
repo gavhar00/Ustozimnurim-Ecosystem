@@ -97,6 +97,11 @@
   color: #8a5a14;
 }
 
+/* Yorug' fonda oltin belgi biroz chuqurroq ko'rinsin */
+.light .logo-belgi {
+  filter: saturate(1.15) brightness(0.88) drop-shadow(0 1px 0 rgb(0 0 0 / 0.08));
+}
+
 .light .text-champagne {
   color: #4a3a22;
 }
