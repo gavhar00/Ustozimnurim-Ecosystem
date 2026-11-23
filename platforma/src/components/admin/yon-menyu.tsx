@@ -5,8 +5,11 @@ import { usePathname } from "next/navigation";
 import {
   BarChart3,
   BookOpen,
+  CalendarDays,
   Compass,
   GraduationCap,
+  Images,
+  MessageSquareHeart,
   Settings,
   Users,
 } from "lucide-react";
@@ -17,6 +20,9 @@ const BOLIMLAR = [
   { nom: "Foydalanuvchilar", href: "/admin/foydalanuvchilar", Ikona: Users },
   { nom: "Kurslar", href: "/admin/kurslar", Ikona: BookOpen },
   { nom: "Yo‘nalishlar", href: "/admin/yonalishlar", Ikona: Compass },
+  { nom: "Tadbirlar", href: "/admin/tadbirlar", Ikona: CalendarDays },
+  { nom: "Lahzalar", href: "/admin/lahzalar", Ikona: Images },
+  { nom: "Fikrlar", href: "/admin/fikrlar", Ikona: MessageSquareHeart },
   { nom: "Sertifikatlar", href: "/admin/sertifikatlar", Ikona: GraduationCap },
   { nom: "Sozlamalar", href: "/admin/sozlamalar", Ikona: Settings },
 ];
