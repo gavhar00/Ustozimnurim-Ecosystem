@@ -6,7 +6,6 @@ import { KursKartasi } from "@/components/kurslar/kurs-kartasi";
 import { PaydoRoyxat } from "@/components/ui/harakat";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Input } from "@/components/ui/form";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
 import { DARAJA_NOMI, type Daraja, type Kurs } from "@/lib/turlar";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +19,13 @@ const chipUslub = (faol: boolean) =>
       : "border-border-subtle text-fg-muted hover:border-border-strong hover:text-fg",
   );
 
-export function Katalog({ kurslar }: { kurslar: Kurs[] }) {
+export function Katalog({
+  kurslar,
+  yonalishlar,
+}: {
+  kurslar: Kurs[];
+  yonalishlar: { slug: string; nom: string; ikona: string }[];
+}) {
   const [qidiruv, setQidiruv] = useState("");
   const [yonalish, setYonalish] = useState<string | null>(null);
   const [daraja, setDaraja] = useState<Daraja | null>(null);
@@ -84,7 +89,7 @@ export function Katalog({ kurslar }: { kurslar: Kurs[] }) {
               >
                 Barchasi
               </button>
-              {YONALISHLAR.map((y) => (
+              {yonalishlar.map((y) => (
                 <button
                   key={y.slug}
                   type="button"
@@ -145,7 +150,11 @@ export function Katalog({ kurslar }: { kurslar: Kurs[] }) {
           className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {natija.map((kurs) => (
-            <KursKartasi key={kurs.id} kurs={kurs} />
+            <KursKartasi
+              key={kurs.id}
+              kurs={kurs}
+              ikona={yonalishlar.find((y) => y.slug === kurs.yonalish_slug)?.ikona}
+            />
           ))}
         </PaydoRoyxat>
       )}
