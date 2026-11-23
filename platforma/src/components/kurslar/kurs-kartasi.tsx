@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PaydoElement } from "@/components/ui/harakat";
 import { Clock, PlayCircle, User } from "lucide-react";
 import { DARAJA_NOMI, type Kurs } from "@/lib/turlar";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { YonalishIkona } from "@/lib/yonalish-ikonalari";
 
 function davomiylikMatni(daqiqa: number) {
   if (daqiqa < 60) return `${daqiqa} daqiqa`;
@@ -11,9 +11,14 @@ function davomiylikMatni(daqiqa: number) {
   return qoldiq ? `${soat} soat ${qoldiq} daqiqa` : `${soat} soat`;
 }
 
-export function KursKartasi({ kurs }: { kurs: Kurs }) {
-  const yonalish = YONALISHLAR.find((y) => y.slug === kurs.yonalish_slug);
-  const Ikona = yonalish?.ikona;
+export function KursKartasi({
+  kurs,
+  ikona,
+}: {
+  kurs: Kurs;
+  /** Yo‘nalish ikonasining kaliti (bazadan). */
+  ikona?: string;
+}) {
 
   return (
     <PaydoElement as="li" className="h-full">
@@ -23,8 +28,8 @@ export function KursKartasi({ kurs }: { kurs: Kurs }) {
       >
         <div className="flex items-start justify-between gap-3">
           <span className="inline-flex size-12 items-center justify-center rounded-xl bg-gold-400/12 text-gold-300">
-            {Ikona ? (
-              <Ikona className="size-6" aria-hidden="true" />
+            {ikona ? (
+              <YonalishIkona kalit={ikona} className="size-6" />
             ) : (
               <PlayCircle className="size-6" aria-hidden="true" />
             )}
