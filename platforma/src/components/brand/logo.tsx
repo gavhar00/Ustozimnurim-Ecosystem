@@ -22,7 +22,7 @@ export function LogoMark({
       width={size}
       height={balandlik}
       priority
-      className={cn("shrink-0 object-contain", className)}
+      className={cn("logo-belgi shrink-0 object-contain", className)}
       style={{ width: size, height: balandlik }}
     />
   );
