@@ -4,6 +4,7 @@ import { Katalog } from "@/components/kurslar/katalog";
 import { Container } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/ui/page-header";
 import { kurslarRoyxati } from "@/lib/data/kurslar";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
 
 export const metadata: Metadata = {
   title: "Kurslar",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default async function KurslarSahifasi() {
-  const kurslar = await kurslarRoyxati();
+  const [kurslar, yonalishlar] = await Promise.all([
+    kurslarRoyxati(),
+    yonalishlarRoyxati(),
+  ]);
 
   return (
     <>
@@ -25,7 +29,10 @@ export default async function KurslarSahifasi() {
       />
 
       <Container className="pb-16">
-        <Katalog kurslar={kurslar} />
+        <Katalog
+          kurslar={kurslar}
+          yonalishlar={yonalishlar.map((y) => ({ slug: y.slug, nom: y.nom, ikona: y.ikona }))}
+        />
       </Container>
     </>
   );
