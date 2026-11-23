@@ -5,6 +5,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ProfilToldirishFormasi } from "@/components/profil/profil-toldirish-formasi";
 import { supabaseServer } from "@/lib/supabase/server";
 import { toliqProfil } from "@/lib/data/profil";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
 import { xavfsizIchkiManzil } from "@/lib/profil-toldirish";
 
 export const metadata: Metadata = {
@@ -44,7 +45,10 @@ export default async function ProfilToldirishSahifasi({ searchParams }: Props) {
     .select("tugilgan_sana")
     .eq("profil_id", user.id)
     .maybeSingle();
-  const profile = await toliqProfil(user.id);
+  const [profile, yonalishlar] = await Promise.all([
+    toliqProfil(user.id),
+    yonalishlarRoyxati(),
+  ]);
   if (!profile) {
     return (
       <Container className="py-12">
@@ -58,6 +62,7 @@ export default async function ProfilToldirishSahifasi({ searchParams }: Props) {
     <Container className="max-w-5xl py-8 sm:py-12">
       <ProfilToldirishFormasi
         profil={profile}
+        yonalishlar={yonalishlar.map((y) => ({ slug: y.slug, nom: y.nom }))}
         tugilganSana={privateRow?.tugilgan_sana ?? ""}
         nextManzil={xavfsizIchkiManzil(keyin)}
       />
