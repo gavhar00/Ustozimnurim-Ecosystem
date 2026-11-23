@@ -3,9 +3,13 @@ import { ArrowRight, Star } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { PaydoElement, KorinibRoyxat } from "@/components/ui/harakat";
 import { Container, SectionLabel, SectionTitle } from "@/components/ui/primitives";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
+import { YonalishIkona } from "@/lib/yonalish-ikonalari";
 
-export function YonalishlarBolimi() {
+export async function YonalishlarBolimi() {
+  const yonalishlar = await yonalishlarRoyxati();
+  if (yonalishlar.length === 0) return null;
+
   return (
     <section className="py-16 sm:py-20">
       <Container>
@@ -33,14 +37,14 @@ export function YonalishlarBolimi() {
           </div>
 
           <KorinibRoyxat as="ul" className="grid gap-4 sm:grid-cols-2">
-            {YONALISHLAR.map(({ slug, nom, tavsif, ikona: Ikona }) => (
+            {yonalishlar.map(({ slug, nom, tavsif, ikona }) => (
               <PaydoElement as="li" key={slug}>
                 <Link
                   href={`/yonalishlar/${slug}`}
                   className="group lift flex h-full flex-col rounded-2xl border border-border-subtle bg-ink-850/70 p-5 hover:bg-ink-800"
                 >
                   <span className="inline-flex size-12 items-center justify-center rounded-xl bg-gold-400/12 text-gold-300 transition-colors group-hover:bg-gold-400/20">
-                    <Ikona className="size-6" aria-hidden="true" />
+                    <YonalishIkona kalit={ikona} className="size-6" />
                   </span>
 
                   <h3 className="mt-4 text-lg font-extrabold leading-snug text-fg">
