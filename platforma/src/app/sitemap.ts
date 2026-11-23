@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { kurslarRoyxati } from "@/lib/data/kurslar";
-import { YONALISHLAR } from "@/lib/data/yonalishlar";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ustozimnurim.uz";
 
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: yol === "" ? 1 : 0.8,
   }));
 
-  const yonalishlar = YONALISHLAR.map((y) => ({
+  const yonalishlar = (await yonalishlarRoyxati()).map((y) => ({
     url: `${SITE_URL}/yonalishlar/${y.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
