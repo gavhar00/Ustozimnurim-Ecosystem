@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { kurslarRoyxati } from "@/lib/data/kurslar";
+import { tadbirlarRoyxati } from "@/lib/data/tadbirlar";
 import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ustozimnurim.uz";
@@ -10,6 +11,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/kurslar",
     "/yonalishlar",
     "/hamjamiyat",
+    "/tadbirlar",
+    "/lahzalar",
     "/notlar",
     "/biz-haqimizda",
   ].map((yol) => ({
@@ -33,5 +36,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...sahifalar, ...yonalishlar, ...kurslar];
+  const tadbirlar = (await tadbirlarRoyxati()).map((t) => ({
+    url: `${SITE_URL}/tadbirlar/${t.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  return [...sahifalar, ...yonalishlar, ...kurslar, ...tadbirlar];
 }
