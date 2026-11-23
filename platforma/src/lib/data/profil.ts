@@ -7,7 +7,7 @@ import type {
 } from "@/lib/turlar";
 
 const PROFIL_MAYDONLARI =
-  "id, toliq_ism, username, bio, kasb, talim, sinf_kurs, joylashuv, maqsad, tillar, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, hamkorlikka_ochiq, avatar_url, muqova_url, havolalar, yaratilgan";
+  "id, toliq_ism, username, bio, kasb, talim, sinf_kurs, joylashuv, maqsad, tillar, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, hamkorlikka_ochiq, avatar_url, muqova_url, havolalar, yaratilgan, tajriba_darajasi, maqsad_turi, tanlangan_yonalish";
 
 function profilgaAylantir(qator: Record<string, unknown>): ToliqProfil {
   return {
@@ -30,6 +30,9 @@ function profilgaAylantir(qator: Record<string, unknown>): ToliqProfil {
     muqova_url: (qator.muqova_url as string | null) ?? null,
     havolalar: (qator.havolalar as Havolalar) ?? {},
     yaratilgan: (qator.yaratilgan as string) ?? new Date().toISOString(),
+    tajriba_darajasi: (qator.tajriba_darajasi as ToliqProfil["tajriba_darajasi"]) ?? null,
+    maqsad_turi: (qator.maqsad_turi as ToliqProfil["maqsad_turi"]) ?? null,
+    tanlangan_yonalish: (qator.tanlangan_yonalish as string | null) ?? null,
   };
 }
 
