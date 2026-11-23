@@ -11,6 +11,7 @@ import {
   PlayCircle,
   UserRound,
 } from "lucide-react";
+import { KursKartasi } from "@/components/kurslar/kurs-kartasi";
 import { KursJarayoni } from "@/components/panel/kurs-jarayoni";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -21,7 +22,11 @@ import {
   SanaydiganRaqam,
 } from "@/components/ui/harakat";
 import { profilTalabQil } from "@/lib/auth";
+import { kurslarRoyxati } from "@/lib/data/kurslar";
 import { panelHisobi, yozilganKurslar } from "@/lib/data/panel";
+import { toliqProfil } from "@/lib/data/profil";
+import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
+import { DARAJA_NOMI, MAQSAD_TURLARI } from "@/lib/turlar";
 
 export const metadata: Metadata = {
   title: "Bosh sahifa",
@@ -37,10 +42,28 @@ const TEZKOR_HAVOLALAR = [
 
 export default async function PanelSahifasi() {
   const profil = await profilTalabQil("/panel");
-  const [hisob, kurslar] = await Promise.all([
+  const [hisob, kurslar, toliq, barchaKurslar, yonalishlar] = await Promise.all([
     panelHisobi(profil.id),
     yozilganKurslar(profil.id),
+    toliqProfil(profil.id),
+    kurslarRoyxati(),
+    yonalishlarRoyxati(),
   ]);
+
+  // Tavsiya — oddiy qoida: tanlangan yo'nalishdagi, hali yozilmagan kurslar;
+  // tajriba darajasiga mos kelganlari birinchi.
+  const tanlangan = yonalishlar.find((y) => y.slug === toliq?.tanlangan_yonalish);
+  const yozilganIdlar = new Set(kurslar.map((k) => k.id));
+  const tavsiyalar = tanlangan
+    ? barchaKurslar
+        .filter((k) => k.yonalish_slug === tanlangan.slug && !yozilganIdlar.has(k.id))
+        .sort(
+          (a, b) =>
+            Number(b.daraja === toliq?.tajriba_darajasi) -
+            Number(a.daraja === toliq?.tajriba_darajasi),
+        )
+        .slice(0, 2)
+    : [];
 
   const kartalar = hisob
     ? [
@@ -229,7 +252,37 @@ export default async function PanelSahifasi() {
           </section>
         </PaydoElement>
 
-        {/* 5. Tezkor havolalar */}
+        {/* 5. Siz uchun — onboarding javoblari asosida */}
+        {tanlangan ? (
+          <PaydoElement>
+            <section aria-labelledby="siz-uchun">
+              <h2 id="siz-uchun" className="text-xl font-extrabold">
+                Siz uchun: {tanlangan.nom}
+              </h2>
+              <p className="mt-1 text-sm text-fg-muted">
+                {[
+                  toliq?.tajriba_darajasi ? `Daraja: ${DARAJA_NOMI[toliq.tajriba_darajasi]}` : null,
+                  toliq?.maqsad_turi ? `Maqsad: ${MAQSAD_TURLARI[toliq.maqsad_turi]}` : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ") || "Siz tanlagan yo‘nalish bo‘yicha kurslar."}
+              </p>
+              {tavsiyalar.length > 0 ? (
+                <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {tavsiyalar.map((kurs) => (
+                    <KursKartasi key={kurs.id} kurs={kurs} ikona={tanlangan.ikona} />
+                  ))}
+                </ul>
+              ) : (
+                <p className="surface-card mt-4 p-5 text-sm text-fg-muted">
+                  Bu yo‘nalishda hozircha sizga yangi kurs yo‘q. Kurslar qo‘shilganda shu yerda ko‘rinadi.
+                </p>
+              )}
+            </section>
+          </PaydoElement>
+        ) : null}
+
+        {/* 6. Tezkor havolalar */}
         <PaydoElement>
           <section aria-labelledby="tezkor">
             <h2 id="tezkor" className="text-xl font-extrabold">
