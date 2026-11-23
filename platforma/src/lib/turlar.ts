@@ -133,7 +133,19 @@ export type ToliqProfil = {
   muqova_url: string | null;
   havolalar: Havolalar;
   yaratilgan: string;
+  tajriba_darajasi: Daraja | null;
+  maqsad_turi: MaqsadTuri | null;
+  tanlangan_yonalish: string | null;
 };
+
+export const MAQSAD_TURLARI = {
+  ish: "Ish topish",
+  frilans: "Frilans qilish",
+  loyiha: "O‘z loyihamni yaratish",
+  oqish: "O‘qishga tayyorlanish",
+  qiziqish: "Qiziqish uchun o‘rganish",
+} as const;
+export type MaqsadTuri = keyof typeof MAQSAD_TURLARI;
 
 /** Profilda tanlash mumkin bo'lgan qiziqishlar. */
 export const QIZIQISHLAR = [
