@@ -32,6 +32,10 @@ export function AiMentorWidget() {
             assistant_name: "Ustozim Nurim yordamchisi",
             color: "#e5b454",
             lang: "en",
+            // Ixcham tugma: kichikroq, brend yozuvisiz.
+            button_scale: 0.8,
+            button_scale_mobile: 0.9,
+            hide_branding: true,
             ad_widget_title: "",
             ad_widget_description: "",
             ad_popup_messages: [],
