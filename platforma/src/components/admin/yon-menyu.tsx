@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   BarChart3,
   BookOpen,
+  Compass,
   GraduationCap,
   Settings,
   Users,
@@ -15,6 +16,7 @@ const BOLIMLAR = [
   { nom: "Analitika", href: "/admin", Ikona: BarChart3 },
   { nom: "Foydalanuvchilar", href: "/admin/foydalanuvchilar", Ikona: Users },
   { nom: "Kurslar", href: "/admin/kurslar", Ikona: BookOpen },
+  { nom: "Yo‘nalishlar", href: "/admin/yonalishlar", Ikona: Compass },
   { nom: "Sertifikatlar", href: "/admin/sertifikatlar", Ikona: GraduationCap },
   { nom: "Sozlamalar", href: "/admin/sozlamalar", Ikona: Settings },
 ];
