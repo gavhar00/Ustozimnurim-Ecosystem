@@ -161,7 +161,7 @@ export function ProfilToldirishFormasi({
     if (natija.muvaffaqiyat) {
       yakunlandi.current = true;
       // To‘liq sahifa almashtirish: sessiya cookie'lari va profil holati serverga yetib borsin.
-      window.location.assign(nextManzil);
+      window.location.replace(nextManzil);
       return;
     }
     setYuborilmoqda(false);

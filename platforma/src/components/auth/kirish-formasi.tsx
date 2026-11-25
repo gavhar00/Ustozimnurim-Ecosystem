@@ -46,7 +46,7 @@ export function KirishFormasi() {
     // To‘liq sahifa yuklanishi bilan o‘tamiz: shunda sessiya cookie’si server
     // tomonga kafolatli yetib boradi va qo‘riqchi bizni qaytarib yubormaydi.
     const keyin = new URLSearchParams(window.location.search).get("keyin");
-    window.location.assign(xavfsizIchkiManzil(keyin));
+    window.location.replace(xavfsizIchkiManzil(keyin));
   }
 
   if (!supabase) {

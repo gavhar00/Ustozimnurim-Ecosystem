@@ -18,8 +18,7 @@ export function RoyxatFormasi() {
   /** To‘liq sahifa yuklanishi bilan o‘tamiz — sessiya cookie’si server
    *  tomonga kafolatli yetib boradi (client navigatsiyada ulgurmasligi mumkin). */
   function toldirishgaOt() {
-    // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- to‘liq yuklanish sessiya cookie’sini serverga yetkazadi
-    window.location.assign("/profil/toldirish");
+    window.location.replace("/profil/toldirish");
   }
 
   async function yubor(e: React.FormEvent<HTMLFormElement>) {

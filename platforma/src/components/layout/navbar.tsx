@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bell } from "lucide-react";
-import { LogoFull } from "@/components/brand/logo";
+import { usePathname } from "next/navigation";
+import { ArrowRight, Bell, LayoutDashboard, MessagesSquare } from "lucide-react";
+import { LogoFull, LogoMark } from "@/components/brand/logo";
+import { OrqagaTugma } from "@/components/layout/orqaga-tugma";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import {
   FoydalanuvchiMenyusi,
@@ -24,6 +26,15 @@ export function Navbar({
   oqilmagan?: number;
 }) {
   const [suzuvchi, setSuzuvchi] = useState(false);
+  const yol = usePathname();
+  const bosh = yol === "/";
+  const tugma = (href: string) =>
+    cn(
+      "inline-flex h-10 min-w-10 items-center justify-center gap-2 rounded-full border px-0 text-sm font-bold transition-colors sm:px-4",
+      yol === href || yol.startsWith(`${href}/`)
+        ? "border-gold-400/60 bg-gold-400/10 text-gold-300"
+        : "border-border-subtle text-fg-muted hover:border-border-strong hover:text-gold-300",
+    );
 
   useEffect(() => {
     const onScroll = () => setSuzuvchi(window.scrollY > 12);
@@ -48,15 +59,27 @@ export function Navbar({
       )}
     >
       <Container className="flex h-18 items-center justify-between gap-4">
-        <Link href={profil ? "/lenta" : "/"} aria-label="UstozimNurim — bosh sahifa">
-          <LogoFull />
-        </Link>
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+          {!bosh ? <OrqagaTugma zaxira={profil ? "/lenta" : "/"} className={ikonaTugma} /> : null}
+          <Link href={profil ? "/lenta" : "/"} aria-label="UstozimNurim — bosh sahifa">
+            <span className="sm:hidden"><LogoMark size={32} /></span>
+            <span className="hidden sm:inline"><LogoFull /></span>
+          </Link>
+        </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle className={ikonaTugma} />
 
           {profil ? (
             <>
+              <Link href="/lenta" className={tugma("/lenta")} aria-label="Lenta">
+                <MessagesSquare className="size-[18px]" aria-hidden="true" />
+                <span className="hidden sm:inline">Lenta</span>
+              </Link>
+              <Link href="/panel" className={tugma("/panel")} aria-label="Panel">
+                <LayoutDashboard className="size-[18px]" aria-hidden="true" />
+                <span className="hidden sm:inline">Panel</span>
+              </Link>
               <Link
                 href="/panel/bildirishnomalar"
                 aria-label={

@@ -45,7 +45,7 @@ const GURUHLAR: Guruh[] = [
       { nom: "Loyihalarim", href: "/panel/loyihalarim", Ikona: FolderGit2 },
       { nom: "Bog‘lanishlar", href: "/panel/boglanishlar", Ikona: Users },
       { nom: "Bildirishnomalar", href: "/panel/bildirishnomalar", Ikona: Bell },
-      { nom: "Lahzalarim", href: "/panel/lahzalarim", Ikona: Images },
+      { nom: "Lahzalarim", href: "/lahzalar", Ikona: Images },
     ],
   },
   {
