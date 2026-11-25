@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { LayoutDashboard, LogOut, ShieldCheck, UserRound } from "lucide-react";
+import { LayoutDashboard, LogOut, MessagesSquare, ShieldCheck, UserRound } from "lucide-react";
 import { ROL_NOMI, type Rol } from "@/lib/rollar";
 
 export type NavProfil = { toliq_ism: string; rol: Rol };
@@ -69,6 +69,16 @@ export function FoydalanuvchiMenyusi({ profil }: { profil: NavProfil }) {
           </div>
 
           <div className="p-1.5">
+            <Link
+              href="/lenta"
+              role="menuitem"
+              onClick={() => setOchiq(false)}
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold text-fg-muted transition-colors hover:bg-gold-400/10 hover:text-fg"
+            >
+              <MessagesSquare className="size-4" aria-hidden="true" />
+              Lenta
+            </Link>
+
             <Link
               href="/panel"
               role="menuitem"

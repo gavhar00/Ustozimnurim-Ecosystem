@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bell, Menu, Search } from "lucide-react";
+import { ArrowRight, Bell } from "lucide-react";
 import { LogoFull } from "@/components/brand/logo";
-import { MobilMenyu } from "@/components/layout/mobil-menyu";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import {
   FoydalanuvchiMenyusi,
@@ -13,7 +11,6 @@ import {
 } from "@/components/layout/foydalanuvchi-menyusi";
 import { Container } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/button";
-import { ASOSIY_MENU } from "@/lib/navigatsiya";
 import { cn } from "@/lib/utils";
 
 const ikonaTugma =
@@ -26,8 +23,6 @@ export function Navbar({
   profil: NavProfil | null;
   oqilmagan?: number;
 }) {
-  const pathname = usePathname();
-  const [ochiq, setOchiq] = useState(false);
   const [suzuvchi, setSuzuvchi] = useState(false);
 
   useEffect(() => {
@@ -53,49 +48,12 @@ export function Navbar({
       )}
     >
       <Container className="flex h-18 items-center justify-between gap-4">
-        <Link href="/" aria-label="UstozimNurim — bosh sahifa">
+        <Link href={profil ? "/lenta" : "/"} aria-label="UstozimNurim — bosh sahifa">
           <LogoFull />
         </Link>
 
-        <nav aria-label="Asosiy menyu" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {ASOSIY_MENU.map((element) => {
-              const faol =
-                element.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(element.href);
-              return (
-                <li key={element.href}>
-                  <Link
-                    href={element.href}
-                    aria-current={faol ? "page" : undefined}
-                    className={cn(
-                      "relative rounded-pill px-4 py-2 text-[0.95rem] font-semibold transition-colors",
-                      faol
-                        ? "text-gold-300"
-                        : "text-fg-muted hover:text-fg",
-                    )}
-                  >
-                    {element.nom}
-                    {faol ? (
-                      <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-400" />
-                    ) : null}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
         <div className="flex items-center gap-2">
-          <Link
-            href="/kurslar"
-            aria-label="Kurslarni qidirish"
-            className={cn(ikonaTugma, "hidden sm:inline-flex")}
-          >
-            <Search className="size-[18px]" aria-hidden="true" />
-          </Link>
-          <ThemeToggle className={cn(ikonaTugma, "hidden sm:inline-flex")} />
+          <ThemeToggle className={ikonaTugma} />
 
           {profil ? (
             <>
@@ -118,35 +76,15 @@ export function Navbar({
               <FoydalanuvchiMenyusi profil={profil} />
             </>
           ) : (
-            <ButtonLink
-              href="/kirish"
-              size="sm"
-              className="hidden sm:inline-flex"
-            >
+            <ButtonLink href="/kirish" size="sm">
               Kirish
               <ArrowRight className="size-4" aria-hidden="true" />
             </ButtonLink>
           )}
 
-          <button
-            type="button"
-            onClick={() => setOchiq(true)}
-            aria-expanded={ochiq}
-            aria-controls="mobil-menyu"
-            aria-label="Menyuni ochish"
-            aria-haspopup="dialog"
-            className={cn(ikonaTugma, "lg:hidden")}
-          >
-            <Menu className="size-5" aria-hidden="true" />
-          </button>
         </div>
       </Container>
 
-      <MobilMenyu
-        ochiq={ochiq}
-        yop={() => setOchiq(false)}
-        kirgan={Boolean(profil)}
-      />
     </header>
   );
 }

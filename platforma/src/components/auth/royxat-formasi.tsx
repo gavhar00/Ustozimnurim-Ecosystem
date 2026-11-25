@@ -17,9 +17,9 @@ export function RoyxatFormasi() {
 
   /** To‘liq sahifa yuklanishi bilan o‘tamiz — sessiya cookie’si server
    *  tomonga kafolatli yetib boradi (client navigatsiyada ulgurmasligi mumkin). */
-  function panelgaOt() {
+  function toldirishgaOt() {
     // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- to‘liq yuklanish sessiya cookie’sini serverga yetkazadi
-    window.location.assign("/panel");
+    window.location.assign("/profil/toldirish");
   }
 
   async function yubor(e: React.FormEvent<HTMLFormElement>) {
@@ -54,9 +54,9 @@ export function RoyxatFormasi() {
     }
 
     // Email tasdiqlash talab qilinmaydi: hisob darhol faol bo‘ladi.
-    // Sessiya qaytsa — to‘g‘ridan-to‘g‘ri panelga.
+    // Sessiya qaytsa — to‘g‘ridan-to‘g‘ri profil to‘ldirishga.
     if (data.session) {
-      panelgaOt();
+      toldirishgaOt();
       return;
     }
 
@@ -67,7 +67,7 @@ export function RoyxatFormasi() {
     });
 
     if (!kirishXatosi) {
-      panelgaOt();
+      toldirishgaOt();
       return;
     }
 

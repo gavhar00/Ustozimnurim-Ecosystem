@@ -2,11 +2,7 @@ import { cache } from "react";
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase/server";
 import type { Rol } from "@/lib/rollar";
-import {
-  PROFIL_TOLDIRISH_CHEGARASI,
-  profilToldirishFoizi,
-  xavfsizIchkiManzil,
-} from "@/lib/profil-toldirish";
+import { profilToldirishFoizi, xavfsizIchkiManzil } from "@/lib/profil-toldirish";
 
 export { ROL_NOMI, type Rol } from "@/lib/rollar";
 
@@ -17,6 +13,8 @@ export type Profil = {
   rol: Rol;
   avatar_url: string | null;
   toldirishFoizi: number;
+  /** Onboarding yakunlanganmi (bir martalik profil to‘ldirish). */
+  toldirilgan: boolean;
 };
 
 /**
@@ -37,7 +35,7 @@ export const joriyProfil = cache(async function joriyProfil(): Promise<Profil | 
   const [{ data, error }, { data: shaxsiy, error: shaxsiyXatosi }] = await Promise.all([
     supabase
       .from("profillar")
-      .select("id, toliq_ism, rol, avatar_url, talim, sinf_kurs, joylashuv, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, maqsad, bio")
+      .select("id, toliq_ism, rol, avatar_url, profil_toldirilgan, talim, sinf_kurs, joylashuv, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, maqsad, bio")
       .eq("id", user.id)
       .maybeSingle(),
     supabase.from("profil_shaxsiy").select("tugilgan_sana").eq("profil_id", user.id).maybeSingle(),
@@ -62,6 +60,7 @@ export const joriyProfil = cache(async function joriyProfil(): Promise<Profil | 
     rol: (data?.rol as Rol) ?? "oquvchi",
     avatar_url: (data?.avatar_url as string | null) ?? null,
     toldirishFoizi,
+    toldirilgan: Boolean(data?.profil_toldirilgan),
   };
 });
 
@@ -71,14 +70,8 @@ export async function profilTalabQil(keyin = "/panel"): Promise<Profil> {
   if (!profil) {
     redirect(`/kirish?keyin=${encodeURIComponent(keyin)}`);
   }
-  const protectedLearnerRoute =
-    keyin.startsWith("/panel") ||
-    keyin.startsWith("/admin") ||
-    /^\/kurslar\/[^/]+\/dars\/[^/]+/.test(keyin);
-  if (
-    protectedLearnerRoute &&
-    profil.toldirishFoizi < PROFIL_TOLDIRISH_CHEGARASI
-  ) {
+  // Onboarding tugamaguncha hech bir himoyalangan sahifa ochilmaydi.
+  if (!profil.toldirilgan && !keyin.startsWith("/profil/toldirish")) {
     redirect(`/profil/toldirish?keyin=${encodeURIComponent(xavfsizIchkiManzil(keyin))}`);
   }
   return profil;

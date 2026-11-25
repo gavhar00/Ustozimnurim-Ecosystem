@@ -7,5 +7,7 @@ export async function POST(request: NextRequest) {
   if (supabase) {
     await supabase.auth.signOut();
   }
-  return NextResponse.redirect(new URL("/", request.url), { status: 303 });
+  const javob = NextResponse.redirect(new URL("/kirish", request.url), { status: 303 });
+  javob.cookies.delete("pt");
+  return javob;
 }

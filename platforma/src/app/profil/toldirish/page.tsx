@@ -4,9 +4,8 @@ import { Container } from "@/components/ui/primitives";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ProfilToldirishFormasi } from "@/components/profil/profil-toldirish-formasi";
 import { supabaseServer } from "@/lib/supabase/server";
-import { toliqProfil } from "@/lib/data/profil";
 import { yonalishlarRoyxati } from "@/lib/data/yonalishlar";
-import { xavfsizIchkiManzil } from "@/lib/profil-toldirish";
+import { xavfsizIchkiManzil, type ToldirishQiymatlari } from "@/lib/profil-toldirish";
 
 export const metadata: Metadata = {
   title: "Profilni to‘ldirish",
@@ -29,9 +28,10 @@ export default async function ProfilToldirishSahifasi({ searchParams }: Props) {
 
   const { data: row } = await supabase
     .from("profillar")
-    .select("id, toliq_ism, username, bio, kasb, talim, sinf_kurs, joylashuv, maqsad, tillar, qiziqishlar, organish_yonalishlari, organmoqchi_konikmalar, mavjud_konikmalar, hamkorlikka_ochiq, avatar_url, muqova_url, havolalar, yaratilgan")
+    .select("toliq_ism, username, bio, kasb, talim, qiziqishlar, tajriba_darajasi, maqsad, maqsad_turi, tanlangan_yonalish, mavjud_konikmalar, havolalar, avatar_url, profil_toldirilgan")
     .eq("id", user.id)
     .maybeSingle();
+
   if (!row) {
     return (
       <Container className="py-12">
@@ -40,31 +40,40 @@ export default async function ProfilToldirishSahifasi({ searchParams }: Props) {
     );
   }
 
-  const { data: privateRow } = await supabase
-    .from("profil_shaxsiy")
-    .select("tugilgan_sana")
-    .eq("profil_id", user.id)
-    .maybeSingle();
-  const [profile, yonalishlar] = await Promise.all([
-    toliqProfil(user.id),
-    yonalishlarRoyxati(),
-  ]);
-  if (!profile) {
-    return (
-      <Container className="py-12">
-        <EmptyState sarlavha="Profilni yuklab bo‘lmadi" izoh="Birozdan so‘ng qayta urinib ko‘ring." />
-      </Container>
-    );
-  }
-
+  // Profil bir marta to‘ldiriladi — tugallangan bo‘lsa, qaytib so‘ralmaydi.
   const { keyin } = await searchParams;
+  const nextManzil = xavfsizIchkiManzil(keyin);
+  if (row.profil_toldirilgan) redirect(nextManzil);
+
+  const yonalishlar = await yonalishlarRoyxati();
+  const ism = (row.toliq_ism ?? "").trim().split(/\s+/).filter(Boolean);
+  const havolalar = (row.havolalar ?? {}) as { github?: string; portfolio?: string };
+
+  const boshlangich: ToldirishQiymatlari = {
+    ism: ism[0] ?? "",
+    familiya: ism.slice(1).join(" "),
+    username: row.username ?? "",
+    bio: row.bio ?? "",
+    kasb: row.kasb ?? "",
+    talim: row.talim ?? "",
+    qiziqishlar: row.qiziqishlar ?? [],
+    tajriba: row.tajriba_darajasi ?? "",
+    maqsad: row.maqsad ?? "",
+    maqsad_turi: row.maqsad_turi ?? "",
+    tanlangan_yonalish: row.tanlangan_yonalish ?? "",
+    konikmalar: (row.mavjud_konikmalar ?? []).join(", "),
+    github: havolalar.github ?? "",
+    portfolio: havolalar.portfolio ?? "",
+  };
+
   return (
-    <Container className="max-w-5xl py-8 sm:py-12">
+    <Container className="max-w-3xl py-8 sm:py-12">
       <ProfilToldirishFormasi
-        profil={profile}
+        boshlangich={boshlangich}
         yonalishlar={yonalishlar.map((y) => ({ slug: y.slug, nom: y.nom }))}
-        tugilganSana={privateRow?.tugilgan_sana ?? ""}
-        nextManzil={xavfsizIchkiManzil(keyin)}
+        profilId={user.id}
+        avatarUrl={row.avatar_url}
+        nextManzil={nextManzil}
       />
     </Container>
   );
