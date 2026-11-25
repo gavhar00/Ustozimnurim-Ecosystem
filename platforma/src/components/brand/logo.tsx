@@ -12,8 +12,8 @@ export function LogoMark({
   className?: string;
   size?: number;
 }) {
-  // Rasm 153x160 — nisbatni saqlaymiz, aks holda Next.js ogohlantiradi.
-  const balandlik = Math.round((size * 160) / 153);
+  // Rasm 381x400 — nisbatni saqlaymiz, aks holda Next.js ogohlantiradi.
+  const balandlik = Math.round((size * 400) / 381);
 
   return (
     <Image

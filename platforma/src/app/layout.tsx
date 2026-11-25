@@ -1,3 +1,4 @@
+import { KirishAnimatsiyasi, kirishScripti } from "@/components/brand/kirish-animatsiyasi";
 import type { Metadata, Viewport } from "next";
 import { Nunito, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -85,8 +86,10 @@ export default async function RootLayout({
     <html lang="uz" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: kirishScripti }} />
       </head>
       <body className={`${nunito.variable} ${monoCode.variable} antialiased`}>
+        <KirishAnimatsiyasi />
         <a
           href="#asosiy-kontent"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold-400 focus:px-5 focus:py-2.5 focus:font-bold focus:text-ink-950"
