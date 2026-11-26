@@ -73,15 +73,15 @@ export function Navbar({
 
           {profil ? (
             <>
-              <Link href="/lenta" className={tugma("/lenta")} aria-label="Bosh sahifa">
+              <Link href="/lenta" className={cn(tugma("/lenta"), "hidden md:inline-flex")} aria-label="Bosh sahifa">
                 <MessagesSquare className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Bosh sahifa</span>
               </Link>
-              <Link href="/duel" className={tugma("/duel")} aria-label="Duel">
+              <Link href="/duel" className={cn(tugma("/duel"), "hidden md:inline-flex")} aria-label="Duel">
                 <Swords className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Duel</span>
               </Link>
-              <Link href="/xabarlar" className={cn(tugma("/xabarlar"), "relative")} aria-label="Xabarlar">
+              <Link href="/xabarlar" className={cn(tugma("/xabarlar"), "relative hidden md:inline-flex")} aria-label="Xabarlar">
                 <Mail className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Xabarlar</span>
                 <XabarBelgisi />
@@ -90,7 +90,7 @@ export function Navbar({
                 <Code2 className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Amaliyot</span>
               </Link>
-              <Link href="/panel" className={tugma("/panel")} aria-label="Panel">
+              <Link href="/panel" className={cn(tugma("/panel"), "hidden md:inline-flex")} aria-label="Panel">
                 <LayoutDashboard className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Panel</span>
               </Link>
@@ -101,7 +101,7 @@ export function Navbar({
                     ? `Bildirishnomalar, ${oqilmagan} ta o‘qilmagan`
                     : "Bildirishnomalar"
                 }
-                className={cn(ikonaTugma, "relative")}
+                className={cn(ikonaTugma, "relative hidden md:inline-flex")}
               >
                 <Bell className="size-[18px]" aria-hidden="true" />
                 {oqilmagan > 0 ? (
