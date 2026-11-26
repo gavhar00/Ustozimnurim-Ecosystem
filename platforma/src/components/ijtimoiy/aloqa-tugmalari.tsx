@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Check, Clock, UserMinus, UserPlus } from "lucide-react";
+import Link from "next/link";
+import { Check, Clock, MessageSquare, UserMinus, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FormXabar } from "@/components/ui/form";
 import {
@@ -64,10 +65,19 @@ export function AloqaTugmalari({
         </Button>
 
         {boglanish === "boglangan" ? (
-          <span className="inline-flex items-center gap-1.5 rounded-pill border border-[#5fd39b]/40 bg-[#5fd39b]/10 px-4 py-2 text-sm font-bold text-[#9fe4c2]">
-            <Check className="size-4" aria-hidden="true" />
-            Bog‘langansiz
-          </span>
+          <>
+            <span className="inline-flex items-center gap-1.5 rounded-pill border border-[#5fd39b]/40 bg-[#5fd39b]/10 px-4 py-2 text-sm font-bold text-[#9fe4c2]">
+              <Check className="size-4" aria-hidden="true" />
+              Bog‘langansiz
+            </span>
+            <Link
+              href={`/xabarlar?kim=${profilId}`}
+              className="inline-flex items-center gap-1.5 rounded-pill bg-gold-400 px-4 py-2 text-sm font-black text-ink-950 hover:bg-gold-300"
+            >
+              <MessageSquare className="size-4" aria-hidden="true" />
+              Xabar yozish
+            </Link>
+          </>
         ) : boglanish === "men_yubordim" ? (
           <span className="inline-flex items-center gap-1.5 rounded-pill border border-border-strong px-4 py-2 text-sm font-bold text-fg-muted">
             <Clock className="size-4" aria-hidden="true" />

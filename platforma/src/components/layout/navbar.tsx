@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Bell, LayoutDashboard, MessagesSquare, Swords } from "lucide-react";
+import { ArrowRight, Bell, LayoutDashboard, Mail, MessagesSquare, Swords } from "lucide-react";
 import { LogoFull, LogoMark } from "@/components/brand/logo";
+import { XabarBelgisi } from "@/components/layout/xabar-belgisi";
 import { OrqagaTugma } from "@/components/layout/orqaga-tugma";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import {
@@ -79,6 +80,11 @@ export function Navbar({
               <Link href="/duel" className={tugma("/duel")} aria-label="Duel">
                 <Swords className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Duel</span>
+              </Link>
+              <Link href="/xabarlar" className={cn(tugma("/xabarlar"), "relative")} aria-label="Xabarlar">
+                <Mail className="size-[18px]" aria-hidden="true" />
+                <span className="hidden sm:inline">Xabarlar</span>
+                <XabarBelgisi />
               </Link>
               <Link href="/panel" className={tugma("/panel")} aria-label="Panel">
                 <LayoutDashboard className="size-[18px]" aria-hidden="true" />
