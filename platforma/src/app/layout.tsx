@@ -107,7 +107,7 @@ export default async function RootLayout({
           <HarakatSozlamasi>{children}</HarakatSozlamasi>
         </main>
         <Footer />
-        {profil ? <PastkiMenyu oqilmagan={oqilmagan} /> : null}
+        {profil ? <PastkiMenyu /> : null}
         <AiMentorWidget />
       </body>
     </html>

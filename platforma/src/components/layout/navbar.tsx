@@ -101,7 +101,7 @@ export function Navbar({
                     ? `Bildirishnomalar, ${oqilmagan} ta o‘qilmagan`
                     : "Bildirishnomalar"
                 }
-                className={cn(ikonaTugma, "relative hidden md:inline-flex")}
+                className={cn(ikonaTugma, "relative")}
               >
                 <Bell className="size-[18px]" aria-hidden="true" />
                 {oqilmagan > 0 ? (
