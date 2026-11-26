@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/primitives";
 
 export default function LentaYuklanmoqda() {
   return (
-    <Container className="max-w-2xl py-8 sm:py-10" aria-busy="true">
+    <Container className="max-w-6xl py-6 sm:py-8" aria-busy="true">
       <div className="mb-6 h-9 w-64 animate-pulse rounded-xl bg-ink-800" />
       <div className="space-y-5" role="status" aria-label="Lenta yuklanmoqda">
         {[0, 1, 2].map((i) => (

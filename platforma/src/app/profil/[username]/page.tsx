@@ -25,6 +25,7 @@ import { joriyProfil } from "@/lib/auth";
 import { aloqaHolati, profilPostlari } from "@/lib/data/ijtimoiy";
 import { boglanishRoyxatlari } from "@/lib/data/ijtimoiy";
 import { sertifikatlar, yozilganKurslar } from "@/lib/data/panel";
+import { meningStatistikam } from "@/lib/data/duel";
 import {
   profilKonikmalari,
   profilLoyihalari,
@@ -82,11 +83,12 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
   const koruvchi = await joriyProfil();
   const ozimi = koruvchi?.id === profil.id;
 
-  const [konikmalar, loyihalar, postlar, aloqa] = await Promise.all([
+  const [konikmalar, loyihalar, postlar, aloqa, duelStat] = await Promise.all([
     profilKonikmalari(profil.id),
     profilLoyihalari(profil.id),
     profilPostlari(profil.id, koruvchi?.id ?? null),
     aloqaHolati(profil.id, koruvchi?.id ?? null),
+    meningStatistikam(profil.id),
   ]);
 
   const boglangan = ozimi
@@ -240,6 +242,12 @@ export default async function OmmaviyProfil({ params, searchParams }: Props) {
                 { nom: "kuzatuvchi", son: aloqa.kuzatuvchilar },
                 { nom: "kuzatilmoqda", son: aloqa.kuzatilganlar },
                 { nom: "bog\u2018lanish", son: aloqa.boglanishlar },
+                ...(duelStat
+                  ? [
+                      { nom: "duel reytingi", son: duelStat.reyting },
+                      { nom: "duel g\u2018alabasi", son: duelStat.galabalar },
+                    ]
+                  : []),
               ].map((q) => (
                 <div key={q.nom}>
                   <dt className="sr-only">{q.nom}</dt>

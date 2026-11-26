@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { Search, Swords, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -81,7 +81,7 @@ export function RaqiblarRoyxati({ raqiblar }: { raqiblar: DuelRaqibi[] }) {
   );
 }
 
-function YaratishOynasi({ raqib, yop }: { raqib: DuelRaqibi; yop: () => void }) {
+export function YaratishOynasi({ raqib, yop }: { raqib: DuelRaqibi; yop: () => void }) {
   const router = useRouter();
   const [yonalish, setYonalish] = useState<string>(raqib.yonalish && DUEL_YONALISHLARI.some((y) => y.id === raqib.yonalish) ? raqib.yonalish : "html");
   const [qiyinlik, setQiyinlik] = useState<string>("oson");
@@ -89,6 +89,14 @@ function YaratishOynasi({ raqib, yop }: { raqib: DuelRaqibi; yop: () => void }) 
   const [soni, setSoni] = useState<number>(5);
   const [xato, setXato] = useState("");
   const [band, start] = useTransition();
+
+  useEffect(() => {
+    const tugma = (e: KeyboardEvent) => {
+      if (e.key === "Escape") yop();
+    };
+    window.addEventListener("keydown", tugma);
+    return () => window.removeEventListener("keydown", tugma);
+  }, [yop]);
 
   function yubor() {
     setXato("");

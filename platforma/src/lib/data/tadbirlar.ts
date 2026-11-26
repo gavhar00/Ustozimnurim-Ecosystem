@@ -87,3 +87,29 @@ export async function menYozilganmi(tadbirId: string): Promise<boolean | null> {
     .maybeSingle();
   return Boolean(data);
 }
+
+/** Boshlanmagan, chop etilgan tadbirlar — eng yaqini birinchi. */
+export async function kelayotganTadbirlar(limit = 3): Promise<Tadbir[]> {
+  const supabase = await supabaseServer();
+  if (!supabase) return [];
+  const { data, error } = await supabase
+    .from("tadbirlar")
+    .select(USTUNLAR)
+    .eq("holat", "chop_etilgan")
+    .gte("boshlanish", new Date().toISOString())
+    .order("boshlanish", { ascending: true })
+    .limit(limit);
+  if (error) return [];
+  return (data ?? []) as Tadbir[];
+}
+
+/** So‘nggi daqiqalarda faol bo‘lgan foydalanuvchilar soni. */
+export async function onlaynFoydalanuvchilar(): Promise<number> {
+  const supabase = await supabaseServer();
+  if (!supabase) return 0;
+  const { count } = await supabase
+    .from("profillar")
+    .select("*", { count: "exact", head: true })
+    .gte("oxirgi_faollik", new Date(Date.now() - 2 * 60 * 1000).toISOString());
+  return count ?? 0;
+}

@@ -73,9 +73,9 @@ export function Navbar({
 
           {profil ? (
             <>
-              <Link href="/lenta" className={tugma("/lenta")} aria-label="Lenta">
+              <Link href="/lenta" className={tugma("/lenta")} aria-label="Bosh sahifa">
                 <MessagesSquare className="size-[18px]" aria-hidden="true" />
-                <span className="hidden sm:inline">Lenta</span>
+                <span className="hidden sm:inline">Bosh sahifa</span>
               </Link>
               <Link href="/duel" className={tugma("/duel")} aria-label="Duel">
                 <Swords className="size-[18px]" aria-hidden="true" />
