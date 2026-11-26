@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Bell, LayoutDashboard, Mail, MessagesSquare, Swords } from "lucide-react";
+import { ArrowRight, Bell, Code2, LayoutDashboard, Mail, MessagesSquare, Swords } from "lucide-react";
 import { LogoFull, LogoMark } from "@/components/brand/logo";
 import { XabarBelgisi } from "@/components/layout/xabar-belgisi";
 import { OrqagaTugma } from "@/components/layout/orqaga-tugma";
@@ -85,6 +85,10 @@ export function Navbar({
                 <Mail className="size-[18px]" aria-hidden="true" />
                 <span className="hidden sm:inline">Xabarlar</span>
                 <XabarBelgisi />
+              </Link>
+              <Link href="/amaliyot" className={cn(tugma("/amaliyot"), "hidden md:inline-flex")} aria-label="Amaliyot">
+                <Code2 className="size-[18px]" aria-hidden="true" />
+                <span className="hidden sm:inline">Amaliyot</span>
               </Link>
               <Link href="/panel" className={tugma("/panel")} aria-label="Panel">
                 <LayoutDashboard className="size-[18px]" aria-hidden="true" />

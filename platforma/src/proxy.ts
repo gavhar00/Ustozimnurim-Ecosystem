@@ -6,7 +6,7 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
 /** Faqat kirgan foydalanuvchi uchun ochiq bo‘limlar. */
-const HIMOYALANGAN = ["/panel", "/admin", "/lenta", "/duel", "/xabarlar", "/profil/toldirish"];
+const HIMOYALANGAN = ["/panel", "/admin", "/lenta", "/duel", "/xabarlar", "/amaliyot", "/profil/toldirish"];
 const DARSLAR_YOLI = /^\/kurslar\/[^/]+\/dars\/[^/]+/;
 
 /** Kirgan foydalanuvchiga keraksiz sahifalar. */
