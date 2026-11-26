@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Nunito, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
+import { PastkiMenyu } from "@/components/layout/pastki-menyu";
 import { Footer } from "@/components/layout/footer";
 import { HarakatSozlamasi } from "@/components/ui/harakat";
 import { AiMentorWidget } from "@/components/ai/ai-mentor-widget";
@@ -102,10 +103,11 @@ export default async function RootLayout({
           }
           oqilmagan={oqilmagan}
         />
-        <main id="asosiy-kontent">
+        <main id="asosiy-kontent" className={profil ? "pb-20 md:pb-0" : undefined}>
           <HarakatSozlamasi>{children}</HarakatSozlamasi>
         </main>
         <Footer />
+        {profil ? <PastkiMenyu /> : null}
         <AiMentorWidget />
       </body>
     </html>
