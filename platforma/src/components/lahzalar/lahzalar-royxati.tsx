@@ -21,6 +21,7 @@ export function LahzalarRoyxati({
   men,
   tadbir,
   toldirilmagan,
+  yozishsiz = false,
 }: {
   boshlangich: LahzaPost[];
   davomi: string | null;
@@ -28,6 +29,8 @@ export function LahzalarRoyxati({
   men: Yozuvchi | null;
   tadbir?: string | null;
   toldirilmagan?: boolean;
+  /** true bo‘lsa yozish maydoni ko‘rsatilmaydi (masalan, bosh sahifada): faqat ommaviy lenta. */
+  yozishsiz?: boolean;
 }) {
   const router = useRouter();
   const [lahzalar, setLahzalar] = useState(boshlangich);
@@ -62,7 +65,7 @@ export function LahzalarRoyxati({
 
   return (
     <div className="space-y-5">
-      {men ? (
+      {yozishsiz ? null : men ? (
         <LahzaYozish
           men={men}
           yaratildi={(l) => setLahzalar((eski) => [l, ...eski.filter((p) => p.id !== l.id)])}

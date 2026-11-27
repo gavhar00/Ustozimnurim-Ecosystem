@@ -128,7 +128,7 @@ export default async function BoshSahifa({ searchParams }: { searchParams: Promi
               davomi={lahzalar.davomi}
               yuklashXatosi={lahzalar.xato || !supabase}
               tadbir={null}
-              toldirilmagan={!profil.toldirilgan}
+              yozishsiz
               men={profil.toldirilgan ? men : null}
             />
           ) : null}

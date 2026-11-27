@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
-import { FolderOpen, Play, Plus, Save, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { FolderOpen, Play, Plus, Save, Send, Trash2 } from "lucide-react";
 import { kodniOchir, kodniSaqla } from "@/app/amaliyot/amallar";
+import { vazifaniSaqla } from "@/app/amaliyot/vazifa-amallar";
 import {
   BOSHLANGICH_PYTHON,
   BOSHLANGICH_WEB,
@@ -67,17 +69,34 @@ function pyHujjat() {
 const maydon =
   "min-h-[16rem] w-full flex-1 resize-none rounded-b-2xl bg-bg/70 p-4 font-mono text-[0.82rem] leading-6 text-fg outline-none placeholder:text-fg-muted";
 
-export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod[] }) {
-  const [til, setTil] = useState<AmaliyotTili>("web");
+export type VazifaKodi = {
+  id: string;
+  til: AmaliyotTili;
+  html: string;
+  css: string;
+  js: string;
+  python: string;
+};
+
+export function AmaliyotMuharriri({
+  saqlanganlar,
+  vazifa,
+}: {
+  saqlanganlar: SaqlanganKod[];
+  /** Faol vazifa bo‘lsa — shu vazifa qoralamasi bilan ochiladi va «Topshirish» tugmasi chiqadi. */
+  vazifa?: VazifaKodi;
+}) {
+  const router = useRouter();
+  const [til, setTil] = useState<AmaliyotTili>(vazifa?.til ?? "web");
   const [varaq, setVaraq] = useState<Varaq>("html");
-  const [html, setHtml] = useState(BOSHLANGICH_WEB.html);
-  const [css, setCss] = useState(BOSHLANGICH_WEB.css);
-  const [js, setJs] = useState(BOSHLANGICH_WEB.js);
-  const [qollanganJs, setQollanganJs] = useState(BOSHLANGICH_WEB.js);
+  const [html, setHtml] = useState(vazifa ? vazifa.html : BOSHLANGICH_WEB.html);
+  const [css, setCss] = useState(vazifa ? vazifa.css : BOSHLANGICH_WEB.css);
+  const [js, setJs] = useState(vazifa ? vazifa.js : BOSHLANGICH_WEB.js);
+  const [qollanganJs, setQollanganJs] = useState(vazifa ? vazifa.js : BOSHLANGICH_WEB.js);
   const [nusxa, setNusxa] = useState(0);
-  const [python, setPython] = useState(BOSHLANGICH_PYTHON);
-  const [korinishHtml, setKorinishHtml] = useState(BOSHLANGICH_WEB.html);
-  const [korinishCss, setKorinishCss] = useState(BOSHLANGICH_WEB.css);
+  const [python, setPython] = useState(vazifa ? vazifa.python : BOSHLANGICH_PYTHON);
+  const [korinishHtml, setKorinishHtml] = useState(vazifa ? vazifa.html : BOSHLANGICH_WEB.html);
+  const [korinishCss, setKorinishCss] = useState(vazifa ? vazifa.css : BOSHLANGICH_WEB.css);
   const [chiqish, setChiqish] = useState<Qator[]>([]);
   const [pyHolat, setPyHolat] = useState<"bosh" | "yuklanmoqda" | "bajarilmoqda">("bosh");
   const [pyKalit, setPyKalit] = useState(0);
@@ -220,6 +239,22 @@ export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod
     });
   }
 
+  function vazifaSaqlash(yakuniy: boolean) {
+    if (!vazifa) return;
+    setXabar(null);
+    startTransition(async () => {
+      const r = await vazifaniSaqla(vazifa.id, til, html, css, js, python, yakuniy);
+      if (!r.ok) return setXabar({ ok: false, matn: r.xato });
+      if (yakuniy) return router.refresh();
+      setXabar({ ok: true, matn: "Vazifa qoralamasi saqlandi." });
+    });
+  }
+
+  function topshirish() {
+    if (typeof window !== "undefined" && !window.confirm("Vazifani topshirasizmi? Topshirilgandan keyin o‘zgartirib bo‘lmaydi.")) return;
+    vazifaSaqlash(true);
+  }
+
   function ochirish(id: string) {
     startTransition(async () => {
       const r = await kodniOchir(id);
@@ -338,6 +373,31 @@ export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod
         )}
 
         {/* Saqlash */}
+        {vazifa ? (
+          <div className="flex flex-wrap items-center gap-2 border-t border-border-subtle p-3">
+            <button
+              type="button"
+              onClick={() => vazifaSaqlash(false)}
+              disabled={kutilmoqda}
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-gold-400/50 px-4 text-xs font-extrabold text-gold-300 hover:bg-gold-400/10 disabled:opacity-50"
+            >
+              <Save className="size-4" aria-hidden="true" /> Qoralamani saqlash
+            </button>
+            <button
+              type="button"
+              onClick={topshirish}
+              disabled={kutilmoqda}
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-gold-400 px-4 text-xs font-black text-ink-950 hover:bg-gold-300 disabled:opacity-50"
+            >
+              <Send className="size-4" aria-hidden="true" /> Topshirish
+            </button>
+            {xabar ? (
+              <p role="status" className={cn("w-full text-xs font-bold", xabar.ok ? "text-emerald-400" : "text-red-400")}>
+                {xabar.matn}
+              </p>
+            ) : null}
+          </div>
+        ) : (
         <div className="flex flex-wrap items-center gap-2 border-t border-border-subtle p-3">
           <input
             value={nom}
@@ -370,6 +430,7 @@ export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod
             </p>
           ) : null}
         </div>
+        )}
       </section>
 
       {/* Natija */}
@@ -431,7 +492,8 @@ export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod
           </div>
         </div>
 
-        {/* Saqlanganlar */}
+        {vazifa ? null : (
+          <>
         <div className="surface-card overflow-hidden">
           <div className="border-b border-border-subtle px-4 py-2">
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-gold-300">
@@ -466,6 +528,8 @@ export function AmaliyotMuharriri({ saqlanganlar }: { saqlanganlar: SaqlanganKod
             </ul>
           )}
         </div>
+          </>
+        )}
       </section>
     </div>
   );
