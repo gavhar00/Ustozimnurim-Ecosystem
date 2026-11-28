@@ -51,7 +51,7 @@ export default async function AdminVazifalar() {
                     {v.holat === "chop_etilgan" ? "Chop etilgan" : "Qoralama"}
                   </span>
                 </div>
-                <div className="mt-4"><VazifaAmallari id={v.id} holat={v.holat} /></div>
+                <div className="mt-4"><VazifaAmallari id={v.id} holat={v.holat} faylNomi={v.fayl_nomi} /></div>
 
                 {v.topshiriqlar.length > 0 ? (
                   <ul className="mt-4 divide-y divide-border-subtle rounded-xl border border-border-subtle">

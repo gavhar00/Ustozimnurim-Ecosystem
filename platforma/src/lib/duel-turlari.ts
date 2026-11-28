@@ -34,7 +34,7 @@ export type DuelHolatiNomi =
   | "bekor";
 
 export const HOLAT_NOMI: Record<DuelHolatiNomi, string> = {
-  kutilmoqda: "Javob kutilmoqda",
+  kutilmoqda: "Hali hech kim boshlamagan",
   qabul_qilindi: "Boshlashga tayyor",
   boshlandi: "Davom etmoqda",
   tugadi: "Tugagan",
@@ -60,8 +60,10 @@ export type DuelHolati = {
   qiyinlik: string;
   davomiylik: number;
   vazifalar_soni: number;
-  chaqiruvchi_tayyor: boolean;
-  raqib_tayyor: boolean;
+  muddat: string;
+  men_boshladi: boolean;
+  raqib_boshladi: boolean;
+  men_tugatdim: boolean;
   boshlanish: string | null;
   tugash: string | null;
   server_vaqti: string;
@@ -73,7 +75,6 @@ export type DuelHolati = {
   vazifalar?: DuelVazifasi[];
   mening_javoblarim?: { tartib: number; tanlov: number }[];
   raqib_javoblari?: { tartib: number; tanlov: number; togri: boolean }[];
-  mening_togrilarim?: { tartib: number; togri: boolean }[];
 };
 
 export type DuelRaqibi = {
@@ -99,6 +100,9 @@ export type DuelQatori = {
   raqib_ball: number | null;
   mening_ozgarishim: number | null;
   yaratilgan: string;
+  muddat: string;
+  men_boshladi: boolean;
+  raqib_boshladi: boolean;
 };
 
 export type TopQatori = {

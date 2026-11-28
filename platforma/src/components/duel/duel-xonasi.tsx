@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { Check, Clock, Swords, Trophy, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { duelBekor, duelHolatiniOl, duelJavob, duelQabul, duelTayyor } from "@/app/duel/amallar";
+import { duelBekor, duelBoshla, duelHolatiniOl, duelJavob, duelQabul } from "@/app/duel/amallar";
 import { MuallifAvatari } from "@/components/lenta/muallif-avatari";
 import { qiyinlikNomi, yonalishNomi, type DuelHolati } from "@/lib/duel-turlari";
 import { cn } from "@/lib/utils";
@@ -47,24 +47,19 @@ export function DuelXonasi({
   // Davriy yangilanish — duel tugamaguncha
   useEffect(() => {
     if (TUGAGAN.includes(h.holat)) return;
-    const t = setInterval(yangila, h.holat === "boshlandi" ? 1500 : 2500);
+    const t = setInterval(yangila, 4000);
     return () => clearInterval(t);
   }, [h.holat, yangila]);
 
-  const boshlanish = h.boshlanish ? Date.parse(h.boshlanish) : null;
   const tugash = h.tugash ? Date.parse(h.tugash) : null;
-  const boshlandimi = boshlanish !== null && hozir >= boshlanish;
+  const muddat = Date.parse(h.muddat);
+  const ochiqHolat = h.holat === "kutilmoqda" || h.holat === "boshlandi";
 
-  // Sanoq tugab, savollar ochilishi bilan darhol yangilaymiz
-  useEffect(() => {
-    if (h.holat === "boshlandi" && boshlandimi && !h.vazifalar) void yangila();
-  }, [h.holat, boshlandimi, h.vazifalar, yangila]);
-
-  // Vaqt tugaganda natija hisoblanishi uchun
+  // Shaxsiy vaqt tugaganda natija hisoblanishi uchun
   const vaqtTugadi = tugash !== null && hozir >= tugash;
   useEffect(() => {
-    if (h.holat === "boshlandi" && vaqtTugadi) void yangila();
-  }, [h.holat, vaqtTugadi, yangila]);
+    if (ochiqHolat && h.men_boshladi && vaqtTugadi && !h.men_tugatdim) void yangila();
+  }, [ochiqHolat, h.men_boshladi, h.men_tugatdim, vaqtTugadi, yangila]);
 
   const menChaqiruvchi = h.men_chaqiruvchi;
   const mening = {
@@ -115,41 +110,51 @@ export function DuelXonasi({
 
   let tana: React.ReactNode;
 
-  if (h.holat === "kutilmoqda") {
-    tana = menChaqiruvchi ? (
-      <Markaz ikona={<Clock className="size-8" />} sarlavha="Raqib javobini kutmoqda" izoh={`${raqib.ism} taklifingizni ko‘rib chiqmoqda.`}>
-        <Button variant="secondary" disabled={band} onClick={() => amal(() => duelBekor(h.id))}>Taklifni bekor qilish</Button>
-      </Markaz>
-    ) : (
-      <Markaz ikona={<Swords className="size-8" />} sarlavha={`${raqib.ism} sizni duelga chaqirdi`} izoh="Taklifni qabul qilsangiz, ikkalangiz tayyor bo‘lgach duel bir vaqtda boshlanadi.">
-        <div className="flex flex-wrap justify-center gap-3">
-          <Button disabled={band} onClick={() => amal(() => duelQabul(h.id, true))}>Qabul qilish</Button>
-          <Button variant="secondary" disabled={band} onClick={() => amal(() => duelQabul(h.id, false))}>Rad etish</Button>
-        </div>
-      </Markaz>
-    );
-  } else if (h.holat === "qabul_qilindi") {
-    const menTayyor = menChaqiruvchi ? h.chaqiruvchi_tayyor : h.raqib_tayyor;
-    const raqibTayyor = menChaqiruvchi ? h.raqib_tayyor : h.chaqiruvchi_tayyor;
+  const muddatMatni = (() => {
+    const ms = Math.max(0, muddat - hozir);
+    const soat = Math.floor(ms / 3_600_000);
+    const daq = Math.floor((ms % 3_600_000) / 60_000);
+    return soat > 0 ? `${soat} soat ${daq} daqiqa` : `${daq} daqiqa`;
+  })();
+
+  if (ochiqHolat && !h.men_boshladi) {
+    const raqibIshlagan = h.raqib_boshladi;
     tana = (
       <Markaz
         ikona={<Swords className="size-8" />}
-        sarlavha={menTayyor ? "Raqib tayyor bo‘lishini kutmoqdamiz" : "Duel boshlashga tayyormisiz?"}
-        izoh={`Ikkalangiz “Tayyorman” bosgach, 4 soniyalik sanoqdan keyin savollar bir vaqtda ochiladi. ${raqibTayyor ? `${raqib.ism} tayyor.` : `${raqib.ism} hali tayyor emas.`}`}
+        sarlavha={menChaqiruvchi ? "Duelni boshlang" : `${raqib.ism} sizni duelga chaqirdi`}
+        izoh={`${h.vazifalar_soni} ta savol, ${Math.round(h.davomiylik / 60)} daqiqa. Ikkalangizga savollar bir xil, lekin bir vaqtda ishlash shart emas. ${
+          raqibIshlagan ? `${raqib.ism} allaqachon ishlab bo‘lgan yoki ishlayapti. ` : ""
+        }Kirish uchun ${muddatMatni} qoldi — undan keyin kirmagan odam yutqazadi. “Boshlash”ni bossangiz vaqt darrov hisoblana boshlaydi.`}
       >
         <div className="flex flex-wrap justify-center gap-3">
-          {!menTayyor ? <Button disabled={band} onClick={() => amal(() => duelTayyor(h.id))}>Tayyorman</Button> : null}
-          {menChaqiruvchi ? <Button variant="secondary" disabled={band} onClick={() => amal(() => duelBekor(h.id))}>Bekor qilish</Button> : null}
+          <Button disabled={band} onClick={() => amal(() => duelBoshla(h.id))}>Boshlash</Button>
+          {!menChaqiruvchi ? (
+            <Button variant="secondary" disabled={band} onClick={() => amal(() => duelQabul(h.id, false))}>Rad etish</Button>
+          ) : !raqibIshlagan ? (
+            <Button variant="secondary" disabled={band} onClick={() => amal(() => duelBekor(h.id))}>Taklifni bekor qilish</Button>
+          ) : null}
         </div>
       </Markaz>
     );
-  } else if (h.holat === "boshlandi") {
-    if (!boshlandimi || !boshlanish) {
-      const qoldi = Math.max(1, Math.ceil(((boshlanish ?? hozir) - hozir) / 1000));
-      tana = (
-        <Markaz ikona={<span className="text-5xl font-black tabular-nums text-gold-300">{qoldi}</span>} sarlavha="Duel boshlanmoqda" izoh="Tayyor bo‘ling — savollar hozir ochiladi." />
-      );
-    } else if (!h.vazifalar) {
+  } else if (ochiqHolat && h.men_tugatdim) {
+    tana = (
+      <Markaz
+        ikona={<Clock className="size-8" />}
+        sarlavha="Siz ishingizni tugatdingiz"
+        izoh={
+          h.raqib_boshladi
+            ? `${raqib.ism} hali tugatmagan. Natija ikkalangiz tugatgach chiqadi.`
+            : `${raqib.ism} hali kirmagan. ${muddatMatni} ichida kirmasa, siz g‘olib bo‘lasiz.`
+        }
+      >
+        <Link href="/duel" className="inline-flex h-11 items-center rounded-full border border-border-strong px-5 font-bold hover:border-gold-400/60">
+          Duellar sahifasi
+        </Link>
+      </Markaz>
+    );
+  } else if (ochiqHolat) {
+    if (!h.vazifalar) {
       tana = <Markaz ikona={<Clock className="size-8" />} sarlavha="Savollar yuklanmoqda…" />;
     } else {
       const qolgan = Math.max(0, Math.ceil(((tugash ?? hozir) - hozir) / 1000));
@@ -188,7 +193,7 @@ export function DuelXonasi({
             </>
           ) : (
             <p className="py-6 text-center font-bold text-fg-muted">
-              {hammasi ? "Barcha savollarga javob berdingiz. Raqib tugatishini kutmoqdamiz…" : "Vaqt tugadi. Natijalar hisoblanmoqda…"}
+              {hammasi ? "Barcha savollarga javob berdingiz. Natija hisoblanmoqda…" : "Vaqt tugadi. Natija hisoblanmoqda…"}
             </p>
           )}
         </div>
@@ -210,6 +215,11 @@ export function DuelXonasi({
           <p className="mt-2 text-lg font-extrabold tabular-nums">
             {menBall} : {raqibBall}
           </p>
+          {(h.raqib_javoblari ?? []).length === 0 && !durrang ? (
+            <p className="mt-1 text-sm text-fg-muted">
+              {yutdim ? `${raqib.ism} 24 soat ichida kirmadi.` : "Siz 24 soat ichida kirmadingiz."}
+            </p>
+          ) : null}
           <p className="mt-1 text-sm font-bold text-fg-muted">
             Reyting:{" "}
             <span className={ozgarish > 0 ? "text-emerald-400" : ozgarish < 0 ? "text-red-400" : ""}>

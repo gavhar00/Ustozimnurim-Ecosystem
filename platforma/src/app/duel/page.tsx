@@ -9,7 +9,7 @@ import { TaklifTugmalari } from "@/components/duel/taklif-tugmalari";
 import { TopRoyxati } from "@/components/duel/top-royxati";
 import { profilTalabQil } from "@/lib/auth";
 import { duelRaqiblari, duelTop, meningDuellarim, meningStatistikam } from "@/lib/data/duel";
-import { HOLAT_NOMI, qiyinlikNomi, yonalishNomi, type DuelQatori } from "@/lib/duel-turlari";
+import { qiyinlikNomi, yonalishNomi, type DuelQatori } from "@/lib/duel-turlari";
 
 export const metadata: Metadata = {
   title: "Duel",
@@ -26,9 +26,12 @@ export default async function DuelAsosiySahifa() {
     meningStatistikam(profil.id),
   ]);
 
-  const takliflar = duellar.filter((d) => d.holat === "kutilmoqda" && !d.men_chaqiruvchi);
-  const kutilayotgan = duellar.filter((d) => d.holat === "kutilmoqda" && d.men_chaqiruvchi);
-  const faol = duellar.filter((d) => d.holat === "qabul_qilindi" || d.holat === "boshlandi");
+  const ochiq = duellar.filter((d) => d.holat === "kutilmoqda" || d.holat === "boshlandi");
+  // Siz hali kirmagan duellar (sizni kutishmoqda)
+  const takliflar = ochiq.filter((d) => !d.men_boshladi);
+  // Siz boshlagan, raqib hali ishlamagan yoki davom etayotgan duellar
+  const faol = ochiq.filter((d) => d.men_boshladi);
+  const kutilayotgan: DuelQatori[] = [];
   const tarix = duellar.filter((d) => ["tugadi", "rad", "bekor"].includes(d.holat));
 
   return (
@@ -40,7 +43,7 @@ export default async function DuelAsosiySahifa() {
         </p>
         <h1 className="mt-2 text-3xl font-black sm:text-4xl">Duel bellashamizmi?</h1>
         <p className="mt-2 max-w-xl text-fg-muted">
-          Raqib tanlang, yo‘nalish va qiyinlikni belgilang — ikkalangizga bir xil savollar bir vaqtda ochiladi. G‘olib reyting oladi.
+          Raqib tanlang, yo‘nalish va qiyinlikni belgilang — ikkalangizga bir xil savollar. Tayyor bo‘lgan darrov boshlaydi, raqibda kirish uchun 24 soat bor; kirmasa, ishlagan odam g‘olib bo‘ladi.
         </p>
         {stat ? (
           <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -61,14 +64,19 @@ export default async function DuelAsosiySahifa() {
 
       {takliflar.length + faol.length + kutilayotgan.length > 0 ? (
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <Blok sarlavha="Duelga takliflar" bosh={takliflar.length === 0} bosXabar="Hozircha taklif yo‘q.">
+          <Blok sarlavha="Sizni kutayotgan duellar" bosh={takliflar.length === 0} bosXabar="Hozircha taklif yo‘q.">
             {takliflar.map((d) => (
-              <Qator key={d.id} d={d} amal={<TaklifTugmalari id={d.id} />} izoh="sizni chaqirdi" />
+              <Qator
+                key={d.id}
+                d={d}
+                amal={d.men_chaqiruvchi ? <Link href={`/duel/${d.id}`} className="text-sm font-extrabold text-gold-300 hover:underline">Boshlash</Link> : <TaklifTugmalari id={d.id} />}
+                izoh={`${d.men_chaqiruvchi ? "siz chaqirdingiz" : "sizni chaqirdi"} · ${qolganVaqt(d.muddat)}`}
+              />
             ))}
           </Blok>
           <Blok sarlavha="Faol duellar" bosh={faol.length === 0} bosXabar="Faol duel yo‘q.">
             {faol.map((d) => (
-              <Qator key={d.id} d={d} izoh={HOLAT_NOMI[d.holat]} amal={<Link href={`/duel/${d.id}`} className="text-sm font-extrabold text-gold-300 hover:underline">Davom ettirish</Link>} />
+              <Qator key={d.id} d={d} izoh={d.raqib_boshladi ? "ikkalangiz ishlayapsiz" : `raqib hali kirmagan · ${qolganVaqt(d.muddat)}`} amal={<Link href={`/duel/${d.id}`} className="text-sm font-extrabold text-gold-300 hover:underline">Davom ettirish</Link>} />
             ))}
           </Blok>
           {kutilayotgan.length > 0 ? (
@@ -111,6 +119,14 @@ export default async function DuelAsosiySahifa() {
       </section>
     </Container>
   );
+}
+
+function qolganVaqt(muddat: string) {
+  const ms = Date.parse(muddat) - Date.now();
+  if (ms <= 0) return "muddat tugayapti";
+  const s = Math.floor(ms / 3_600_000);
+  const m = Math.floor((ms % 3_600_000) / 60_000);
+  return s > 0 ? `${s} soat ${m} daqiqa qoldi` : `${m} daqiqa qoldi`;
 }
 
 function tarixIzohi(d: DuelQatori, menId: string) {

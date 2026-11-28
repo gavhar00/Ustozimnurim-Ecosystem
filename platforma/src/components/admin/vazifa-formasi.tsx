@@ -4,7 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { Eye, EyeOff, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FormXabar, Input, Label } from "@/components/ui/form";
-import { vazifaHolatiniOzgartir, vazifaOchir, vazifaYarat } from "@/app/admin/vazifalar/amallar";
+import { vazifaFayliniBiriktir, vazifaHolatiniOzgartir, vazifaOchir, vazifaYarat } from "@/app/admin/vazifalar/amallar";
 import { supabaseBrauzer } from "@/lib/supabase/client";
 
 const maydon =
@@ -79,14 +79,39 @@ export function VazifaFormasi() {
   );
 }
 
-export function VazifaAmallari({ id, holat }: { id: string; holat: string }) {
+export function VazifaAmallari({ id, holat, faylNomi }: { id: string; holat: string; faylNomi: string | null }) {
   const [joriy, setJoriy] = useState(holat);
   const [tasdiq, setTasdiq] = useState(false);
   const [xato, setXato] = useState<string | null>(null);
   const [kutilmoqda, startTransition] = useTransition();
   const chop = joriy === "chop_etilgan";
+  const [fayl, setFayl] = useState(faylNomi);
+
+  function biriktir(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0];
+    e.target.value = "";
+    if (!f) return;
+    if (f.size > MAKS_BAYT) return setXato("Fayl 25 MB dan oshmasin.");
+    setXato(null);
+    startTransition(async () => {
+      const sb = supabaseBrauzer();
+      if (!sb) return setXato("Baza ulanmagan.");
+      const xavfsiz = f.name.replace(/[^A-Za-z0-9._-]+/g, "_").slice(-80) || "fayl";
+      const yol = `${crypto.randomUUID()}/${xavfsiz}`;
+      const { error } = await sb.storage.from("vazifa-fayllari").upload(yol, f, { contentType: f.type || "application/octet-stream" });
+      if (error) return setXato("Faylni yuklab bo‘lmadi.");
+      const n = await vazifaFayliniBiriktir(id, yol, f.name);
+      if (n.xato) setXato(n.xato);
+      else setFayl(f.name.slice(0, 120));
+    });
+  }
+
   return (
     <div className="flex flex-wrap items-center gap-2">
+      <label className="inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border border-border-subtle px-3 text-xs font-bold text-fg-muted hover:text-fg">
+        {fayl ? `Fayl: ${fayl} (almashtirish)` : "Fayl biriktirish"}
+        <input type="file" className="sr-only" onChange={biriktir} disabled={kutilmoqda} />
+      </label>
       <Button
         type="button"
         size="sm"

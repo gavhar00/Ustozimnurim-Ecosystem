@@ -22,6 +22,9 @@ function xatoMatni(m: string) {
   if (bor("vaqti tugagan")) return "Duel vaqti tugagan yoki hali boshlanmagan.";
   if (bor("Ruxsat yo")) return "Bu amalga ruxsat yo‘q.";
   if (bor("allaqachon hal")) return "Bu taklif allaqachon hal qilingan.";
+  if (bor("muddati tugagan")) return "Duel muddati (24 soat) tugagan.";
+  if (bor("allaqachon boshlagansiz")) return "Siz duelni allaqachon boshlagansiz.";
+  if (bor("Bekor qilib bo")) return "Duel boshlangan, endi bekor qilib bo‘lmaydi.";
   return "Amalni bajarib bo‘lmadi. Birozdan keyin qayta urinib ko‘ring.";
 }
 
@@ -61,9 +64,10 @@ export async function duelQabul(id: string, qabul: boolean): Promise<AmalNatijas
 export async function duelBekor(id: string): Promise<AmalNatijasi> {
   return oddiyAmal("duel_bekor", { p_duel: id });
 }
-export async function duelTayyor(id: string): Promise<AmalNatijasi> {
-  return oddiyAmal("duel_tayyor", { p_duel: id });
+export async function duelBoshla(id: string): Promise<AmalNatijasi> {
+  return oddiyAmal("duel_boshlash", { p_duel: id });
 }
+
 
 export async function duelJavob(id: string, tartib: number, tanlov: number): Promise<AmalNatijasi> {
   const k = await klient();

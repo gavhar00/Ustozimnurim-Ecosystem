@@ -63,3 +63,20 @@ export async function vazifaOchir(id: string): Promise<AdminHolati> {
   yangila();
   return { muvaffaqiyat: "O‘chirildi." };
 }
+
+/** Mavjud vazifaga fayl biriktiradi (fayl brauzerdan yuklangan; eskisi o‘chiriladi). */
+export async function vazifaFayliniBiriktir(id: string, faylYoli: string, faylNomi: string): Promise<AdminHolati> {
+  const supabase = await supabaseServer();
+  if (!supabase) return { xato: "Baza ulanmagan." };
+  const { data: eski } = await supabase.from("vazifalar").select("fayl_yoli").eq("id", id).maybeSingle();
+  const { error } = await supabase
+    .from("vazifalar")
+    .update({ fayl_yoli: faylYoli, fayl_nomi: faylNomi.slice(0, 120) })
+    .eq("id", id);
+  if (error) return { xato: "Biriktirib bo‘lmadi." };
+  if (eski?.fayl_yoli && eski.fayl_yoli !== faylYoli) {
+    await supabase.storage.from("vazifa-fayllari").remove([eski.fayl_yoli]);
+  }
+  yangila();
+  return { muvaffaqiyat: "Fayl biriktirildi." };
+}

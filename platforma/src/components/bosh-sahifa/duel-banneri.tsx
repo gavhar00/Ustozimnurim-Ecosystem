@@ -27,7 +27,7 @@ export function DuelBanneri({ raqiblar, takliflarSoni }: { raqiblar: DuelRaqibi[
       <h2 id="duel-banner" className="inline-flex items-center gap-2 text-base font-black">
         <Swords className="size-5 text-gold-300" aria-hidden="true" /> Duelga chaqiring
       </h2>
-      <p className="mt-1 text-xs text-fg-muted">Do‘stingizni tanlang — bir xil savollar, bir vaqtda boshlanadi.</p>
+      <p className="mt-1 text-xs text-fg-muted">Do‘stingizni tanlang — bir xil savollar, o‘zingizga qulay payt ishlaysiz.</p>
       {takliflarSoni > 0 ? (
         <Link
           href="/duel"

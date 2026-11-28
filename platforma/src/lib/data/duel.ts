@@ -51,16 +51,20 @@ type DuelSatri = {
   chaqiruvchi_reyting_ozgarishi: number | null;
   raqib_reyting_ozgarishi: number | null;
   yaratilgan: string;
+  muddat: string;
+  chaqiruvchi_boshladi: string | null;
+  raqib_boshladi: string | null;
 };
 
-/** Foydalanuvchining barcha duellari (RLS faqat o‘zinikini beradi). */
+/** Foydalanuvchining barcha duellari (RLS faqat o‘zinikini beradi). Avval muddati o‘tganlari hisoblab qo‘yiladi. */
 export async function meningDuellarim(menId: string): Promise<DuelQatori[]> {
   const supabase = await supabaseServer();
   if (!supabase) return [];
+  await supabase.rpc("duel_yakunlarni_tekshir");
   const { data, error } = await supabase
     .from("duellar")
     .select(
-      "id, chaqiruvchi_id, raqib_id, holat, yonalish, qiyinlik, galib_id, chaqiruvchi_ball, raqib_ball, chaqiruvchi_reyting_ozgarishi, raqib_reyting_ozgarishi, yaratilgan",
+      "id, chaqiruvchi_id, raqib_id, holat, yonalish, qiyinlik, galib_id, chaqiruvchi_ball, raqib_ball, chaqiruvchi_reyting_ozgarishi, raqib_reyting_ozgarishi, yaratilgan, muddat, chaqiruvchi_boshladi, raqib_boshladi",
     )
     .order("yaratilgan", { ascending: false })
     .limit(60);
@@ -91,6 +95,9 @@ export async function meningDuellarim(menId: string): Promise<DuelQatori[]> {
       raqib_ball: men ? s.raqib_ball : s.chaqiruvchi_ball,
       mening_ozgarishim: men ? s.chaqiruvchi_reyting_ozgarishi : s.raqib_reyting_ozgarishi,
       yaratilgan: s.yaratilgan,
+      muddat: s.muddat,
+      men_boshladi: (men ? s.chaqiruvchi_boshladi : s.raqib_boshladi) !== null,
+      raqib_boshladi: (men ? s.raqib_boshladi : s.chaqiruvchi_boshladi) !== null,
     };
   });
 }
